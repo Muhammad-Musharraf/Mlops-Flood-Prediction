@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 data:
   test_size: 0.2
   random_state: 42
@@ -5,3 +6,173 @@ data:
 model:
   cv: 7
   scoring: r2
+=======
+# ============================================================
+#  Flood Prediction – params.yaml
+#  Derived from Flood_Prediction.ipynb
+# ============================================================
+
+# ----------------------------------------------------------
+# Data
+# ----------------------------------------------------------
+data:
+  path: "data/raw/flood_raw.csv"
+  target_column: "FloodProbability"
+
+  # Columns removed during preprocessing (notebook: df.drop(...))
+  drop_columns:
+    - "PoliticalFactors"
+    - "InadequatePlanning"
+    - "PopulationScore"
+
+  # Feature columns fed to the scaler / models (after drop)
+  feature_columns:
+    - "MonsoonIntensity"
+    - "TopographyDrainage"
+    - "RiverManagement"
+    - "Deforestation"
+    - "Urbanization"
+    - "ClimateChange"
+    - "DamsQuality"
+    - "Siltation"
+    - "AgriculturalPractices"
+    - "Encroachments"
+    - "IneffectiveDisasterPreparedness"
+    - "DrainageSystems"
+    - "CoastalVulnerability"
+    - "Landslides"
+    - "Watersheds"
+    - "DeterioratingInfrastructure"
+    - "WetlandLoss"
+
+# ----------------------------------------------------------
+# Train / Test Split
+# (notebook: train_test_split(x, y, test_size=0.2, random_state=42))
+# ----------------------------------------------------------
+split:
+  test_size: 0.2
+  random_state: 42
+  seed_search_iterations: 1000
+
+# ----------------------------------------------------------
+# Preprocessing
+# (notebook: StandardScaler().fit(x_train) → transform both)
+# ----------------------------------------------------------
+preprocessing:
+  scaler: "StandardScaler"   # withMean=True, withStd=True
+
+# ----------------------------------------------------------
+# Output Paths  (used by preprocess.py)
+# ----------------------------------------------------------
+output:
+  train_path:    "data/processed/train.csv"
+  test_path:     "data/processed/test.csv"
+  pipeline_path: "models/pipeline"
+
+# ----------------------------------------------------------
+# Models & Hyperparameters
+# ----------------------------------------------------------
+models:
+
+  LinearRegression:
+    enabled: true
+    params: {}
+
+  KNeighborsRegressor:
+    enabled: true
+    params:
+      n_neighbors: 5
+      weights: "uniform"
+      algorithm: "auto"
+      leaf_size: 30
+      p: 2
+
+  DecisionTreeRegressor:
+    enabled: true
+    params:
+      criterion: "squared_error"
+      max_depth: null
+      min_samples_split: 2
+      min_samples_leaf: 1
+      random_state: null
+
+  RandomForestRegressor:
+    enabled: true
+    params:
+      n_estimators: 100
+      criterion: "squared_error"
+      max_depth: null
+      min_samples_split: 2
+      min_samples_leaf: 1
+      random_state: null
+
+  SVR:
+    enabled: true
+    params:
+      kernel: "rbf"
+      C: 1.0
+      epsilon: 0.1
+      gamma: "scale"
+
+  Ridge:
+    enabled: true
+    params:
+      alpha: 1.0
+
+  Lasso:
+    enabled: true
+    params:
+      alpha: 1.0
+
+  GradientBoostingRegressor:
+    enabled: true
+    params:
+      n_estimators: 100
+      learning_rate: 0.1
+      max_depth: 3
+      subsample: 1.0
+      random_state: null
+
+  XGBRegressor:
+    enabled: true
+    params:
+      n_estimators: 500
+      learning_rate: 0.05
+      max_depth: 5
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      verbosity: 0
+
+# ----------------------------------------------------------
+# Evaluation Metrics
+# ----------------------------------------------------------
+evaluation:
+  metrics:
+    - "mean_squared_error"
+    - "mean_absolute_error"
+    - "r2_score"
+
+# ----------------------------------------------------------
+# Sample Prediction Input
+# (notebook: pipe.predict(pd.DataFrame(...)))
+# ----------------------------------------------------------
+sample_input:
+  MonsoonIntensity: 1
+  TopographyDrainage: 3
+  RiverManagement: 4
+  Deforestation: 5
+  Urbanization: 3
+  ClimateChange: 2
+  DamsQuality: 8
+  Siltation: 9
+  AgriculturalPractices: 3
+  Encroachments: 2
+  IneffectiveDisasterPreparedness: 9
+  DrainageSystems: 8
+  CoastalVulnerability: 6
+  Landslides: 2
+  Watersheds: 1
+  DeterioratingInfrastructure: 1
+  WetlandLoss: 4
+>>>>>>> 2b1d0b6 (add ETL file)
