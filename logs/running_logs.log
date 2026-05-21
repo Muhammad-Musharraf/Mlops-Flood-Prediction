@@ -1,7 +1,54 @@
-[ 2026-05-17 15:28:04,873 ] logger.py:19 MLOpsWorkflow - INFO - Logger initialized in logs/running_logs.log
-[ 2026-05-17 15:30:56,336 ] config_utils.py:14 root - INFO - Warning: config.yaml not found.
-[ 2026-05-17 15:30:56,362 ] config_utils.py:28 root - INFO - Loaded Params:
-[ 2026-05-17 15:31:02,659 ] config_utils.py:14 root - INFO - Warning: config.yaml not found.
-[ 2026-05-17 15:31:02,693 ] config_utils.py:28 root - INFO - Loaded Params:
-[ 2026-05-17 15:31:04,178 ] config_utils.py:14 root - INFO - Warning: config.yaml not found.
-[ 2026-05-17 15:31:04,200 ] config_utils.py:28 root - INFO - Loaded Params:
+[ 2026-05-20 01:54:15,483 ] logger.py:19 MLOpsWorkflow - INFO - Logger initialized in logs/running_logs.log
+[ 2026-05-20 10:09:59,552 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-05-20 10:10:01,334 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-05-20 10:10:01,389 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ClimateChange  ...  DeterioratingInfrastructure  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4              4  ...                            3                4            3                   2                 6             0.450
+1                 8                   4                5              7             7              9  ...                            1                1            9                   1                 3             0.475
+2                 3                  10                4              1             7              5  ...                            6                1            8                   3                 6             0.515
+3                 4                   4                2              7             3              4  ...                            8                8            6                   6                10             0.520
+4                 3                   7                5              2             5              8  ...                            3                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-05-20 10:10:01,394 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-05-20 10:10:01,421 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-05-20 10:10:01,686 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-05-20 10:24:27,159 ] preprocessing.py:16 root - CRITICAL - Failed to load params.yaml: [Errno 2] No such file or directory: 'params.yaml'
+[ 2026-05-20 10:25:03,407 ] preprocessing.py:14 root - INFO - params.yaml loaded successfully.
+[ 2026-05-20 10:25:03,407 ] preprocessing.py:32 root - INFO - Preprocessing pipeline started.
+[ 2026-05-20 10:25:14,750 ] preprocessing.py:42 root - INFO - SparkSession initialised successfully.
+[ 2026-05-20 10:25:20,684 ] preprocessing.py:51 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-05-20 10:25:20,719 ] preprocessing.py:59 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-05-20 10:25:20,835 ] preprocessing.py:68 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-05-20 10:25:22,781 ] preprocessing.py:77 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-05-20 10:25:24,984 ] preprocessing.py:96 root - INFO - ML pipeline fitted on training data.
+[ 2026-05-20 10:25:25,196 ] preprocessing.py:105 root - INFO - Train and test datasets transformed successfully.
+[ 2026-05-20 10:25:25,626 ] preprocessing.py:124 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-05-20 10:25:28,208 ] preprocessing.py:133 root - INFO - Train Parquet saved -> data/transform/train.csv
+[ 2026-05-20 10:25:28,958 ] preprocessing.py:136 root - INFO - Test Parquet saved  -> data/transform/test.csv
+[ 2026-05-20 10:25:30,050 ] preprocessing.py:145 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-05-20 10:25:30,376 ] preprocessing.py:155 root - INFO - SparkSession stopped.
+[ 2026-05-20 10:25:30,377 ] preprocessing.py:157 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-05-20 10:25:30,390 ] clientserver.py:570 py4j.clientserver - INFO - Closing down clientserver connection
