@@ -50,21 +50,32 @@ split:
 # (notebook: StandardScaler().fit(x_train) → transform both)
 # ----------------------------------------------------------
 preprocessing:
-  scaler: "StandardScaler"   # withMean=True, withStd=True
+  scaler: "StandardScaler" # withMean=True, withStd=True
 
 # ----------------------------------------------------------
 # Output Paths  (used by preprocess.py)
 # ----------------------------------------------------------
 output:
-  train_path:    "data/transform/train.csv"
-  test_path:     "data/transform/test.csv"
+  train_path: "data/transform/TRAIN_CSV"
+  test_path: "data/transform/TEST_CSV"
   pipeline_path: "models/pipeline"
+
+# ----------------------------------------------------------
+# Model Settings (Fixed block format)
+# ----------------------------------------------------------
+model:
+  cv: 3
+
+# ----------------------------------------------------------
+# Artifact Outputs (Required by train.py line 43)
+# ----------------------------------------------------------
+artifacts:
+  scores_file: "artifacts/scores.json"
 
 # ----------------------------------------------------------
 # Models & Hyperparameters
 # ----------------------------------------------------------
 models:
-
   LinearRegression:
     enabled: true
     params: {}

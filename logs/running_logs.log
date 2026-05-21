@@ -52,3 +52,8 @@ dtype: int64
 [ 2026-05-20 10:25:30,376 ] preprocessing.py:155 root - INFO - SparkSession stopped.
 [ 2026-05-20 10:25:30,377 ] preprocessing.py:157 root - INFO - Preprocessing pipeline completed successfully.
 [ 2026-05-20 10:25:30,390 ] clientserver.py:570 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-05-21 20:41:59,981 ] train.py:37 root - INFO - params.yaml loaded successfully.
+[ 2026-05-21 20:41:59,981 ] train.py:65 root - CRITICAL - Failed to configure MLflow: Environment variable 'Mlflow_Tracking_Uri' is not set.
+[ 2026-05-21 20:43:42,578 ] train.py:37 root - INFO - params.yaml loaded successfully.
+[ 2026-05-21 20:43:43,731 ] train.py:62 root - INFO - MLflow tracking URI  : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-21 20:43:43,731 ] train.py:63 root - INFO - MLflow experiment    : Flood_Prediction_Regression_Experiment

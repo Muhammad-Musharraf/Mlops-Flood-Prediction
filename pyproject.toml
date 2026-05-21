@@ -10,5 +10,7 @@ dependencies = [
     "kagglehub>=1.0.1",
     "mlflow>=1.27.0",
     "pandas>=3.0.3",
+    "protobuf<4.0.0",
     "pyspark>=4.1.1",
+    "setuptools<70.0.0",
 ]
