@@ -1,0 +1,13 @@
+stages:
+  data_ingestion:
+    cmd: python src/extraction.py
+    deps:
+      - src/extraction.py
+    outs:
+      - data/raw/flood_raw.csv
+  Preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+      - src/preprocessing.py
+    outs:
+      - data/transform
