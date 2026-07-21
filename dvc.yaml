@@ -11,3 +11,19 @@ stages:
       - src/preprocessing.py
     outs:
       - data/transform
+  Training:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+    metrics:
+      - artifacts/scores.json:
+          cache: false
+  Best_model:
+    cmd: python src/best_model.py
+    deps:
+      - src/best_model.py
+    outs:
+      - artifacts/best_model
+      - artifacts/best_model_info.json
+
+  

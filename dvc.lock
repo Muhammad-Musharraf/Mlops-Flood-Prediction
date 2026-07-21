@@ -25,3 +25,32 @@ stages:
       md5: e92f8834af1c0f6c7e555d5a52883518.dir
       size: 482550
       nfiles: 8
+  Training:
+    cmd: python src/train.py
+    deps:
+    - path: src/train.py
+      hash: md5
+      md5: 6d8dce368539bcf218d82295093167ff
+      size: 15375
+    outs:
+    - path: artifacts/scores.json
+      hash: md5
+      md5: 6f2c072433b27eb55ccb42f4b35146a1
+      size: 1589
+  Best_model:
+    cmd: python src/best_model.py
+    deps:
+    - path: src/best_model.py
+      hash: md5
+      md5: ae75383aa657511d4bf11fce0aeafe82
+      size: 5507
+    outs:
+    - path: artifacts/best_model
+      hash: md5
+      md5: 0e93c5586810ebf20dc606c0ba61c880.dir
+      size: 8297
+      nfiles: 16
+    - path: artifacts/best_model_info.json
+      hash: md5
+      md5: 2d32d29d13cefc8fba4401a1f5292dd9
+      size: 312

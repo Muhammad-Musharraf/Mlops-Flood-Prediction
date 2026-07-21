@@ -1,6 +1,6 @@
 [
     {
-        "run_timestamp": "2026-05-21 21:36:16",
+        "run_timestamp": "2026-07-04 17:05:57",
         "best_model": "LinearRegression",
         "best_rmse": 0.0211,
         "models": {
@@ -25,10 +25,106 @@
                 "Test_MAE": 0.0356
             },
             "RandomForestRegressor": {
-                "Train_R2": 0.6341,
-                "Test_R2": 0.5304,
+                "Train_R2": 0.6343,
+                "Test_R2": 0.5296,
                 "Train_RMSE": 0.0302,
-                "Test_RMSE": 0.0346,
+                "Test_RMSE": 0.0347,
+                "Train_MSE": 0.0009,
+                "Test_MSE": 0.0012,
+                "Train_MAE": 0.0241,
+                "Test_MAE": 0.0276
+            },
+            "GradientBoostingRegressor": {
+                "Train_R2": 0.7614,
+                "Test_R2": 0.7101,
+                "Train_RMSE": 0.0244,
+                "Test_RMSE": 0.0272,
+                "Train_MSE": 0.0006,
+                "Test_MSE": 0.0007,
+                "Train_MAE": 0.0195,
+                "Test_MAE": 0.0217
+            }
+        }
+    },
+    {
+        "run_timestamp": "2026-07-17 00:16:17",
+        "best_model": "LinearRegression",
+        "best_rmse": 0.0211,
+        "preprocessing_run_id": "132c5cb07c224254a88a73d71471c67d",
+        "models": {
+            "LinearRegression": {
+                "Train_R2": 0.8259,
+                "Test_R2": 0.8261,
+                "Train_RMSE": 0.0208,
+                "Test_RMSE": 0.0211,
+                "Train_MSE": 0.0004,
+                "Test_MSE": 0.0004,
+                "Train_MAE": 0.0166,
+                "Test_MAE": 0.0169
+            },
+            "DecisionTreeRegressor": {
+                "Train_R2": 0.2873,
+                "Test_R2": 0.2205,
+                "Train_RMSE": 0.0421,
+                "Test_RMSE": 0.0446,
+                "Train_MSE": 0.0018,
+                "Test_MSE": 0.002,
+                "Train_MAE": 0.0335,
+                "Test_MAE": 0.0356
+            },
+            "RandomForestRegressor": {
+                "Train_R2": 0.6338,
+                "Test_R2": 0.5293,
+                "Train_RMSE": 0.0302,
+                "Test_RMSE": 0.0347,
+                "Train_MSE": 0.0009,
+                "Test_MSE": 0.0012,
+                "Train_MAE": 0.0242,
+                "Test_MAE": 0.0276
+            },
+            "GradientBoostingRegressor": {
+                "Train_R2": 0.7614,
+                "Test_R2": 0.7101,
+                "Train_RMSE": 0.0244,
+                "Test_RMSE": 0.0272,
+                "Train_MSE": 0.0006,
+                "Test_MSE": 0.0007,
+                "Train_MAE": 0.0195,
+                "Test_MAE": 0.0217
+            }
+        }
+    },
+    {
+        "run_timestamp": "2026-07-19 07:26:57",
+        "best_model": "LinearRegression",
+        "best_rmse": 0.0211,
+        "preprocessing_run_id": "d5bc327fa0c14c2cbf85933e336a3855",
+        "models": {
+            "LinearRegression": {
+                "Train_R2": 0.8259,
+                "Test_R2": 0.8261,
+                "Train_RMSE": 0.0208,
+                "Test_RMSE": 0.0211,
+                "Train_MSE": 0.0004,
+                "Test_MSE": 0.0004,
+                "Train_MAE": 0.0166,
+                "Test_MAE": 0.0169
+            },
+            "DecisionTreeRegressor": {
+                "Train_R2": 0.2873,
+                "Test_R2": 0.2205,
+                "Train_RMSE": 0.0421,
+                "Test_RMSE": 0.0446,
+                "Train_MSE": 0.0018,
+                "Test_MSE": 0.002,
+                "Train_MAE": 0.0335,
+                "Test_MAE": 0.0356
+            },
+            "RandomForestRegressor": {
+                "Train_R2": 0.6338,
+                "Test_R2": 0.528,
+                "Train_RMSE": 0.0302,
+                "Test_RMSE": 0.0347,
                 "Train_MSE": 0.0009,
                 "Test_MSE": 0.0012,
                 "Train_MAE": 0.0242,

@@ -57,3 +57,1370 @@ dtype: int64
 [ 2026-05-21 20:43:42,578 ] train.py:37 root - INFO - params.yaml loaded successfully.
 [ 2026-05-21 20:43:43,731 ] train.py:62 root - INFO - MLflow tracking URI  : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
 [ 2026-05-21 20:43:43,731 ] train.py:63 root - INFO - MLflow experiment    : Flood_Prediction_Regression_Experiment
+[ 2026-05-23 09:26:56,968 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-05-23 09:26:59,336 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-05-23 09:26:59,452 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ...  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4  ...                4            3                   2                 6             0.450
+1                 8                   4                5              7             7  ...                1            9                   1                 3             0.475
+2                 3                  10                4              1             7  ...                1            8                   3                 6             0.515
+3                 4                   4                2              7             3  ...                8            6                   6                10             0.520
+4                 3                   7                5              2             5  ...                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-05-23 09:26:59,453 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-05-23 09:26:59,490 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-05-23 09:26:59,901 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-05-23 09:29:19,143 ] preprocessing.py:14 root - INFO - params.yaml loaded successfully.
+[ 2026-05-23 09:29:19,145 ] preprocessing.py:32 root - INFO - Preprocessing pipeline started.
+[ 2026-05-23 09:29:52,295 ] preprocessing.py:42 root - INFO - SparkSession initialised successfully.
+[ 2026-05-23 09:29:59,963 ] preprocessing.py:51 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-05-23 09:29:59,993 ] preprocessing.py:59 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-05-23 09:30:00,140 ] preprocessing.py:68 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-05-23 09:30:03,119 ] preprocessing.py:77 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-05-23 09:30:05,612 ] preprocessing.py:96 root - INFO - ML pipeline fitted on training data.
+[ 2026-05-23 09:30:05,873 ] preprocessing.py:105 root - INFO - Train and test datasets transformed successfully.
+[ 2026-05-23 09:30:06,478 ] preprocessing.py:124 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-05-23 09:30:10,226 ] preprocessing.py:133 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-05-23 09:30:11,576 ] preprocessing.py:136 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-05-23 09:30:13,132 ] preprocessing.py:145 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-05-23 09:30:13,440 ] preprocessing.py:155 root - INFO - SparkSession stopped.
+[ 2026-05-23 09:30:13,440 ] preprocessing.py:157 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-05-23 09:30:13,479 ] clientserver.py:570 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-05-23 16:30:19,830 ] best_model.py:10 root - INFO - Starting best model selection process...
+[ 2026-05-23 16:30:23,143 ] best_model.py:77 root - ERROR - Error: Experiment 'Flood_Prediction_Experiment' not found.
+[ 2026-05-23 16:30:23,144 ] best_model.py:84 root - ERROR - Error: Experiment 'Flood_Prediction_Experiment' not found.
+[ 2026-05-23 16:30:51,851 ] best_model.py:10 root - INFO - Starting best model selection process...
+[ 2026-05-23 16:30:53,060 ] best_model.py:77 root - ERROR - Error: Experiment 'Flood_Prediction_Experiment' not found.
+[ 2026-05-23 16:30:53,061 ] best_model.py:84 root - ERROR - Error: Experiment 'Flood_Prediction_Experiment' not found.
+[ 2026-05-23 16:32:19,983 ] best_model.py:10 root - INFO - Starting best model selection process...
+[ 2026-05-23 16:32:21,772 ] best_model.py:77 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 16:32:21,775 ] best_model.py:84 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 16:32:59,155 ] best_model.py:10 root - INFO - Starting best model selection process...
+[ 2026-05-23 16:33:00,901 ] best_model.py:77 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 16:33:00,904 ] best_model.py:84 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 16:33:06,368 ] best_model.py:10 root - INFO - Starting best model selection process...
+[ 2026-05-23 16:33:08,067 ] best_model.py:77 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 16:33:08,068 ] best_model.py:84 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 22:29:23,745 ] best_model.py:10 root - INFO - Starting best model selection process...
+[ 2026-05-23 22:29:27,767 ] best_model.py:77 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 22:29:27,768 ] best_model.py:84 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 22:36:50,503 ] best_model.py:10 root - INFO - Starting best model selection process...
+[ 2026-05-23 22:36:53,579 ] best_model.py:77 root - ERROR - Error: No completed runs found.
+[ 2026-05-23 22:36:53,579 ] best_model.py:84 root - ERROR - Error: No completed runs found.
+[ 2026-05-24 07:22:39,364 ] best_model.py:57 root - INFO - ===================================
+[ 2026-05-24 07:22:39,364 ] best_model.py:58 root - INFO - Starting best model selection...
+[ 2026-05-24 07:22:39,364 ] best_model.py:59 root - INFO - ===================================
+[ 2026-05-24 07:22:39,364 ] best_model.py:68 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:22:41,989 ] best_model.py:81 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:22:42,005 ] best_model.py:86 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:22:42,336 ] best_model.py:109 root - INFO - ===================================
+[ 2026-05-24 07:22:42,352 ] best_model.py:110 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:22:42,352 ] best_model.py:111 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:22:42,352 ] best_model.py:112 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:22:42,386 ] best_model.py:113 root - INFO -   Model      : unknown
+[ 2026-05-24 07:22:42,400 ] best_model.py:114 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:22:42,401 ] best_model.py:116 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:22:42,415 ] best_model.py:117 root - INFO - ===================================
+[ 2026-05-24 07:22:42,425 ] best_model.py:122 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/model
+[ 2026-05-24 07:22:42,785 ] best_model.py:153 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 07:26:21,800 ] best_model.py:57 root - INFO - ===================================
+[ 2026-05-24 07:26:21,800 ] best_model.py:58 root - INFO - Starting best model selection...
+[ 2026-05-24 07:26:21,800 ] best_model.py:59 root - INFO - ===================================
+[ 2026-05-24 07:26:21,800 ] best_model.py:68 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:26:23,159 ] best_model.py:81 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:26:23,159 ] best_model.py:86 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:26:23,501 ] best_model.py:109 root - INFO - ===================================
+[ 2026-05-24 07:26:23,501 ] best_model.py:110 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:26:23,501 ] best_model.py:111 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:26:23,501 ] best_model.py:112 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:26:23,501 ] best_model.py:113 root - INFO -   Model      : MODEL_NAME
+[ 2026-05-24 07:26:23,501 ] best_model.py:114 root - INFO -   fit_status : MODEL_NAME 
+[ 2026-05-24 07:26:23,501 ] best_model.py:116 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:26:23,501 ] best_model.py:117 root - INFO - ===================================
+[ 2026-05-24 07:26:23,501 ] best_model.py:122 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/model
+[ 2026-05-24 07:26:23,852 ] best_model.py:153 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 07:26:50,877 ] best_model.py:57 root - INFO - ===================================
+[ 2026-05-24 07:26:50,877 ] best_model.py:58 root - INFO - Starting best model selection...
+[ 2026-05-24 07:26:50,877 ] best_model.py:59 root - INFO - ===================================
+[ 2026-05-24 07:26:50,877 ] best_model.py:68 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:26:52,070 ] best_model.py:81 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:26:52,070 ] best_model.py:86 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:26:52,387 ] best_model.py:109 root - INFO - ===================================
+[ 2026-05-24 07:26:52,387 ] best_model.py:110 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:26:52,387 ] best_model.py:111 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:26:52,387 ] best_model.py:112 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:26:52,387 ] best_model.py:113 root - INFO -   Model      : unknown
+[ 2026-05-24 07:26:52,387 ] best_model.py:114 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:26:52,387 ] best_model.py:116 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:26:52,387 ] best_model.py:117 root - INFO - ===================================
+[ 2026-05-24 07:26:52,387 ] best_model.py:122 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/model
+[ 2026-05-24 07:26:52,737 ] best_model.py:153 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 07:30:15,513 ] best_model.py:57 root - INFO - ===================================
+[ 2026-05-24 07:30:15,513 ] best_model.py:58 root - INFO - Starting best model selection...
+[ 2026-05-24 07:30:15,513 ] best_model.py:59 root - INFO - ===================================
+[ 2026-05-24 07:30:15,513 ] best_model.py:68 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:30:16,675 ] best_model.py:81 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:30:16,675 ] best_model.py:86 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:30:17,048 ] best_model.py:109 root - INFO - ===================================
+[ 2026-05-24 07:30:17,048 ] best_model.py:110 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:30:17,048 ] best_model.py:111 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:30:17,048 ] best_model.py:112 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:30:17,048 ] best_model.py:113 root - INFO -   Model      : unknown
+[ 2026-05-24 07:30:17,048 ] best_model.py:114 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:30:17,048 ] best_model.py:116 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:30:17,048 ] best_model.py:117 root - INFO - ===================================
+[ 2026-05-24 07:30:17,048 ] best_model.py:122 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 07:30:17,382 ] best_model.py:153 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 07:33:47,810 ] best_model.py:57 root - INFO - ===================================
+[ 2026-05-24 07:33:47,825 ] best_model.py:58 root - INFO - Starting best model selection...
+[ 2026-05-24 07:33:47,825 ] best_model.py:59 root - INFO - ===================================
+[ 2026-05-24 07:33:47,825 ] best_model.py:68 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:33:48,867 ] best_model.py:81 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:33:48,867 ] best_model.py:86 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:33:49,205 ] best_model.py:109 root - INFO - ===================================
+[ 2026-05-24 07:33:49,205 ] best_model.py:110 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:33:49,205 ] best_model.py:111 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:33:49,205 ] best_model.py:112 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:33:49,205 ] best_model.py:113 root - INFO -   Model      : unknown
+[ 2026-05-24 07:33:49,205 ] best_model.py:114 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:33:49,205 ] best_model.py:116 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:33:49,205 ] best_model.py:117 root - INFO - ===================================
+[ 2026-05-24 07:33:49,205 ] best_model.py:122 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 07:33:49,536 ] best_model.py:153 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 07:36:35,929 ] best_model.py:30 root - INFO - ===================================
+[ 2026-05-24 07:36:35,929 ] best_model.py:31 root - INFO - Starting best model selection...
+[ 2026-05-24 07:36:35,929 ] best_model.py:32 root - INFO - ===================================
+[ 2026-05-24 07:36:35,929 ] best_model.py:41 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:36:36,963 ] best_model.py:54 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:36:36,963 ] best_model.py:58 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:36:37,280 ] best_model.py:83 root - INFO - ===================================
+[ 2026-05-24 07:36:37,280 ] best_model.py:84 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:36:37,280 ] best_model.py:85 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:36:37,280 ] best_model.py:86 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:36:37,280 ] best_model.py:87 root - INFO -   Model      : unknown
+[ 2026-05-24 07:36:37,280 ] best_model.py:88 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:36:37,280 ] best_model.py:90 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:36:37,280 ] best_model.py:91 root - INFO - ===================================
+[ 2026-05-24 07:36:37,613 ] best_model.py:110 root - INFO -   Tagged  stage                = Production
+[ 2026-05-24 07:36:37,931 ] best_model.py:110 root - INFO -   Tagged  registered_as        = Flood_Prediction_Model
+[ 2026-05-24 07:36:38,254 ] best_model.py:110 root - INFO -   Tagged  pipeline_name        = Flood_Transformation_Pipeline
+[ 2026-05-24 07:36:38,589 ] best_model.py:110 root - INFO -   Tagged  model_type           = unknown
+[ 2026-05-24 07:36:38,916 ] best_model.py:110 root - INFO -   Tagged  fit_status           = unknown
+[ 2026-05-24 07:36:39,247 ] best_model.py:110 root - INFO -   Tagged  model_uri            = runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 07:36:39,567 ] best_model.py:110 root - INFO -   Tagged  pipeline_uri         = runs:/7a79d4e0638843389d19139d257a8fb1/transformation_pipeline
+[ 2026-05-24 07:36:39,567 ] best_model.py:113 root - INFO - ===================================
+[ 2026-05-24 07:36:39,568 ] best_model.py:114 root - INFO - REGISTRATION COMPLETE (via run tags)
+[ 2026-05-24 07:36:39,568 ] best_model.py:115 root - INFO -   Run ID   : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:36:39,569 ] best_model.py:116 root - INFO -   Stage    : Production
+[ 2026-05-24 07:36:39,569 ] best_model.py:117 root - INFO -   Model    : Flood_Prediction_Model
+[ 2026-05-24 07:36:39,570 ] best_model.py:118 root - INFO -   Pipeline : Flood_Transformation_Pipeline
+[ 2026-05-24 07:36:39,570 ] best_model.py:119 root - INFO - ===================================
+[ 2026-05-24 07:36:39,571 ] best_model.py:120 root - INFO - Load for inference:
+[ 2026-05-24 07:36:39,571 ] best_model.py:121 root - INFO -   model    = mlflow.spark.load_model('runs:/7a79d4e0638843389d19139d257a8fb1/best_model')
+[ 2026-05-24 07:36:39,572 ] best_model.py:122 root - INFO -   pipeline = mlflow.pyfunc.load_model('runs:/7a79d4e0638843389d19139d257a8fb1/transformation_pipeline')
+[ 2026-05-24 07:36:39,572 ] best_model.py:123 root - INFO - ===================================
+[ 2026-05-24 07:44:13,172 ] best_model.py:57 root - INFO - ===================================
+[ 2026-05-24 07:44:13,172 ] best_model.py:58 root - INFO - Starting best model selection...
+[ 2026-05-24 07:44:13,172 ] best_model.py:59 root - INFO - ===================================
+[ 2026-05-24 07:44:13,172 ] best_model.py:68 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:44:14,336 ] best_model.py:81 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:44:14,336 ] best_model.py:86 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:44:14,803 ] best_model.py:109 root - INFO - ===================================
+[ 2026-05-24 07:44:14,803 ] best_model.py:110 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:44:14,803 ] best_model.py:111 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:44:14,803 ] best_model.py:112 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:44:14,819 ] best_model.py:113 root - INFO -   Model      : unknown
+[ 2026-05-24 07:44:14,819 ] best_model.py:114 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:44:14,819 ] best_model.py:116 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:44:14,820 ] best_model.py:117 root - INFO - ===================================
+[ 2026-05-24 07:44:14,820 ] best_model.py:122 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 07:44:15,200 ] best_model.py:153 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 07:46:34,993 ] best_model.py:25 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:46:34,993 ] best_model.py:26 root - INFO - Registry URI : sqlite:///mlflow_registry.db
+[ 2026-05-24 07:46:34,993 ] best_model.py:74 root - INFO - ===================================
+[ 2026-05-24 07:46:34,993 ] best_model.py:75 root - INFO - Starting best model selection...
+[ 2026-05-24 07:46:34,993 ] best_model.py:76 root - INFO - ===================================
+[ 2026-05-24 07:46:34,993 ] best_model.py:85 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:46:36,065 ] best_model.py:98 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:46:36,065 ] best_model.py:103 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:46:36,418 ] best_model.py:126 root - INFO - ===================================
+[ 2026-05-24 07:46:36,418 ] best_model.py:127 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:46:36,418 ] best_model.py:128 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:46:36,418 ] best_model.py:129 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:46:36,418 ] best_model.py:130 root - INFO -   Model      : unknown
+[ 2026-05-24 07:46:36,418 ] best_model.py:131 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:46:36,418 ] best_model.py:133 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:46:36,418 ] best_model.py:134 root - INFO - ===================================
+[ 2026-05-24 07:46:36,418 ] best_model.py:139 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 07:46:39,546 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.schemas
+[ 2026-05-24 07:46:39,640 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.tables
+[ 2026-05-24 07:46:39,752 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.types
+[ 2026-05-24 07:46:39,825 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.constraints
+[ 2026-05-24 07:46:39,926 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.defaults
+[ 2026-05-24 07:46:40,032 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.comments
+[ 2026-05-24 07:46:42,036 ] best_model.py:170 root - ERROR - Fatal error in best_model: Textual SQL expression 'PRAGMA foreign_keys = ON;' should be explicitly declared as text('PRAGMA foreign_keys = ON;')
+[ 2026-05-24 07:48:27,984 ] best_model.py:25 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:48:27,999 ] best_model.py:26 root - INFO - Registry URI : sqlite:///mlflow_registry.db
+[ 2026-05-24 07:48:27,999 ] best_model.py:74 root - INFO - ===================================
+[ 2026-05-24 07:48:27,999 ] best_model.py:75 root - INFO - Starting best model selection...
+[ 2026-05-24 07:48:27,999 ] best_model.py:76 root - INFO - ===================================
+[ 2026-05-24 07:48:27,999 ] best_model.py:85 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:48:29,274 ] best_model.py:98 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:48:29,274 ] best_model.py:103 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:48:29,589 ] best_model.py:126 root - INFO - ===================================
+[ 2026-05-24 07:48:29,589 ] best_model.py:127 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:48:29,590 ] best_model.py:128 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:48:29,591 ] best_model.py:129 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:48:29,591 ] best_model.py:130 root - INFO -   Model      : unknown
+[ 2026-05-24 07:48:29,591 ] best_model.py:131 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:48:29,591 ] best_model.py:133 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:48:29,591 ] best_model.py:134 root - INFO - ===================================
+[ 2026-05-24 07:48:29,591 ] best_model.py:139 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 07:48:30,258 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.schemas
+[ 2026-05-24 07:48:30,258 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.tables
+[ 2026-05-24 07:48:30,258 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.types
+[ 2026-05-24 07:48:30,258 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.constraints
+[ 2026-05-24 07:48:30,258 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.defaults
+[ 2026-05-24 07:48:30,258 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.comments
+[ 2026-05-24 07:48:30,484 ] best_model.py:170 root - ERROR - Fatal error in best_model: Textual SQL expression 'PRAGMA foreign_keys = ON;' should be explicitly declared as text('PRAGMA foreign_keys = ON;')
+[ 2026-05-24 07:52:59,428 ] best_model.py:25 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:52:59,438 ] best_model.py:26 root - INFO - Registry URI : sqlite:///mlflow_registry.db
+[ 2026-05-24 07:52:59,438 ] best_model.py:74 root - INFO - ===================================
+[ 2026-05-24 07:52:59,438 ] best_model.py:75 root - INFO - Starting best model selection...
+[ 2026-05-24 07:52:59,438 ] best_model.py:76 root - INFO - ===================================
+[ 2026-05-24 07:52:59,439 ] best_model.py:85 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 07:53:00,623 ] best_model.py:98 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 07:53:00,623 ] best_model.py:103 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:53:00,946 ] best_model.py:126 root - INFO - ===================================
+[ 2026-05-24 07:53:00,946 ] best_model.py:127 root - INFO - BEST RUN FOUND
+[ 2026-05-24 07:53:00,946 ] best_model.py:128 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 07:53:00,946 ] best_model.py:129 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 07:53:00,946 ] best_model.py:130 root - INFO -   Model      : unknown
+[ 2026-05-24 07:53:00,946 ] best_model.py:131 root - INFO -   fit_status : unknown
+[ 2026-05-24 07:53:00,946 ] best_model.py:133 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 07:53:00,946 ] best_model.py:134 root - INFO - ===================================
+[ 2026-05-24 07:53:00,946 ] best_model.py:139 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 07:53:01,541 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.schemas
+[ 2026-05-24 07:53:01,541 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.tables
+[ 2026-05-24 07:53:01,541 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.types
+[ 2026-05-24 07:53:01,541 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.constraints
+[ 2026-05-24 07:53:01,541 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.defaults
+[ 2026-05-24 07:53:01,541 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.comments
+[ 2026-05-24 07:53:01,780 ] best_model.py:170 root - ERROR - Fatal error in best_model: Textual SQL expression 'PRAGMA foreign_keys = ON;' should be explicitly declared as text('PRAGMA foreign_keys = ON;')
+[ 2026-05-24 08:30:17,937 ] best_model.py:25 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 08:30:17,938 ] best_model.py:26 root - INFO - Registry URI : sqlite:///mlflow_registry.db
+[ 2026-05-24 08:30:17,939 ] best_model.py:74 root - INFO - ===================================
+[ 2026-05-24 08:30:17,939 ] best_model.py:75 root - INFO - Starting best model selection...
+[ 2026-05-24 08:30:17,939 ] best_model.py:76 root - INFO - ===================================
+[ 2026-05-24 08:30:17,939 ] best_model.py:85 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 08:30:19,164 ] best_model.py:98 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 08:30:19,164 ] best_model.py:103 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:30:19,535 ] best_model.py:126 root - INFO - ===================================
+[ 2026-05-24 08:30:19,536 ] best_model.py:127 root - INFO - BEST RUN FOUND
+[ 2026-05-24 08:30:19,536 ] best_model.py:128 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:30:19,536 ] best_model.py:129 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 08:30:19,537 ] best_model.py:130 root - INFO -   Model      : unknown
+[ 2026-05-24 08:30:19,537 ] best_model.py:131 root - INFO -   fit_status : unknown
+[ 2026-05-24 08:30:19,537 ] best_model.py:133 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 08:30:19,537 ] best_model.py:134 root - INFO - ===================================
+[ 2026-05-24 08:30:19,538 ] best_model.py:139 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 08:30:20,128 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.schemas
+[ 2026-05-24 08:30:20,129 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.tables
+[ 2026-05-24 08:30:20,129 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.types
+[ 2026-05-24 08:30:20,129 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.constraints
+[ 2026-05-24 08:30:20,130 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.defaults
+[ 2026-05-24 08:30:20,130 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.comments
+[ 2026-05-24 08:30:20,366 ] best_model.py:170 root - ERROR - Fatal error in best_model: Textual SQL expression 'PRAGMA foreign_keys = ON;' should be explicitly declared as text('PRAGMA foreign_keys = ON;')
+[ 2026-05-24 08:31:07,899 ] best_model.py:25 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 08:31:07,900 ] best_model.py:26 root - INFO - Registry URI : sqlite:///mlflow_registry.db
+[ 2026-05-24 08:31:07,900 ] best_model.py:74 root - INFO - ===================================
+[ 2026-05-24 08:31:07,901 ] best_model.py:75 root - INFO - Starting best model selection...
+[ 2026-05-24 08:31:07,901 ] best_model.py:76 root - INFO - ===================================
+[ 2026-05-24 08:31:07,901 ] best_model.py:85 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 08:31:08,714 ] best_model.py:98 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 08:31:08,714 ] best_model.py:103 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:31:09,035 ] best_model.py:126 root - INFO - ===================================
+[ 2026-05-24 08:31:09,035 ] best_model.py:127 root - INFO - BEST RUN FOUND
+[ 2026-05-24 08:31:09,036 ] best_model.py:128 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:31:09,036 ] best_model.py:129 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 08:31:09,037 ] best_model.py:130 root - INFO -   Model      : unknown
+[ 2026-05-24 08:31:09,037 ] best_model.py:131 root - INFO -   fit_status : unknown
+[ 2026-05-24 08:31:09,039 ] best_model.py:133 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 08:31:09,039 ] best_model.py:134 root - INFO - ===================================
+[ 2026-05-24 08:31:09,042 ] best_model.py:139 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 08:31:09,611 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.schemas
+[ 2026-05-24 08:31:09,611 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.tables
+[ 2026-05-24 08:31:09,611 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.types
+[ 2026-05-24 08:31:09,612 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.constraints
+[ 2026-05-24 08:31:09,612 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.defaults
+[ 2026-05-24 08:31:09,612 ] plugins.py:37 alembic.runtime.plugins - INFO - setup plugin alembic.autogenerate.comments
+[ 2026-05-24 08:31:09,848 ] best_model.py:170 root - ERROR - Fatal error in best_model: Textual SQL expression 'PRAGMA foreign_keys = ON;' should be explicitly declared as text('PRAGMA foreign_keys = ON;')
+[ 2026-05-24 08:31:25,042 ] best_model.py:61 root - INFO - ===================================
+[ 2026-05-24 08:31:25,043 ] best_model.py:62 root - INFO - Starting best model selection...
+[ 2026-05-24 08:31:25,043 ] best_model.py:63 root - INFO - ===================================
+[ 2026-05-24 08:31:25,043 ] best_model.py:72 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 08:31:27,426 ] best_model.py:85 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 08:31:27,428 ] best_model.py:90 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:31:27,763 ] best_model.py:113 root - INFO - ===================================
+[ 2026-05-24 08:31:27,763 ] best_model.py:114 root - INFO - BEST RUN FOUND
+[ 2026-05-24 08:31:27,764 ] best_model.py:115 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:31:27,764 ] best_model.py:116 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 08:31:27,765 ] best_model.py:117 root - INFO -   Model      : unknown
+[ 2026-05-24 08:31:27,766 ] best_model.py:118 root - INFO -   fit_status : unknown
+[ 2026-05-24 08:31:27,766 ] best_model.py:120 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 08:31:27,767 ] best_model.py:121 root - INFO - ===================================
+[ 2026-05-24 08:31:27,767 ] best_model.py:126 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 08:31:28,127 ] best_model.py:157 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 08:31:34,489 ] best_model.py:61 root - INFO - ===================================
+[ 2026-05-24 08:31:34,490 ] best_model.py:62 root - INFO - Starting best model selection...
+[ 2026-05-24 08:31:34,490 ] best_model.py:63 root - INFO - ===================================
+[ 2026-05-24 08:31:34,490 ] best_model.py:72 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 08:31:35,529 ] best_model.py:85 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 08:31:35,530 ] best_model.py:90 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:31:35,863 ] best_model.py:113 root - INFO - ===================================
+[ 2026-05-24 08:31:35,863 ] best_model.py:114 root - INFO - BEST RUN FOUND
+[ 2026-05-24 08:31:35,864 ] best_model.py:115 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:31:35,864 ] best_model.py:116 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 08:31:35,865 ] best_model.py:117 root - INFO -   Model      : unknown
+[ 2026-05-24 08:31:35,865 ] best_model.py:118 root - INFO -   fit_status : unknown
+[ 2026-05-24 08:31:35,866 ] best_model.py:120 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 08:31:35,866 ] best_model.py:121 root - INFO - ===================================
+[ 2026-05-24 08:31:35,867 ] best_model.py:126 root - INFO - Registering prediction model from : runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 08:31:36,221 ] best_model.py:157 root - ERROR - Fatal error in best_model: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-05-24 08:32:21,241 ] best_model.py:31 root - INFO - ===================================
+[ 2026-05-24 08:32:21,241 ] best_model.py:32 root - INFO - Starting best model selection...
+[ 2026-05-24 08:32:21,241 ] best_model.py:33 root - INFO - ===================================
+[ 2026-05-24 08:32:21,241 ] best_model.py:42 root - INFO - Tracking URI : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-05-24 08:32:22,292 ] best_model.py:55 root - INFO - Experiment found : FloodPrediction_Training  (id=3)
+[ 2026-05-24 08:32:22,292 ] best_model.py:59 root - INFO - Using pinned run_id from .env : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:32:22,609 ] best_model.py:84 root - INFO - ===================================
+[ 2026-05-24 08:32:22,609 ] best_model.py:85 root - INFO - BEST RUN
+[ 2026-05-24 08:32:22,609 ] best_model.py:86 root - INFO -   Run ID     : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:32:22,609 ] best_model.py:87 root - INFO -   Source     : pinned via .env
+[ 2026-05-24 08:32:22,609 ] best_model.py:88 root - INFO -   Model      : unknown
+[ 2026-05-24 08:32:22,609 ] best_model.py:89 root - INFO -   fit_status : unknown
+[ 2026-05-24 08:32:22,609 ] best_model.py:91 root - INFO -   best_RMSE     : 0.0211
+[ 2026-05-24 08:32:22,609 ] best_model.py:92 root - INFO - ===================================
+[ 2026-05-24 08:32:22,926 ] best_model.py:110 root - INFO -   Tagged  stage                = Production
+[ 2026-05-24 08:32:23,243 ] best_model.py:110 root - INFO -   Tagged  model_name           = Flood_Prediction_Model
+[ 2026-05-24 08:32:23,576 ] best_model.py:110 root - INFO -   Tagged  pipeline_name        = Flood_Transformation_Pipeline
+[ 2026-05-24 08:32:23,887 ] best_model.py:110 root - INFO -   Tagged  model_uri            = runs:/7a79d4e0638843389d19139d257a8fb1/best_model
+[ 2026-05-24 08:32:24,193 ] best_model.py:110 root - INFO -   Tagged  pipeline_uri         = runs:/7a79d4e0638843389d19139d257a8fb1/transformation_pipeline
+[ 2026-05-24 08:32:24,510 ] best_model.py:110 root - INFO -   Tagged  model_type           = unknown
+[ 2026-05-24 08:32:24,809 ] best_model.py:110 root - INFO -   Tagged  fit_status           = unknown
+[ 2026-05-24 08:32:30,030 ] best_model.py:123 root - INFO - Archived 14 other run(s).
+[ 2026-05-24 08:32:30,031 ] best_model.py:126 root - INFO - ===================================
+[ 2026-05-24 08:32:30,031 ] best_model.py:127 root - INFO - PROMOTION COMPLETE  (via run tags)
+[ 2026-05-24 08:32:30,032 ] best_model.py:128 root - INFO -   Run ID   : 7a79d4e0638843389d19139d257a8fb1
+[ 2026-05-24 08:32:30,032 ] best_model.py:129 root - INFO -   Stage    : Production
+[ 2026-05-24 08:32:30,033 ] best_model.py:130 root - INFO -   Model    : Flood_Prediction_Model
+[ 2026-05-24 08:32:30,033 ] best_model.py:131 root - INFO -   Pipeline : Flood_Transformation_Pipeline
+[ 2026-05-24 08:32:30,034 ] best_model.py:132 root - INFO - ===================================
+[ 2026-05-24 08:32:30,034 ] best_model.py:133 root - INFO - Load for inference:
+[ 2026-05-24 08:32:30,035 ] best_model.py:134 root - INFO -   model    = mlflow.spark.load_model('runs:/7a79d4e0638843389d19139d257a8fb1/best_model')
+[ 2026-05-24 08:32:30,035 ] best_model.py:135 root - INFO -   pipeline = mlflow.pyfunc.load_model('runs:/7a79d4e0638843389d19139d257a8fb1/transformation_pipeline')
+[ 2026-05-24 08:32:30,036 ] best_model.py:136 root - INFO - ===================================
+[ 2026-07-03 11:52:18,243 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-03 11:52:20,520 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-03 11:52:20,628 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ClimateChange  ...  DeterioratingInfrastructure  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4              4  ...                            3                4            3                   2                 6             0.450
+1                 8                   4                5              7             7              9  ...                            1                1            9                   1                 3             0.475
+2                 3                  10                4              1             7              5  ...                            6                1            8                   3                 6             0.515
+3                 4                   4                2              7             3              4  ...                            8                8            6                   6                10             0.520
+4                 3                   7                5              2             5              8  ...                            3                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-03 11:52:20,633 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-03 11:52:20,669 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-03 11:52:20,939 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-03 11:53:53,473 ] preprocessing.py:14 root - INFO - params.yaml loaded successfully.
+[ 2026-07-03 11:53:53,473 ] preprocessing.py:32 root - INFO - Preprocessing pipeline started.
+[ 2026-07-03 11:54:08,219 ] preprocessing.py:42 root - INFO - SparkSession initialised successfully.
+[ 2026-07-03 11:54:14,952 ] preprocessing.py:51 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-07-03 11:54:14,985 ] preprocessing.py:59 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-03 11:54:15,109 ] preprocessing.py:68 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-03 11:54:16,856 ] preprocessing.py:77 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-07-03 11:54:18,522 ] preprocessing.py:96 root - INFO - ML pipeline fitted on training data.
+[ 2026-07-03 11:54:18,759 ] preprocessing.py:105 root - INFO - Train and test datasets transformed successfully.
+[ 2026-07-03 11:54:19,261 ] preprocessing.py:124 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-07-03 11:54:21,980 ] preprocessing.py:133 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-07-03 11:54:22,747 ] preprocessing.py:136 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-07-03 11:54:24,258 ] preprocessing.py:145 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-07-03 11:54:24,866 ] preprocessing.py:155 root - INFO - SparkSession stopped.
+[ 2026-07-03 11:54:24,866 ] preprocessing.py:157 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-07-03 11:54:24,866 ] clientserver.py:570 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 15:24:57,240 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:24:59,058 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:24:59,107 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  ...  PoliticalFactors  FloodProbability
+0                 3                   8  ...                 6             0.450
+1                 8                   4  ...                 3             0.475
+2                 3                  10  ...                 6             0.515
+3                 4                   4  ...                10             0.520
+4                 3                   7  ...                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:24:59,108 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:24:59,125 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:24:59,485 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:26:34,276 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:26:35,868 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:26:35,899 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  ...  PoliticalFactors  FloodProbability
+0                 3                   8  ...                 6             0.450
+1                 8                   4  ...                 3             0.475
+2                 3                  10  ...                 6             0.515
+3                 4                   4  ...                10             0.520
+4                 3                   7  ...                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:26:35,899 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:26:35,915 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:26:36,181 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:48:17,781 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:48:19,609 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:48:19,653 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  ...  PoliticalFactors  FloodProbability
+0                 3                   8  ...                 6             0.450
+1                 8                   4  ...                 3             0.475
+2                 3                  10  ...                 6             0.515
+3                 4                   4  ...                10             0.520
+4                 3                   7  ...                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:48:19,657 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:48:19,684 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:48:19,923 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:48:53,625 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:48:55,235 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:48:55,251 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  ...  PoliticalFactors  FloodProbability
+0                 3                   8  ...                 6             0.450
+1                 8                   4  ...                 3             0.475
+2                 3                  10  ...                 6             0.515
+3                 4                   4  ...                10             0.520
+4                 3                   7  ...                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:48:55,251 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:48:55,283 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:48:55,541 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:49:33,157 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:49:34,689 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:49:34,720 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  ...  PoliticalFactors  FloodProbability
+0                 3                   8  ...                 6             0.450
+1                 8                   4  ...                 3             0.475
+2                 3                  10  ...                 6             0.515
+3                 4                   4  ...                10             0.520
+4                 3                   7  ...                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:49:34,720 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:49:34,751 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:49:34,996 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:49:53,281 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:49:54,843 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:49:54,859 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  ...  PoliticalFactors  FloodProbability
+0                 3                   8  ...                 6             0.450
+1                 8                   4  ...                 3             0.475
+2                 3                  10  ...                 6             0.515
+3                 4                   4  ...                10             0.520
+4                 3                   7  ...                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:49:54,859 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:49:54,890 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:49:55,125 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:53:41,500 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:53:43,485 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:53:43,516 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  ...  PoliticalFactors  FloodProbability
+0                 3                   8  ...                 6             0.450
+1                 8                   4  ...                 3             0.475
+2                 3                  10  ...                 6             0.515
+3                 4                   4  ...                10             0.520
+4                 3                   7  ...                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:53:43,516 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:53:43,547 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:53:43,798 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:55:20,344 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:55:21,929 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:55:21,939 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ClimateChange  DamsQuality  Siltation  ...  Landslides  Watersheds  DeterioratingInfrastructure  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4              4            6          2  ...           4           2                            3                4            3                   2                 6             0.450
+1                 8                   4                5              7             7              9            1          5  ...           6           2                            1                1            9                   1                 3             0.475
+2                 3                  10                4              1             7              5            4          7  ...           4           8                            6                1            8                   3                 6             0.515
+3                 4                   4                2              7             3              4            1          4  ...           6           6                            8                8            6                   6                10             0.520
+4                 3                   7                5              2             5              8            5          2  ...           5           3                            3                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:55:21,939 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:55:21,970 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:55:22,255 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:58:36,355 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:58:37,875 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:58:37,896 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ClimateChange  DamsQuality  Siltation  ...  Landslides  Watersheds  DeterioratingInfrastructure  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4              4            6          2  ...           4           2                            3                4            3                   2                 6             0.450
+1                 8                   4                5              7             7              9            1          5  ...           6           2                            1                1            9                   1                 3             0.475
+2                 3                  10                4              1             7              5            4          7  ...           4           8                            6                1            8                   3                 6             0.515
+3                 4                   4                2              7             3              4            1          4  ...           6           6                            8                8            6                   6                10             0.520
+4                 3                   7                5              2             5              8            5          2  ...           5           3                            3                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:58:37,896 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:58:37,912 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:58:38,208 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:59:18,633 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-04 15:59:20,179 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-04 15:59:20,209 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ClimateChange  DamsQuality  Siltation  ...  Landslides  Watersheds  DeterioratingInfrastructure  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4              4            6          2  ...           4           2                            3                4            3                   2                 6             0.450
+1                 8                   4                5              7             7              9            1          5  ...           6           2                            1                1            9                   1                 3             0.475
+2                 3                  10                4              1             7              5            4          7  ...           4           8                            6                1            8                   3                 6             0.515
+3                 4                   4                2              7             3              4            1          4  ...           6           6                            8                8            6                   6                10             0.520
+4                 3                   7                5              2             5              8            5          2  ...           5           3                            3                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-04 15:59:20,213 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-04 15:59:20,239 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-04 15:59:20,519 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-04 15:59:25,321 ] preprocessing.py:14 root - INFO - params.yaml loaded successfully.
+[ 2026-07-04 15:59:25,321 ] preprocessing.py:32 root - INFO - Preprocessing pipeline started.
+[ 2026-07-04 15:59:36,507 ] preprocessing.py:42 root - INFO - SparkSession initialised successfully.
+[ 2026-07-04 15:59:46,423 ] preprocessing.py:51 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-07-04 15:59:46,448 ] preprocessing.py:59 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-04 15:59:46,501 ] preprocessing.py:68 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-04 15:59:48,086 ] preprocessing.py:77 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-07-04 15:59:49,624 ] preprocessing.py:96 root - INFO - ML pipeline fitted on training data.
+[ 2026-07-04 15:59:49,838 ] preprocessing.py:105 root - INFO - Train and test datasets transformed successfully.
+[ 2026-07-04 15:59:50,239 ] preprocessing.py:124 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-07-04 15:59:58,774 ] preprocessing.py:133 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-07-04 15:59:59,910 ] preprocessing.py:136 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-07-04 16:00:01,342 ] preprocessing.py:145 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-07-04 16:00:02,105 ] preprocessing.py:155 root - INFO - SparkSession stopped.
+[ 2026-07-04 16:00:02,105 ] preprocessing.py:157 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-07-04 16:00:02,121 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:00:43,792 ] preprocessing.py:14 root - INFO - params.yaml loaded successfully.
+[ 2026-07-04 16:00:43,792 ] preprocessing.py:32 root - INFO - Preprocessing pipeline started.
+[ 2026-07-04 16:00:48,756 ] preprocessing.py:42 root - INFO - SparkSession initialised successfully.
+[ 2026-07-04 16:00:55,386 ] preprocessing.py:51 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-07-04 16:00:55,416 ] preprocessing.py:59 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-04 16:00:55,476 ] preprocessing.py:68 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-04 16:00:56,984 ] preprocessing.py:77 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-07-04 16:00:58,745 ] preprocessing.py:96 root - INFO - ML pipeline fitted on training data.
+[ 2026-07-04 16:00:58,954 ] preprocessing.py:105 root - INFO - Train and test datasets transformed successfully.
+[ 2026-07-04 16:00:59,341 ] preprocessing.py:124 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-07-04 16:01:01,479 ] preprocessing.py:133 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-07-04 16:01:02,152 ] preprocessing.py:136 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-07-04 16:01:02,938 ] preprocessing.py:145 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-07-04 16:01:03,291 ] preprocessing.py:155 root - INFO - SparkSession stopped.
+[ 2026-07-04 16:01:03,291 ] preprocessing.py:157 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-07-04 16:01:03,307 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:36:55,742 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 16:36:55,759 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-04 16:36:56,602 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-04 16:36:57,406 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 16:36:57,411 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-04 16:36:57,413 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-04 16:36:57,414 ] train.py:24 root - INFO - DagsHub initialized successfully.
+[ 2026-07-04 16:36:57,414 ] train.py:31 root - INFO - Starting model training process...
+[ 2026-07-04 16:37:06,238 ] train.py:65 root - INFO - ===================================
+[ 2026-07-04 16:37:06,238 ] train.py:66 root - INFO - Loaded Preprocessed Dataset
+[ 2026-07-04 16:37:07,955 ] train.py:67 root - INFO -   Train rows : 39948
+[ 2026-07-04 16:37:08,242 ] train.py:68 root - INFO -   Test  rows : 10052
+[ 2026-07-04 16:37:08,242 ] train.py:69 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-07-04 16:37:08,242 ] train.py:70 root - INFO -   Target     : FloodProbability
+[ 2026-07-04 16:37:08,242 ] train.py:71 root - INFO - ===================================
+[ 2026-07-04 16:37:10,945 ] train.py:88 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-07-04 16:37:11,039 ] train.py:145 root - INFO - ===================================
+[ 2026-07-04 16:37:11,039 ] train.py:146 root - INFO - Training : LinearRegression
+[ 2026-07-04 16:37:11,055 ] train.py:147 root - INFO - ===================================
+[ 2026-07-04 16:37:11,853 ] train.py:160 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-07-04 16:39:50,260 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:39:50,260 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:40:11,464 ] train.py:188 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-07-04 16:40:11,464 ] train.py:189 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-07-04 16:40:11,464 ] train.py:190 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-07-04 16:40:18,323 ] train.py:241 root - INFO -   Fit Status : GOOD
+[ 2026-07-04 16:40:23,337 ] train.py:303 root - ERROR - Error during model training: The specified requirements versions are incompatible. Detected conflicts: 
+ERROR: Cannot install pyspark==3.5.1 and pyspark==4.1.1 because these package versions have conflicting dependencies.
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts
+
+[notice] A new release of pip available: 22.3 -> 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+[ 2026-07-04 16:40:23,337 ] train.py:311 root - CRITICAL - Fatal error: The specified requirements versions are incompatible. Detected conflicts: 
+ERROR: Cannot install pyspark==3.5.1 and pyspark==4.1.1 because these package versions have conflicting dependencies.
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts
+
+[notice] A new release of pip available: 22.3 -> 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+[ 2026-07-04 16:40:24,245 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:40:24,308 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:42:44,712 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 16:42:44,738 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-04 16:42:45,591 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-04 16:42:46,357 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 16:42:46,362 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-04 16:42:46,364 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-04 16:42:46,365 ] train.py:24 root - INFO - DagsHub initialized successfully.
+[ 2026-07-04 16:42:46,365 ] train.py:31 root - INFO - Starting model training process...
+[ 2026-07-04 16:42:54,750 ] train.py:65 root - INFO - ===================================
+[ 2026-07-04 16:42:54,750 ] train.py:66 root - INFO - Loaded Preprocessed Dataset
+[ 2026-07-04 16:42:56,274 ] train.py:67 root - INFO -   Train rows : 39948
+[ 2026-07-04 16:42:56,497 ] train.py:68 root - INFO -   Test  rows : 10052
+[ 2026-07-04 16:42:56,497 ] train.py:69 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-07-04 16:42:56,497 ] train.py:70 root - INFO -   Target     : FloodProbability
+[ 2026-07-04 16:42:56,497 ] train.py:71 root - INFO - ===================================
+[ 2026-07-04 16:42:58,998 ] train.py:88 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-07-04 16:42:59,092 ] train.py:145 root - INFO - ===================================
+[ 2026-07-04 16:42:59,092 ] train.py:146 root - INFO - Training : LinearRegression
+[ 2026-07-04 16:42:59,092 ] train.py:147 root - INFO - ===================================
+[ 2026-07-04 16:42:59,888 ] train.py:160 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-07-04 16:45:53,236 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:45:53,236 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:46:15,032 ] train.py:188 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-07-04 16:46:15,032 ] train.py:189 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-07-04 16:46:15,032 ] train.py:190 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-07-04 16:46:21,625 ] train.py:241 root - INFO -   Fit Status : GOOD
+[ 2026-07-04 16:46:27,078 ] train.py:303 root - ERROR - Error during model training: The specified requirements versions are incompatible. Detected conflicts: 
+ERROR: Cannot install pyspark==3.5.1 and pyspark==4.1.1 because these package versions have conflicting dependencies.
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts
+
+[notice] A new release of pip available: 22.3 -> 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+[ 2026-07-04 16:46:27,078 ] train.py:311 root - CRITICAL - Fatal error: The specified requirements versions are incompatible. Detected conflicts: 
+ERROR: Cannot install pyspark==3.5.1 and pyspark==4.1.1 because these package versions have conflicting dependencies.
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts
+
+[notice] A new release of pip available: 22.3 -> 26.1.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+[ 2026-07-04 16:46:27,125 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:46:27,125 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:48:07,586 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 16:48:07,596 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-04 16:48:08,342 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-04 16:48:09,047 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 16:48:09,048 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-04 16:48:09,048 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-04 16:48:09,048 ] train.py:24 root - INFO - DagsHub initialized successfully.
+[ 2026-07-04 16:48:09,048 ] train.py:31 root - INFO - Starting model training process...
+[ 2026-07-04 16:48:17,971 ] train.py:65 root - INFO - ===================================
+[ 2026-07-04 16:48:17,972 ] train.py:66 root - INFO - Loaded Preprocessed Dataset
+[ 2026-07-04 16:48:19,595 ] train.py:67 root - INFO -   Train rows : 39948
+[ 2026-07-04 16:48:19,795 ] train.py:68 root - INFO -   Test  rows : 10052
+[ 2026-07-04 16:48:19,795 ] train.py:69 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-07-04 16:48:19,795 ] train.py:70 root - INFO -   Target     : FloodProbability
+[ 2026-07-04 16:48:19,795 ] train.py:71 root - INFO - ===================================
+[ 2026-07-04 16:48:22,173 ] train.py:88 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-07-04 16:48:22,283 ] train.py:145 root - INFO - ===================================
+[ 2026-07-04 16:48:22,283 ] train.py:146 root - INFO - Training : LinearRegression
+[ 2026-07-04 16:48:22,283 ] train.py:147 root - INFO - ===================================
+[ 2026-07-04 16:48:23,080 ] train.py:160 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-07-04 16:51:01,034 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:51:01,034 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:51:22,581 ] train.py:188 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-07-04 16:51:22,581 ] train.py:189 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-07-04 16:51:22,581 ] train.py:190 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-07-04 16:51:29,097 ] train.py:241 root - INFO -   Fit Status : GOOD
+[ 2026-07-04 16:51:51,832 ] train.py:252 root - INFO -   *** New best model: LinearRegression  (RMSE=0.0211) ***
+[ 2026-07-04 16:51:55,490 ] train.py:145 root - INFO - ===================================
+[ 2026-07-04 16:51:55,491 ] train.py:146 root - INFO - Training : DecisionTreeRegressor
+[ 2026-07-04 16:51:55,491 ] train.py:147 root - INFO - ===================================
+[ 2026-07-04 16:51:59,706 ] train.py:160 root - INFO -   ParamGrid size : 9 combinations
+[ 2026-07-04 16:52:19,382 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:52:19,382 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:52:19,973 ] train.py:188 root - INFO -   Train R2   : 0.2873  |  Test R2   : 0.2205
+[ 2026-07-04 16:52:19,973 ] train.py:189 root - INFO -   Train RMSE : 0.0421  |  Test RMSE : 0.0446
+[ 2026-07-04 16:52:19,973 ] train.py:190 root - INFO -   Train MAE  : 0.0335  |  Test MAE  : 0.0356
+[ 2026-07-04 16:52:43,832 ] train.py:241 root - INFO -   Fit Status : UNDERFIT
+[ 2026-07-04 16:53:27,843 ] train.py:145 root - INFO - ===================================
+[ 2026-07-04 16:53:27,844 ] train.py:146 root - INFO - Training : RandomForestRegressor
+[ 2026-07-04 16:53:27,845 ] train.py:147 root - INFO - ===================================
+[ 2026-07-04 16:53:32,021 ] train.py:160 root - INFO -   ParamGrid size : 8 combinations
+[ 2026-07-04 16:59:28,738 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:59:28,738 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 16:59:38,489 ] train.py:188 root - INFO -   Train R2   : 0.6343  |  Test R2   : 0.5296
+[ 2026-07-04 16:59:38,489 ] train.py:189 root - INFO -   Train RMSE : 0.0302  |  Test RMSE : 0.0347
+[ 2026-07-04 16:59:38,489 ] train.py:190 root - INFO -   Train MAE  : 0.0241  |  Test MAE  : 0.0276
+[ 2026-07-04 16:59:47,742 ] train.py:241 root - INFO -   Fit Status : OVERFIT  (gap=0.1047)
+[ 2026-07-04 17:00:36,443 ] train.py:145 root - INFO - ===================================
+[ 2026-07-04 17:00:36,444 ] train.py:146 root - INFO - Training : GradientBoostingRegressor
+[ 2026-07-04 17:00:36,445 ] train.py:147 root - INFO - ===================================
+[ 2026-07-04 17:00:36,946 ] train.py:160 root - INFO -   ParamGrid size : 4 combinations
+[ 2026-07-04 17:03:10,177 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 17:03:10,177 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 17:04:19,423 ] train.py:188 root - INFO -   Train R2   : 0.7614  |  Test R2   : 0.7101
+[ 2026-07-04 17:04:19,423 ] train.py:189 root - INFO -   Train RMSE : 0.0244  |  Test RMSE : 0.0272
+[ 2026-07-04 17:04:19,423 ] train.py:190 root - INFO -   Train MAE  : 0.0195  |  Test MAE  : 0.0217
+[ 2026-07-04 17:04:28,410 ] train.py:241 root - INFO -   Fit Status : GOOD
+[ 2026-07-04 17:05:10,443 ] train.py:255 root - INFO - ===================================
+[ 2026-07-04 17:05:10,443 ] train.py:256 root - INFO -   BEST MODEL : LinearRegression
+[ 2026-07-04 17:05:10,444 ] train.py:257 root - INFO -   BEST RMSE  : 0.0211
+[ 2026-07-04 17:05:10,444 ] train.py:258 root - INFO - ===================================
+[ 2026-07-04 17:05:57,072 ] train.py:269 root - INFO - Best model logged to MLflow under 'best_model'.
+[ 2026-07-04 17:05:57,073 ] train.py:287 root - INFO - No scores.json found — creating new file.
+[ 2026-07-04 17:05:57,075 ] train.py:294 root - INFO - ===================================
+[ 2026-07-04 17:05:57,075 ] train.py:295 root - INFO - Scores saved to    : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\scores.json
+[ 2026-07-04 17:05:57,075 ] train.py:296 root - INFO - Total runs in file : 1
+[ 2026-07-04 17:05:57,076 ] train.py:297 root - INFO - ===================================
+[ 2026-07-04 17:05:57,076 ] train.py:298 root - INFO - Training Completed Successfully
+[ 2026-07-04 17:05:57,087 ] train.py:300 root - INFO - ===================================
+[ 2026-07-04 17:05:57,123 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 17:05:57,127 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-04 17:26:58,453 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 17:26:58,463 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-04 17:26:59,382 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-04 17:27:00,108 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-04 17:27:00,124 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-04 17:27:00,124 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-04 17:27:00,124 ] best_model.py:33 root - INFO - DagsHub initialized successfully.
+[ 2026-07-04 17:27:00,124 ] best_model.py:44 root - INFO - Locating champion model in MLflow...
+[ 2026-07-04 17:27:00,124 ] best_model.py:50 root - INFO - MLflow tracking -> Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-04 17:27:01,452 ] best_model.py:82 root - INFO - ===================================
+[ 2026-07-04 17:27:01,452 ] best_model.py:83 root - INFO -   Champion run id : e755fb1c732b4ff08d8010f048788df1
+[ 2026-07-04 17:27:01,452 ] best_model.py:84 root - INFO -   Model type      : LinearRegression
+[ 2026-07-04 17:27:01,452 ] best_model.py:85 root - INFO -   Best RMSE       : 0.02106674916675108
+[ 2026-07-04 17:27:01,452 ] best_model.py:86 root - INFO - ===================================
+[ 2026-07-04 17:27:06,153 ] best_model.py:97 root - INFO - Model artifact downloaded to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model\best_model
+[ 2026-07-04 17:27:08,389 ] best_model.py:102 root - INFO - Registered as 'Champion' version 2
+[ 2026-07-04 17:27:08,405 ] best_model.py:118 root - INFO - ===================================
+[ 2026-07-04 17:27:08,405 ] best_model.py:119 root - INFO - Metadata saved to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model_info.json
+[ 2026-07-04 17:27:08,405 ] best_model.py:120 root - INFO - Done. Load the model for inference with:
+[ 2026-07-04 17:27:08,405 ] best_model.py:121 root - INFO -   mlflow.spark.load_model('runs:/e755fb1c732b4ff08d8010f048788df1/best_model')
+[ 2026-07-04 17:27:08,405 ] best_model.py:122 root - INFO - ===================================
+[ 2026-07-16 23:38:49,649 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-16 23:38:51,535 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-16 23:38:51,601 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ClimateChange  ...  DeterioratingInfrastructure  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4              4  ...                            3                4            3                   2                 6             0.450
+1                 8                   4                5              7             7              9  ...                            1                1            9                   1                 3             0.475
+2                 3                  10                4              1             7              5  ...                            6                1            8                   3                 6             0.515
+3                 4                   4                2              7             3              4  ...                            8                8            6                   6                10             0.520
+4                 3                   7                5              2             5              8  ...                            3                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-16 23:38:51,606 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-16 23:38:51,653 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-16 23:38:51,938 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-16 23:39:10,041 ] preprocessing.py:17 root - INFO - params.yaml loaded successfully.
+[ 2026-07-16 23:39:10,897 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-16 23:39:10,913 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-16 23:39:11,656 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-16 23:39:12,515 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-16 23:39:12,515 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-16 23:39:12,515 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-16 23:39:12,515 ] preprocessing.py:37 root - INFO - DagsHub initialized successfully.
+[ 2026-07-16 23:39:12,515 ] preprocessing.py:44 root - INFO - MLflow tracking -> Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-16 23:39:14,100 ] preprocessing.py:50 root - INFO - MLflow experiment set : Flood Prediction Preprocessing
+[ 2026-07-16 23:39:14,100 ] preprocessing.py:55 root - INFO - Preprocessing pipeline started.
+[ 2026-07-16 23:39:29,191 ] preprocessing.py:65 root - INFO - SparkSession initialised successfully.
+[ 2026-07-16 23:39:42,644 ] preprocessing.py:89 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-07-16 23:39:43,358 ] preprocessing.py:99 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-16 23:39:43,438 ] preprocessing.py:108 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-16 23:39:45,236 ] preprocessing.py:119 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-07-16 23:39:48,128 ] preprocessing.py:140 root - INFO - ML pipeline fitted on training data.
+[ 2026-07-16 23:39:48,330 ] preprocessing.py:149 root - INFO - Train and test datasets transformed successfully.
+[ 2026-07-16 23:39:48,603 ] preprocessing.py:168 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-07-16 23:39:51,337 ] preprocessing.py:177 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-07-16 23:39:52,577 ] preprocessing.py:180 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-07-16 23:39:53,889 ] preprocessing.py:189 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-07-16 23:40:30,844 ] preprocessing.py:197 root - INFO - Preprocessing pipeline logged to MLflow under 'preprocessing_pipeline'.
+[ 2026-07-16 23:40:31,797 ] preprocessing.py:210 root - INFO - SparkSession stopped.
+[ 2026-07-16 23:40:32,087 ] preprocessing.py:212 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-07-16 23:40:32,110 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-16 23:52:28,241 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-16 23:52:28,282 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-16 23:52:29,032 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-16 23:52:29,906 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-16 23:52:29,968 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-16 23:52:29,969 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-16 23:52:29,969 ] train.py:26 root - INFO - DagsHub initialized successfully.
+[ 2026-07-16 23:52:29,970 ] train.py:82 root - INFO - Starting model training process...
+[ 2026-07-16 23:52:42,156 ] train.py:116 root - INFO - ===================================
+[ 2026-07-16 23:52:42,162 ] train.py:117 root - INFO - Loaded Preprocessed Dataset
+[ 2026-07-16 23:52:44,177 ] train.py:118 root - INFO -   Train rows : 39948
+[ 2026-07-16 23:52:44,482 ] train.py:119 root - INFO -   Test  rows : 10052
+[ 2026-07-16 23:52:44,482 ] train.py:120 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-07-16 23:52:44,482 ] train.py:121 root - INFO -   Target     : FloodProbability
+[ 2026-07-16 23:52:44,482 ] train.py:122 root - INFO - ===================================
+[ 2026-07-16 23:52:47,107 ] train.py:139 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-07-16 23:52:47,107 ] train.py:363 root - ERROR - Error during model training: cannot access local variable 'preprocessing_run_id' where it is not associated with a value
+[ 2026-07-16 23:52:47,107 ] train.py:371 root - CRITICAL - Fatal error: cannot access local variable 'preprocessing_run_id' where it is not associated with a value
+[ 2026-07-16 23:52:47,133 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-16 23:57:15,335 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-16 23:57:15,335 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-16 23:57:17,198 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-16 23:57:18,110 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-16 23:57:18,110 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-16 23:57:18,110 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-16 23:57:18,110 ] train.py:26 root - INFO - DagsHub initialized successfully.
+[ 2026-07-16 23:57:18,110 ] train.py:82 root - INFO - Starting model training process...
+[ 2026-07-16 23:57:27,019 ] train.py:116 root - INFO - ===================================
+[ 2026-07-16 23:57:27,019 ] train.py:117 root - INFO - Loaded Preprocessed Dataset
+[ 2026-07-16 23:57:28,817 ] train.py:118 root - INFO -   Train rows : 39948
+[ 2026-07-16 23:57:29,018 ] train.py:119 root - INFO -   Test  rows : 10052
+[ 2026-07-16 23:57:29,033 ] train.py:120 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-07-16 23:57:29,033 ] train.py:121 root - INFO -   Target     : FloodProbability
+[ 2026-07-16 23:57:29,033 ] train.py:122 root - INFO - ===================================
+[ 2026-07-16 23:57:31,636 ] train.py:139 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-07-16 23:57:32,269 ] train.py:72 root - INFO - Linked to latest preprocessing run: 132c5cb07c224254a88a73d71471c67d
+[ 2026-07-16 23:57:32,406 ] train.py:200 root - INFO - ===================================
+[ 2026-07-16 23:57:32,406 ] train.py:201 root - INFO - Training : LinearRegression
+[ 2026-07-16 23:57:32,407 ] train.py:202 root - INFO - ===================================
+[ 2026-07-16 23:57:33,337 ] train.py:215 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-07-17 00:00:19,550 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:00:19,551 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:00:43,215 ] train.py:243 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-07-17 00:00:43,215 ] train.py:244 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-07-17 00:00:43,215 ] train.py:245 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-07-17 00:00:56,268 ] train.py:298 root - INFO -   Fit Status : GOOD
+[ 2026-07-17 00:01:48,308 ] train.py:309 root - INFO -   *** New best model: LinearRegression  (RMSE=0.0211) ***
+[ 2026-07-17 00:01:52,328 ] train.py:200 root - INFO - ===================================
+[ 2026-07-17 00:01:52,328 ] train.py:201 root - INFO - Training : DecisionTreeRegressor
+[ 2026-07-17 00:01:52,328 ] train.py:202 root - INFO - ===================================
+[ 2026-07-17 00:01:56,497 ] train.py:215 root - INFO -   ParamGrid size : 9 combinations
+[ 2026-07-17 00:02:16,510 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:02:16,510 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:02:17,111 ] train.py:243 root - INFO -   Train R2   : 0.2873  |  Test R2   : 0.2205
+[ 2026-07-17 00:02:17,111 ] train.py:244 root - INFO -   Train RMSE : 0.0421  |  Test RMSE : 0.0446
+[ 2026-07-17 00:02:17,111 ] train.py:245 root - INFO -   Train MAE  : 0.0335  |  Test MAE  : 0.0356
+[ 2026-07-17 00:02:40,310 ] train.py:298 root - INFO -   Fit Status : UNDERFIT
+[ 2026-07-17 00:03:12,332 ] train.py:200 root - INFO - ===================================
+[ 2026-07-17 00:03:12,332 ] train.py:201 root - INFO - Training : RandomForestRegressor
+[ 2026-07-17 00:03:12,332 ] train.py:202 root - INFO - ===================================
+[ 2026-07-17 00:03:16,501 ] train.py:215 root - INFO -   ParamGrid size : 8 combinations
+[ 2026-07-17 00:09:23,078 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:09:23,078 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:09:32,403 ] train.py:243 root - INFO -   Train R2   : 0.6338  |  Test R2   : 0.5293
+[ 2026-07-17 00:09:32,403 ] train.py:244 root - INFO -   Train RMSE : 0.0302  |  Test RMSE : 0.0347
+[ 2026-07-17 00:09:32,403 ] train.py:245 root - INFO -   Train MAE  : 0.0242  |  Test MAE  : 0.0276
+[ 2026-07-17 00:09:45,400 ] train.py:298 root - INFO -   Fit Status : OVERFIT  (gap=0.1045)
+[ 2026-07-17 00:10:33,426 ] train.py:200 root - INFO - ===================================
+[ 2026-07-17 00:10:33,426 ] train.py:201 root - INFO - Training : GradientBoostingRegressor
+[ 2026-07-17 00:10:33,426 ] train.py:202 root - INFO - ===================================
+[ 2026-07-17 00:10:34,328 ] train.py:215 root - INFO -   ParamGrid size : 4 combinations
+[ 2026-07-17 00:13:15,572 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:13:15,572 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 00:14:23,440 ] train.py:243 root - INFO -   Train R2   : 0.7614  |  Test R2   : 0.7101
+[ 2026-07-17 00:14:23,440 ] train.py:244 root - INFO -   Train RMSE : 0.0244  |  Test RMSE : 0.0272
+[ 2026-07-17 00:14:23,440 ] train.py:245 root - INFO -   Train MAE  : 0.0195  |  Test MAE  : 0.0217
+[ 2026-07-17 00:14:31,015 ] train.py:298 root - INFO -   Fit Status : GOOD
+[ 2026-07-17 00:15:13,413 ] train.py:312 root - INFO - ===================================
+[ 2026-07-17 00:15:13,413 ] train.py:313 root - INFO -   BEST MODEL : LinearRegression
+[ 2026-07-17 00:15:13,414 ] train.py:314 root - INFO -   BEST RMSE  : 0.0211
+[ 2026-07-17 00:15:13,415 ] train.py:315 root - INFO - ===================================
+[ 2026-07-17 00:16:17,055 ] train.py:328 root - INFO - Best model logged to MLflow under 'best_model'.
+[ 2026-07-17 00:16:17,055 ] train.py:344 root - INFO - Existing scores.json found — appending new run.
+[ 2026-07-17 00:16:17,055 ] train.py:354 root - INFO - ===================================
+[ 2026-07-17 00:16:17,055 ] train.py:355 root - INFO - Scores saved to    : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\scores.json
+[ 2026-07-17 00:16:17,055 ] train.py:356 root - INFO - Total runs in file : 2
+[ 2026-07-17 00:16:17,055 ] train.py:357 root - INFO - ===================================
+[ 2026-07-17 00:16:17,055 ] train.py:358 root - INFO - Training Completed Successfully
+[ 2026-07-17 00:16:17,072 ] train.py:360 root - INFO - ===================================
+[ 2026-07-17 00:16:17,079 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-17 07:02:16,327 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-17 07:02:16,327 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-17 07:02:17,205 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-17 07:02:18,028 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-17 07:02:18,031 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-17 07:02:18,037 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-17 07:02:18,037 ] best_model.py:39 root - INFO - DagsHub initialized successfully.
+[ 2026-07-17 07:02:18,037 ] best_model.py:51 root - INFO - Locating champion model in MLflow...
+[ 2026-07-17 07:02:18,038 ] best_model.py:57 root - INFO - MLflow tracking -> Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-17 07:02:21,854 ] best_model.py:95 root - INFO - ===================================
+[ 2026-07-17 07:02:21,854 ] best_model.py:96 root - INFO -   Champion run id       : 5882f97549a34fd991aff4904bafa90d
+[ 2026-07-17 07:02:21,854 ] best_model.py:97 root - INFO -   Model type            : LinearRegression
+[ 2026-07-17 07:02:21,854 ] best_model.py:98 root - INFO -   Best RMSE             : 0.02106674916675108
+[ 2026-07-17 07:02:21,855 ] best_model.py:99 root - INFO -   Preprocessing run id  : 132c5cb07c224254a88a73d71471c67d
+[ 2026-07-17 07:02:21,855 ] best_model.py:100 root - INFO - ===================================
+[ 2026-07-17 07:02:27,200 ] best_model.py:111 root - INFO - Model artifact downloaded to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model\best_model
+[ 2026-07-17 07:02:43,227 ] best_model.py:130 root - INFO - Preprocessing pipeline downloaded to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\preprocessing_pipeline\preprocessing_pipeline
+[ 2026-07-17 07:02:44,129 ] best_model.py:150 root - WARNING - Model registration skipped/failed (non-fatal): INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-17 07:02:44,129 ] best_model.py:170 root - INFO - ===================================
+[ 2026-07-17 07:02:44,129 ] best_model.py:171 root - INFO - Metadata saved to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model_info.json
+[ 2026-07-17 07:02:44,129 ] best_model.py:172 root - INFO - Done. Load the model for inference with:
+[ 2026-07-17 07:02:44,129 ] best_model.py:173 root - INFO -   mlflow.spark.load_model('runs:/5882f97549a34fd991aff4904bafa90d/best_model')
+[ 2026-07-17 07:02:44,129 ] best_model.py:175 root - INFO - Load the matching preprocessing pipeline with:
+[ 2026-07-17 07:02:44,129 ] best_model.py:178 root - INFO -   mlflow.spark.load_model('runs:/132c5cb07c224254a88a73d71471c67d/preprocessing_pipeline')
+[ 2026-07-17 07:02:44,129 ] best_model.py:181 root - INFO - ===================================
+[ 2026-07-19 07:04:27,636 ] extraction.py:10 root - INFO - Data ingestion started.
+[ 2026-07-19 07:04:30,687 ] extraction.py:18 root - INFO - Data loaded from Kaggle — Shape: (50000, 21)
+[ 2026-07-19 07:04:30,793 ] extraction.py:25 root - INFO - First 5 Records:
+   MonsoonIntensity  TopographyDrainage  RiverManagement  Deforestation  Urbanization  ClimateChange  ...  DeterioratingInfrastructure  PopulationScore  WetlandLoss  InadequatePlanning  PoliticalFactors  FloodProbability
+0                 3                   8                6              6             4              4  ...                            3                4            3                   2                 6             0.450
+1                 8                   4                5              7             7              9  ...                            1                1            9                   1                 3             0.475
+2                 3                  10                4              1             7              5  ...                            6                1            8                   3                 6             0.515
+3                 4                   4                2              7             3              4  ...                            8                8            6                   6                10             0.520
+4                 3                   7                5              2             5              8  ...                            3                4            4                   3                 4             0.475
+
+[5 rows x 21 columns]
+[ 2026-07-19 07:04:30,806 ] extraction.py:26 root - INFO - Null Values:
+MonsoonIntensity                   0
+TopographyDrainage                 0
+RiverManagement                    0
+Deforestation                      0
+Urbanization                       0
+ClimateChange                      0
+DamsQuality                        0
+Siltation                          0
+AgriculturalPractices              0
+Encroachments                      0
+IneffectiveDisasterPreparedness    0
+DrainageSystems                    0
+CoastalVulnerability               0
+Landslides                         0
+Watersheds                         0
+DeterioratingInfrastructure        0
+PopulationScore                    0
+WetlandLoss                        0
+InadequatePlanning                 0
+PoliticalFactors                   0
+FloodProbability                   0
+dtype: int64
+[ 2026-07-19 07:04:30,903 ] extraction.py:27 root - INFO - Duplicated Rows: 0
+[ 2026-07-19 07:04:31,320 ] extraction.py:35 root - INFO - Raw data saved to data/raw/flood_raw.csv
+[ 2026-07-19 07:04:54,286 ] preprocessing.py:17 root - INFO - params.yaml loaded successfully.
+[ 2026-07-19 07:04:55,353 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:04:55,370 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-19 07:04:56,277 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-19 07:04:57,112 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:04:57,115 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-19 07:04:57,116 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-19 07:04:57,116 ] preprocessing.py:37 root - INFO - DagsHub initialized successfully.
+[ 2026-07-19 07:04:57,116 ] preprocessing.py:44 root - INFO - MLflow tracking -> Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-19 07:04:58,339 ] preprocessing.py:50 root - INFO - MLflow experiment set : Flood Prediction Preprocessing
+[ 2026-07-19 07:04:58,339 ] preprocessing.py:55 root - INFO - Preprocessing pipeline started.
+[ 2026-07-19 07:05:11,569 ] preprocessing.py:65 root - INFO - SparkSession initialised successfully.
+[ 2026-07-19 07:05:26,700 ] preprocessing.py:89 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-07-19 07:05:27,424 ] preprocessing.py:99 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-19 07:05:27,494 ] preprocessing.py:108 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-07-19 07:05:29,894 ] preprocessing.py:119 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-07-19 07:05:33,424 ] preprocessing.py:140 root - INFO - ML pipeline fitted on training data.
+[ 2026-07-19 07:05:33,774 ] preprocessing.py:149 root - INFO - Train and test datasets transformed successfully.
+[ 2026-07-19 07:05:34,329 ] preprocessing.py:168 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-07-19 07:05:38,377 ] preprocessing.py:177 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-07-19 07:05:39,810 ] preprocessing.py:180 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-07-19 07:05:40,677 ] preprocessing.py:189 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-07-19 07:06:22,486 ] preprocessing.py:197 root - INFO - Preprocessing pipeline logged to MLflow under 'preprocessing_pipeline'.
+[ 2026-07-19 07:06:24,289 ] preprocessing.py:210 root - INFO - SparkSession stopped.
+[ 2026-07-19 07:06:27,724 ] preprocessing.py:212 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-07-19 07:06:27,732 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:06:49,327 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:06:49,364 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-19 07:06:50,214 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-19 07:06:51,031 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:06:51,031 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-19 07:06:51,031 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-19 07:06:51,031 ] train.py:31 root - INFO - DagsHub initialized successfully.
+[ 2026-07-19 07:06:51,031 ] train.py:89 root - INFO - Starting model training process...
+[ 2026-07-19 07:07:08,111 ] train.py:123 root - INFO - ===================================
+[ 2026-07-19 07:07:08,114 ] train.py:124 root - INFO - Loaded Preprocessed Dataset
+[ 2026-07-19 07:07:10,538 ] train.py:125 root - INFO -   Train rows : 39948
+[ 2026-07-19 07:07:10,812 ] train.py:126 root - INFO -   Test  rows : 10052
+[ 2026-07-19 07:07:10,812 ] train.py:127 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-07-19 07:07:10,836 ] train.py:128 root - INFO -   Target     : FloodProbability
+[ 2026-07-19 07:07:10,836 ] train.py:129 root - INFO - ===================================
+[ 2026-07-19 07:07:12,712 ] train.py:140 root - INFO - MLflow tracking Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-19 07:07:13,712 ] train.py:146 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-07-19 07:07:14,380 ] train.py:77 root - INFO - Linked to latest preprocessing run: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-19 07:07:14,513 ] train.py:207 root - INFO - ===================================
+[ 2026-07-19 07:07:14,528 ] train.py:208 root - INFO - Training : LinearRegression
+[ 2026-07-19 07:07:14,528 ] train.py:209 root - INFO - ===================================
+[ 2026-07-19 07:07:15,480 ] train.py:222 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-07-19 07:10:22,781 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:10:22,782 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:10:51,876 ] train.py:250 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-07-19 07:10:51,876 ] train.py:251 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-07-19 07:10:51,877 ] train.py:252 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-07-19 07:10:59,284 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-07-19 07:11:38,743 ] train.py:316 root - INFO -   *** New best model: LinearRegression  (RMSE=0.0211) ***
+[ 2026-07-19 07:11:39,068 ] train.py:207 root - INFO - ===================================
+[ 2026-07-19 07:11:39,068 ] train.py:208 root - INFO - Training : DecisionTreeRegressor
+[ 2026-07-19 07:11:39,068 ] train.py:209 root - INFO - ===================================
+[ 2026-07-19 07:11:39,607 ] train.py:222 root - INFO -   ParamGrid size : 9 combinations
+[ 2026-07-19 07:12:04,371 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:12:04,372 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:12:05,079 ] train.py:250 root - INFO -   Train R2   : 0.2873  |  Test R2   : 0.2205
+[ 2026-07-19 07:12:05,079 ] train.py:251 root - INFO -   Train RMSE : 0.0421  |  Test RMSE : 0.0446
+[ 2026-07-19 07:12:05,080 ] train.py:252 root - INFO -   Train MAE  : 0.0335  |  Test MAE  : 0.0356
+[ 2026-07-19 07:12:14,034 ] train.py:305 root - INFO -   Fit Status : UNDERFIT
+[ 2026-07-19 07:12:54,614 ] train.py:207 root - INFO - ===================================
+[ 2026-07-19 07:12:54,614 ] train.py:208 root - INFO - Training : RandomForestRegressor
+[ 2026-07-19 07:12:54,614 ] train.py:209 root - INFO - ===================================
+[ 2026-07-19 07:12:55,162 ] train.py:222 root - INFO -   ParamGrid size : 8 combinations
+[ 2026-07-19 07:19:19,246 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:19:19,246 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:19:28,246 ] train.py:250 root - INFO -   Train R2   : 0.6338  |  Test R2   : 0.5280
+[ 2026-07-19 07:19:28,246 ] train.py:251 root - INFO -   Train RMSE : 0.0302  |  Test RMSE : 0.0347
+[ 2026-07-19 07:19:28,246 ] train.py:252 root - INFO -   Train MAE  : 0.0242  |  Test MAE  : 0.0276
+[ 2026-07-19 07:19:42,038 ] train.py:305 root - INFO -   Fit Status : OVERFIT  (gap=0.1058)
+[ 2026-07-19 07:21:29,025 ] train.py:207 root - INFO - ===================================
+[ 2026-07-19 07:21:29,025 ] train.py:208 root - INFO - Training : GradientBoostingRegressor
+[ 2026-07-19 07:21:29,025 ] train.py:209 root - INFO - ===================================
+[ 2026-07-19 07:21:29,577 ] train.py:222 root - INFO -   ParamGrid size : 4 combinations
+[ 2026-07-19 07:24:02,196 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:24:02,196 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:25:06,835 ] train.py:250 root - INFO -   Train R2   : 0.7614  |  Test R2   : 0.7101
+[ 2026-07-19 07:25:06,835 ] train.py:251 root - INFO -   Train RMSE : 0.0244  |  Test RMSE : 0.0272
+[ 2026-07-19 07:25:06,835 ] train.py:252 root - INFO -   Train MAE  : 0.0195  |  Test MAE  : 0.0217
+[ 2026-07-19 07:25:15,135 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-07-19 07:25:51,348 ] train.py:319 root - INFO - ===================================
+[ 2026-07-19 07:25:51,364 ] train.py:320 root - INFO -   BEST MODEL : LinearRegression
+[ 2026-07-19 07:25:51,364 ] train.py:321 root - INFO -   BEST RMSE  : 0.0211
+[ 2026-07-19 07:25:51,364 ] train.py:322 root - INFO - ===================================
+[ 2026-07-19 07:26:57,953 ] train.py:335 root - INFO - Best model logged to MLflow under 'best_model'.
+[ 2026-07-19 07:26:57,953 ] train.py:351 root - INFO - Existing scores.json found — appending new run.
+[ 2026-07-19 07:26:57,953 ] train.py:361 root - INFO - ===================================
+[ 2026-07-19 07:26:57,953 ] train.py:362 root - INFO - Scores saved to    : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\scores.json
+[ 2026-07-19 07:26:57,953 ] train.py:363 root - INFO - Total runs in file : 3
+[ 2026-07-19 07:26:57,953 ] train.py:364 root - INFO - ===================================
+[ 2026-07-19 07:26:57,953 ] train.py:365 root - INFO - Training Completed Successfully
+[ 2026-07-19 07:26:57,987 ] train.py:367 root - INFO - ===================================
+[ 2026-07-19 07:26:58,008 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-19 07:29:52,349 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:29:52,360 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-19 07:29:53,477 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-19 07:29:54,260 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:29:54,260 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-19 07:29:54,269 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-19 07:29:54,269 ] best_model.py:39 root - INFO - DagsHub initialized successfully.
+[ 2026-07-19 07:29:54,269 ] best_model.py:51 root - INFO - Locating champion model in MLflow...
+[ 2026-07-19 07:29:54,270 ] best_model.py:57 root - INFO - MLflow tracking -> Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-19 07:29:55,740 ] best_model.py:95 root - INFO - ===================================
+[ 2026-07-19 07:29:55,740 ] best_model.py:96 root - INFO -   Champion run id       : 4946d5c3f08448e4974abf2369a661c4
+[ 2026-07-19 07:29:55,740 ] best_model.py:97 root - INFO -   Model type            : LinearRegression
+[ 2026-07-19 07:29:55,740 ] best_model.py:98 root - INFO -   Best RMSE             : 0.02106674916675108
+[ 2026-07-19 07:29:55,741 ] best_model.py:99 root - INFO -   Preprocessing run id  : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-19 07:29:55,741 ] best_model.py:100 root - INFO - ===================================
+[ 2026-07-19 07:30:01,492 ] best_model.py:111 root - INFO - Model artifact downloaded to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model\best_model
+[ 2026-07-19 07:30:17,517 ] best_model.py:130 root - INFO - Preprocessing pipeline downloaded to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\preprocessing_pipeline\preprocessing_pipeline
+[ 2026-07-19 07:30:17,848 ] best_model.py:150 root - WARNING - Model registration skipped/failed (non-fatal): INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-19 07:30:17,848 ] best_model.py:170 root - INFO - ===================================
+[ 2026-07-19 07:30:17,848 ] best_model.py:171 root - INFO - Metadata saved to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model_info.json
+[ 2026-07-19 07:30:17,848 ] best_model.py:172 root - INFO - Done. Load the model for inference with:
+[ 2026-07-19 07:30:17,848 ] best_model.py:173 root - INFO -   mlflow.spark.load_model('runs:/4946d5c3f08448e4974abf2369a661c4/best_model')
+[ 2026-07-19 07:30:17,848 ] best_model.py:175 root - INFO - Load the matching preprocessing pipeline with:
+[ 2026-07-19 07:30:17,848 ] best_model.py:178 root - INFO -   mlflow.spark.load_model('runs:/d5bc327fa0c14c2cbf85933e336a3855/preprocessing_pipeline')
+[ 2026-07-19 07:30:17,848 ] best_model.py:181 root - INFO - ===================================
+[ 2026-07-19 07:36:41,981 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:36:42,032 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-19 07:36:42,396 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-19 07:36:43,083 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-19 07:36:43,201 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-19 07:36:43,202 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-19 07:36:43,202 ] best_model.py:39 root - INFO - DagsHub initialized successfully.
+[ 2026-07-19 07:36:43,202 ] best_model.py:51 root - INFO - Locating champion model in MLflow...
+[ 2026-07-19 07:36:43,203 ] best_model.py:57 root - INFO - MLflow tracking -> Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-19 07:36:46,132 ] best_model.py:95 root - INFO - ===================================
+[ 2026-07-19 07:36:46,132 ] best_model.py:96 root - INFO -   Champion run id       : 4946d5c3f08448e4974abf2369a661c4
+[ 2026-07-19 07:36:46,132 ] best_model.py:97 root - INFO -   Model type            : LinearRegression
+[ 2026-07-19 07:36:46,132 ] best_model.py:98 root - INFO -   Best RMSE             : 0.02106674916675108
+[ 2026-07-19 07:36:46,133 ] best_model.py:99 root - INFO -   Preprocessing run id  : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-19 07:36:46,133 ] best_model.py:100 root - INFO - ===================================
+[ 2026-07-19 07:36:52,272 ] best_model.py:111 root - INFO - Model artifact downloaded to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model\best_model
+[ 2026-07-19 07:37:05,538 ] best_model.py:130 root - INFO - Preprocessing pipeline downloaded to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\preprocessing_pipeline\preprocessing_pipeline
+[ 2026-07-19 07:37:06,440 ] best_model.py:150 root - WARNING - Model registration skipped/failed (non-fatal): INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-19 07:37:06,548 ] best_model.py:170 root - INFO - ===================================
+[ 2026-07-19 07:37:06,548 ] best_model.py:171 root - INFO - Metadata saved to : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\best_model_info.json
+[ 2026-07-19 07:37:06,548 ] best_model.py:172 root - INFO - Done. Load the model for inference with:
+[ 2026-07-19 07:37:06,548 ] best_model.py:173 root - INFO -   mlflow.spark.load_model('runs:/4946d5c3f08448e4974abf2369a661c4/best_model')
+[ 2026-07-19 07:37:06,548 ] best_model.py:175 root - INFO - Load the matching preprocessing pipeline with:
+[ 2026-07-19 07:37:06,549 ] best_model.py:178 root - INFO -   mlflow.spark.load_model('runs:/d5bc327fa0c14c2cbf85933e336a3855/preprocessing_pipeline')
+[ 2026-07-19 07:37:06,549 ] best_model.py:181 root - INFO - ===================================

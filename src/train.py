@@ -5,6 +5,7 @@ import os
 import json
 import yaml
 from datetime import datetime
+from typing import Optional
 from pyspark.sql import SparkSession
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.regression import (
@@ -16,13 +17,76 @@ from pyspark.ml.regression import (
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.tuning import ParamGridBuilder, CrossValidator
 import mlflow
-print(mlflow.__version__)
+from mlflow.tracking import MlflowClient
+import dagshub
+from logger import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    encoding="utf-8"
+)
+
+try:
+    dagshub.init(repo_owner='Muhammad-Musharraf', repo_name='Mlops-Flood-Prediction', mlflow=True)
+    logging.info("DagsHub initialized successfully.")
+except Exception as e:
+    logging.warning(f"DagsHub init failed, continuing without remote tracking: {e}")
+
+PREPROCESSING_EXPERIMENT_NAME = "Flood Prediction Preprocessing"
+
+
+def get_latest_preprocessing_run_id() -> Optional[str]:
+    """
+    Looks up the most recent successful run in the "Flood Prediction
+    Preprocessing" experiment, so every training run can record exactly
+    which preprocessing run produced the data it trained on.
+
+    Separate experiments (preprocessing vs training) keep each stage's
+    run table clean, but that means MLflow has no built-in parent/child
+    link across them — this is the cheap way to preserve traceability
+    without merging the experiments or passing state through a file.
+
+    Returns None (non-fatal) if the preprocessing experiment or a
+    matching run can't be found, e.g. on a fresh setup before
+    preprocessing.py has ever been run.
+    """
+    try:
+        client = MlflowClient()
+        experiment = client.get_experiment_by_name(PREPROCESSING_EXPERIMENT_NAME)
+        if experiment is None:
+            logging.warning(
+                f"Preprocessing experiment '{PREPROCESSING_EXPERIMENT_NAME}' not found — "
+                "training will proceed without a preprocessing_run_id link."
+            )
+            return None
+
+        runs = client.search_runs(
+            experiment_ids=[experiment.experiment_id],
+            filter_string="tags.status = 'success'",
+            order_by=["start_time DESC"],
+            max_results=1,
+        )
+        if not runs:
+            logging.warning(
+                "No successful preprocessing run found — "
+                "training will proceed without a preprocessing_run_id link."
+            )
+            return None
+
+        run_id = runs[0].info.run_id
+        logging.info(f"Linked to latest preprocessing run: {run_id}")
+        return run_id
+
+    except Exception as e:
+        logging.warning(f"Could not look up latest preprocessing run (non-fatal): {e}")
+        return None
+    
 
 
 
 def train():
     try:
-        print("Starting model training process...")
+        logging.info("Starting model training process...")
 
         # ── Load params ───────────────────────────────────────────────────────
         params = yaml.safe_load(open("params.yaml"))
@@ -36,7 +100,7 @@ def train():
         CV_FOLDS     = params["model"]["cv"]
         SCORES_PATH  = params["artifacts"]["scores_file"]  # artifacts/scores.json
 
-        EXPERIMENT_NAME = "FloodPrediction_Training"
+        EXPERIMENT_NAME = "Flood Prediction Training"
 
         # ── 1. Spark Session ──────────────────────────────────────────────────
         spark = (
@@ -56,16 +120,13 @@ def train():
         train_df = spark.read.format("parquet").load(TRAIN_CSV)
         test_df = spark.read.format("parquet").load(TEST_CSV)
 
-
-
-
-        print("===================================")
-        print("Loaded Preprocessed Dataset")
-        print(f"  Train rows : {train_df.count()}")
-        print(f"  Test  rows : {test_df.count()}")
-        print(f"  Features   : {FEATURE_COLS}")
-        print(f"  Target     : {TARGET_COL}")
-        print("===================================")
+        logging.info("===================================")
+        logging.info("Loaded Preprocessed Dataset")
+        logging.info(f"  Train rows : {train_df.count()}")
+        logging.info(f"  Test  rows : {test_df.count()}")
+        logging.info(f"  Features   : {FEATURE_COLS}")
+        logging.info(f"  Target     : {TARGET_COL}")
+        logging.info("===================================")
 
         # Assemble feature vector (features already scaled by preprocessing.py)
         assembler = VectorAssembler(inputCols=FEATURE_COLS, outputCol="features")
@@ -76,13 +137,17 @@ def train():
         REMOTE_URI = os.getenv("MLFLOW_TRACKING_URI")
         if REMOTE_URI:
             mlflow.set_tracking_uri(REMOTE_URI)
-            print(f"MLflow tracking → Remote : {REMOTE_URI}")
+            logging.info(f"MLflow tracking Remote : {REMOTE_URI}")
         else:
             mlflow.set_tracking_uri("sqlite:///mlflow.db")
-            print("MLflow tracking → Local  : sqlite:///mlflow.db")
+            logging.info("MLflow tracking -> Local  : sqlite:///mlflow.db")
 
         mlflow.set_experiment(EXPERIMENT_NAME)
-        print(f"MLflow experiment set    : {EXPERIMENT_NAME}")
+        logging.info(f"MLflow experiment set    : {EXPERIMENT_NAME}")
+
+        # ── 3b. Link this training run back to the preprocessing run that
+        #        produced TRAIN_CSV / TEST_CSV ─────────────────────────────────
+        preprocessing_run_id = get_latest_preprocessing_run_id()
 
         # ── 4. Evaluators ─────────────────────────────────────────────────────
         def make_evaluator(metric):
@@ -139,9 +204,9 @@ def train():
         # ── 7. Training loop ──────────────────────────────────────────────────
         for name, config in models.items():
 
-            print("===================================")
-            print(f"Training : {name}")
-            print("===================================")
+            logging.info("===================================")
+            logging.info(f"Training : {name}")
+            logging.info("===================================")
 
             with mlflow.start_run(run_name=name):
 
@@ -154,7 +219,7 @@ def train():
                         getattr(estimator, param_name), values
                     )
                 param_grid = param_grid.build()
-                print(f"  ParamGrid size : {len(param_grid)} combinations")
+                logging.info(f"  ParamGrid size : {len(param_grid)} combinations")
 
                 # Cross-validation (optimise on RMSE)
                 cv = CrossValidator(
@@ -182,9 +247,9 @@ def train():
                 test_mae   = evaluator_mae.evaluate(test_preds)
                 train_mae  = evaluator_mae.evaluate(train_preds)
 
-                print(f"  Train R2   : {train_r2:.4f}  |  Test R2   : {test_r2:.4f}")
-                print(f"  Train RMSE : {train_rmse:.4f}  |  Test RMSE : {test_rmse:.4f}")
-                print(f"  Train MAE  : {train_mae:.4f}  |  Test MAE  : {test_mae:.4f}")
+                logging.info(f"  Train R2   : {train_r2:.4f}  |  Test R2   : {test_r2:.4f}")
+                logging.info(f"  Train RMSE : {train_rmse:.4f}  |  Test RMSE : {test_rmse:.4f}")
+                logging.info(f"  Train MAE  : {train_mae:.4f}  |  Test MAE  : {test_mae:.4f}")
 
                 # ── Collect per-model results for scores.json ─────────────────
                 results[name] = {
@@ -205,6 +270,8 @@ def train():
                 mlflow.log_param("num_features", len(FEATURE_COLS))
                 mlflow.log_param("target_col",   TARGET_COL)
                 mlflow.log_param("cv_folds",     CV_FOLDS)
+                if preprocessing_run_id:
+                    mlflow.log_param("preprocessing_run_id", preprocessing_run_id)
 
                 # Best hyperparams chosen by CV
                 best_idx    = cv_model.avgMetrics.index(min(cv_model.avgMetrics))
@@ -235,8 +302,8 @@ def train():
                 mlflow.set_tag("fit_status", fit_status)
                 mlflow.set_tag("model_type", name)
                 mlflow.set_tag("framework",  "pyspark")
-                print(f"  Fit Status : {fit_status.upper()}"
-                      + (f"  (gap={diff:.4f})" if fit_status == "overfit" else ""))
+                logging.info(f"  Fit Status : {fit_status.upper()}"
+                             + (f"  (gap={diff:.4f})" if fit_status == "overfit" else ""))
 
                 # ── Log model artifact ────────────────────────────────────────
                 mlflow.spark.log_model(best, artifact_path="model")
@@ -246,31 +313,34 @@ def train():
                     best_rmse       = test_rmse
                     best_model      = best
                     best_model_name = name
-                    print(f"  *** New best model: {name}  (RMSE={test_rmse:.4f}) ***")
+                    logging.info(f"  *** New best model: {name}  (RMSE={test_rmse:.4f}) ***")
 
         # ── 8. Summary ────────────────────────────────────────────────────────
-        print("===================================")
-        print(f"  BEST MODEL : {best_model_name}")
-        print(f"  BEST RMSE  : {best_rmse:.4f}")
-        print("===================================")
+        logging.info("===================================")
+        logging.info(f"  BEST MODEL : {best_model_name}")
+        logging.info(f"  BEST RMSE  : {best_rmse:.4f}")
+        logging.info("===================================")
 
         # ── 9. Champion run ───────────────────────────────────────────────────
         with mlflow.start_run(run_name="Best_Model_" + best_model_name):
             mlflow.log_param("best_model_name", best_model_name)
             mlflow.log_metric("best_RMSE",      best_rmse)
+            if preprocessing_run_id:
+                mlflow.log_param("preprocessing_run_id", preprocessing_run_id)
             mlflow.set_tag("stage",      "champion")
             mlflow.set_tag("model_type", best_model_name)
             mlflow.set_tag("framework",  "pyspark")
             mlflow.spark.log_model(best_model, artifact_path="best_model")
 
-        print("Best model logged to MLflow under 'best_model'.")
+        logging.info("Best model logged to MLflow under 'best_model'.")
 
         # ── 10. scores.json — append history of every run ─────────────────────
         run_record = {
-            "run_timestamp" : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "best_model"    : best_model_name,
-            "best_rmse"     : round(best_rmse, 4),
-            "models"        : results,
+            "run_timestamp"        : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "best_model"           : best_model_name,
+            "best_rmse"            : round(best_rmse, 4),
+            "preprocessing_run_id" : preprocessing_run_id,
+            "models"               : results,
         }
 
         os.makedirs(os.path.dirname(SCORES_PATH), exist_ok=True)
@@ -278,26 +348,26 @@ def train():
         if os.path.exists(SCORES_PATH):
             with open(SCORES_PATH, "r") as f:
                 all_scores = json.load(f)
-            print("Existing scores.json found — appending new run.")
+            logging.info("Existing scores.json found — appending new run.")
         else:
             all_scores = []
-            print("No scores.json found — creating new file.")
+            logging.info("No scores.json found — creating new file.")
 
         all_scores.append(run_record)
 
         with open(SCORES_PATH, "w") as f:
             json.dump(all_scores, f, indent=4)
 
-        print("===================================")
-        print(f"Scores saved to    : {os.path.abspath(SCORES_PATH)}")
-        print(f"Total runs in file : {len(all_scores)}")
-        print("===================================")
-        print("Training Completed Successfully")
-        print("Run 'mlflow ui' → http://127.0.0.1:5000")
-        print("===================================")
+        logging.info("===================================")
+        logging.info(f"Scores saved to    : {os.path.abspath(SCORES_PATH)}")
+        logging.info(f"Total runs in file : {len(all_scores)}")
+        logging.info("===================================")
+        logging.info("Training Completed Successfully")
+        logging.info("Run 'mlflow ui' -> http://127.0.0.1:5000")
+        logging.info("===================================")
 
     except Exception as e:
-        print(f"Error during model training: {e}")
+        logging.error(f"Error during model training: {e}")
         raise
 
 
@@ -305,4 +375,5 @@ if __name__ == "__main__":
     try:
         train()
     except Exception as e:
-        print(f"Fatal error: {e}")
+        logging.critical(f"Fatal error: {e}")
+        raise
