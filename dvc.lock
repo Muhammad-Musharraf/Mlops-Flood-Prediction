@@ -1,0 +1,27 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/extraction.py
+    deps:
+    - path: src/extraction.py
+      hash: md5
+      md5: e87e01eae8a5272d6c5036b5fdaa73d9
+      size: 1399
+    outs:
+    - path: data/raw/flood_raw.csv
+      hash: md5
+      md5: f48614bd5ba01c0cf5bb9c4bee1f5503
+      size: 2354496
+  Preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+    - path: src/preprocessing.py
+      hash: md5
+      md5: 951a991b5b7967fa174a24c504cd9867
+      size: 7802
+    outs:
+    - path: data/transform
+      hash: md5
+      md5: e92f8834af1c0f6c7e555d5a52883518.dir
+      size: 482550
+      nfiles: 8
