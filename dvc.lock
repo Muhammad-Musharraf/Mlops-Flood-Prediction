@@ -40,17 +40,21 @@ stages:
   Best_model:
     cmd: python src/best_model.py
     deps:
+    - path: logs/best_run_id.txt
+      hash: md5
+      md5: 67227bd233904bed07faf14ef4582a7b
+      size: 32
     - path: src/best_model.py
       hash: md5
-      md5: ae75383aa657511d4bf11fce0aeafe82
-      size: 5507
+      md5: 5bb040033865a9a1e3f5293d83e16de3
+      size: 5170
     outs:
-    - path: artifacts/best_model
+    - path: logs/best_model.log
       hash: md5
-      md5: 0e93c5586810ebf20dc606c0ba61c880.dir
-      size: 8297
-      nfiles: 16
-    - path: artifacts/best_model_info.json
+      md5: 28ad0b793674fdf547adb9f595d0564a
+      size: 285
+    - path: models/best_model_latest
       hash: md5
-      md5: 2d32d29d13cefc8fba4401a1f5292dd9
-      size: 312
+      md5: 00a3e94ad6e688f1ae246a1375f37285.dir
+      size: 3074
+      nfiles: 12
