@@ -17,12 +17,12 @@ stages:
     deps:
     - path: src/preprocessing.py
       hash: md5
-      md5: 951a991b5b7967fa174a24c504cd9867
-      size: 7802
+      md5: a1c7532a9a4c470b9b01738dc6162d67
+      size: 10874
     outs:
     - path: data/transform
       hash: md5
-      md5: e92f8834af1c0f6c7e555d5a52883518.dir
+      md5: 7f8ce53785616bd1606b942c36905fc7.dir
       size: 482550
       nfiles: 8
   Training:
@@ -30,13 +30,13 @@ stages:
     deps:
     - path: src/train.py
       hash: md5
-      md5: 6d8dce368539bcf218d82295093167ff
-      size: 15375
+      md5: 59cb8113ec55bf9727f6d3ab2b19391e
+      size: 18719
     outs:
     - path: artifacts/scores.json
       hash: md5
-      md5: 6f2c072433b27eb55ccb42f4b35146a1
-      size: 1589
+      md5: ec3faa511374859c2fb8b5082956d755
+      size: 1718
   Best_model:
     cmd: python src/best_model.py
     deps:
