@@ -41,7 +41,7 @@ env/
 
 # Jupyter
 # Jupyter
-Notebook_files/
+Notebook_file/
 .ipynb_checkpoints/
 
 # ── DVC — ignore only generated/cache dirs; commit everything else ───────────
