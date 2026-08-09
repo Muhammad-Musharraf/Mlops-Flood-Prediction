@@ -1,76 +1,124 @@
-import mlflow
-from mlflow.tracking import MlflowClient
-from dotenv import load_dotenv
-import logging
-import os
-
 import dagshub
-dagshub.init(repo_owner='Muhammad-Musharraf', repo_name='Mlops-Flood-Prediction', mlflow=True)
-
-# ── Logging Setup ────────────────────────────────────────────────────────────
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s — %(levelname)s — %(message)s"
-)
-logger = logging.getLogger(__name__)
-
+from dotenv import load_dotenv
 load_dotenv()
 
-TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI")
-mlflow.set_tracking_uri(TRACKING_URI)
+import sys
+import os
+import datetime
 
-
-def register_best_model():
+if sys.platform == "win32":
     try:
-        # ── Step 1: Fetch Best Run from DagsHub ──────────────────────────────
-        logger.info("Connecting to MLflow tracking server...")
-        client = MlflowClient(tracking_uri=TRACKING_URI)
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
-        experiment = client.get_experiment_by_name("Flood Prediction Training")
-        if experiment is None:
-            raise ValueError("Experiment 'Flood Prediction Training' not found.")
+dagshub.init(
+    repo_owner="Muhammad-Musharraf",
+    repo_name="Mlops-Flood-Prediction",
+    mlflow=True
+)
 
-        runs = client.search_runs(
-            experiment_ids=[experiment.experiment_id],
-            order_by=["metrics.Test_R2 DESC"]
+os.environ["PYSPARK_PYTHON"]        = sys.executable
+os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
+
+from logger import logging
+import mlflow
+import mlflow.spark
+from mlflow.tracking import MlflowClient
+from pyspark.sql import SparkSession
+
+
+def best_model():
+    try:
+        logging.info("Starting best model selection process...")
+
+        tracking_uri = os.getenv("MLFLOW_TRACKING_URI")
+        run_id_path  = "logs/best_run_id.txt"
+
+        mlflow.set_tracking_uri(tracking_uri)
+        client = MlflowClient()
+
+        # ── Step 1: best_run_id file se lo ───────────────────────────────────
+        if not os.path.exists(run_id_path):
+            raise Exception("logs/best_run_id.txt nahi mili — pehle train.py chalao")
+
+        with open(run_id_path, "r") as f:
+            best_run_id = f.read().strip()
+
+        if not best_run_id:
+            raise Exception("logs/best_run_id.txt khali hai — train.py phir se chalao")
+
+        logging.info("===================================")
+        logging.info("BEST RUN ID : %s", best_run_id)
+        logging.info("===================================")
+
+        # ── Step 2: Champion run details ──────────────────────────────────────
+        champion_run    = client.get_run(best_run_id)
+        best_model_name = champion_run.data.params.get("best_model_name", "UnknownModel")
+        best_rmse       = champion_run.data.metrics.get("best_RMSE", 0.0)
+
+        logging.info("===================================")
+        logging.info("Best Model Name : %s", best_model_name)
+        logging.info("Best RMSE       : %.6f", best_rmse)
+        logging.info("===================================")
+
+        # ── Step 3: Spark session ─────────────────────────────────────────────
+        spark = (
+            SparkSession.builder
+            .appName("FloodPrediction_BestModel")
+            .config("spark.driver.host",        "127.0.0.1")
+            .config("spark.driver.bindAddress", "127.0.0.1")
+            .config("spark.python.worker.reuse","false")
+            .getOrCreate()
         )
+        spark.sparkContext.setLogLevel("WARN")
+        logging.info("Spark session started.")
 
-        if not runs:
-            raise ValueError("No runs found in the experiment.")
+        # ── Step 4: Champion model MLflow se load karo ────────────────────────
+        logging.info("Loading champion model from MLflow...")
+        champion_model_uri = f"runs:/{best_run_id}/best_model"
+        champion_model     = mlflow.spark.load_model(champion_model_uri)
+        logging.info("[OK] Champion model loaded: %s", type(champion_model).__name__)
 
-        best_run        = runs[0]
-        best_run_id     = best_run.info.run_id
-        best_model_name = best_run.data.params.get("model_name", "Unknown")
-        best_r2         = best_run.data.metrics.get("Test_R2", 0.0)
+        # ── Step 5: Disk pe versioned + latest save karo ──────────────────────
+        os.makedirs("models", exist_ok=True)
 
-        logger.info(f"Best Model  : {best_model_name}")
-        logger.info(f"Best Test R2: {best_r2:.4f}")
-        logger.info(f"Best Run ID : {best_run_id}")
+        existing       = [d for d in os.listdir("models") if d.startswith("best_model_v")]
+        version        = len(existing) + 1
+        versioned_path = f"models/best_model_v{version}"
+        latest_path    = "models/best_model_latest"
 
-        # ── Step 2: Register Model ────────────────────────────────────────────
-        logger.info("Registering best model as 'best_model'...")
+        champion_model.write().overwrite().save(versioned_path)
+        logging.info("[OK] Saved versioned : %s", versioned_path)
 
-        client.create_registered_model("best_model")
-        client.create_model_version(
-            name="best_model",
-            source=f"runs:/{best_run_id}/model",
-            run_id=best_run_id
-        )
+        champion_model.write().overwrite().save(latest_path)
+        logging.info("[OK] Saved latest    : %s", latest_path)
 
-        logger.info("✅ Best Model Registered Successfully as 'best_model'!")
+        logging.info("===================================")
+        logging.info("Best model selection completed!")
+        logging.info("===================================")
 
-    except ValueError as ve:
-        logger.error(f"Validation Error: {ve}")
-
-    except mlflow.exceptions.RestException as re:
-        logger.error(f"MLflow REST Error (DagsHub may not support Model Registry): {re}")
-
-    except mlflow.exceptions.MlflowException as me:
-        logger.error(f"MLflow Error: {me}")
+        # ── Step 6: Log file save karo ────────────────────────────────────────
+        os.makedirs("logs", exist_ok=True)
+        with open("logs/best_model.log", "w") as f:
+            f.write(f"Best model selection completed at {datetime.datetime.now()}\n")
+            f.write(f"Model      : Flood_best_model\n")
+            f.write(f"Algorithm  : {best_model_name}\n")
+            f.write(f"Run ID     : {best_run_id}\n")
+            f.write(f"Best RMSE  : {best_rmse:.6f}\n")
+            f.write(f"Version    : v{version}\n")
+            f.write(f"Versioned  : {versioned_path}\n")
+            f.write(f"Latest     : {latest_path}\n")
+        logging.info("Log file saved: logs/best_model.log")
 
     except Exception as e:
-        logger.exception(f"Unexpected error: {e}")
+        logging.error("Error: %s", str(e))
+        raise
 
 
 if __name__ == "__main__":
-    register_best_model()
+    try:
+        best_model()
+    except Exception as e:
+        logging.error("Error: %s", str(e))

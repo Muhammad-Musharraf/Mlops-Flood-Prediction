@@ -1,0 +1,117 @@
+# =============================================================================
+#  .gitignore  —  Mlops-Flood-Prediction
+#  Consolidates: data/transform/.gitignore  +  models/.gitignore
+# =============================================================================
+
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+.installed.cfg
+lib/
+lib64/
+MANIFEST
+
+# ── Virtual environments ───────────────────────────────────────────────────────
+.venv/
+venv/
+ENV/
+env/
+.env.bak
+
+# ── Environment / secrets  (NEVER commit these) ───────────────────────────────
+.env
+.env.*
+!.env.example          # allow a sample template to be committed
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+Notebook_files/
+Flood_Prediction.ipynb_checkpoints/
+
+# ── DVC — ignore only generated/cache dirs; commit everything else ───────────
+# .dvcignore is intentionally NOT here — it must be committed to Git
+.dvc/cache/
+.dvc/tmp/
+.dvc/plots/
+
+# ── DVC-managed data (was data/transform/.gitignore) ─────────────────────────
+/data/transform/
+
+# ── DVC-managed models (was models/.gitignore) ────────────────────────────────
+/models/best_model_latest/
+/models/best_model_v*/
+/models/pipeline/
+
+# ── MLflow ────────────────────────────────────────────────────────────────────
+mlruns/
+mlflow.db
+mlartifacts/
+
+# ── Logs — keep best_run_id.txt (pipeline dep), ignore large/generated logs ───
+logs/best_model.log
+logs/running_logs.log
+# logs/best_run_id.txt  ← intentionally NOT ignored (DVC dep + useful in Git)
+
+# ── Artifacts — DVC/MLflow own these ─────────────────────────────────────────
+artifacts/
+
+# ── Redis ─────────────────────────────────────────────────────────────────────
+redis/dump.rdb
+redis/*.rdb
+redis/*.aof
+
+# ── OS / IDE ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Windows ───────────────────────────────────────────────────────────────────
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# ── Pytest / coverage ─────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# ── mypy / type checkers ──────────────────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# ── uv ────────────────────────────────────────────────────────────────────────
+# uv.lock is intentionally committed — do NOT add it here
+
+# ── Spark local temp ──────────────────────────────────────────────────────────
+derby.log
+metastore_db/
+spark-warehouse/
+
+

@@ -1424,3 +1424,1260 @@ dtype: int64
 [ 2026-07-19 07:37:06,548 ] best_model.py:175 root - INFO - Load the matching preprocessing pipeline with:
 [ 2026-07-19 07:37:06,549 ] best_model.py:178 root - INFO -   mlflow.spark.load_model('runs:/d5bc327fa0c14c2cbf85933e336a3855/preprocessing_pipeline')
 [ 2026-07-19 07:37:06,549 ] best_model.py:181 root - INFO - ===================================
+[ 2026-07-23 22:26:42,238 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-23 22:26:42,265 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-07-23 22:26:43,482 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-07-23 22:26:45,163 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-07-23 22:26:45,168 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-07-23 22:26:45,170 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-07-23 22:26:45,170 ] train.py:31 root - INFO - DagsHub initialized successfully.
+[ 2026-07-23 22:26:45,171 ] train.py:89 root - INFO - Starting model training process...
+[ 2026-07-23 22:27:05,043 ] train.py:123 root - INFO - ===================================
+[ 2026-07-23 22:27:05,043 ] train.py:124 root - INFO - Loaded Preprocessed Dataset
+[ 2026-07-23 22:27:07,492 ] train.py:125 root - INFO -   Train rows : 39948
+[ 2026-07-23 22:27:07,756 ] train.py:126 root - INFO -   Test  rows : 10052
+[ 2026-07-23 22:27:07,756 ] train.py:127 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-07-23 22:27:07,756 ] train.py:128 root - INFO -   Target     : FloodProbability
+[ 2026-07-23 22:27:07,756 ] train.py:129 root - INFO - ===================================
+[ 2026-07-23 22:27:10,154 ] train.py:140 root - INFO - MLflow tracking Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-07-23 22:27:11,546 ] train.py:146 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-07-23 22:27:12,265 ] train.py:77 root - INFO - Linked to latest preprocessing run: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 22:27:12,484 ] train.py:207 root - INFO - ===================================
+[ 2026-07-23 22:27:12,484 ] train.py:208 root - INFO - Training : LinearRegression
+[ 2026-07-23 22:27:12,484 ] train.py:209 root - INFO - ===================================
+[ 2026-07-23 22:27:14,352 ] train.py:222 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-07-23 22:29:56,156 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:29:56,156 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:30:18,281 ] train.py:250 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-07-23 22:30:18,281 ] train.py:251 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-07-23 22:30:18,282 ] train.py:252 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-07-23 22:30:25,483 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-07-23 22:31:12,187 ] train.py:317 root - INFO -   *** New best model: LinearRegression  (RMSE=0.0211) ***
+[ 2026-07-23 22:31:12,523 ] train.py:207 root - INFO - ===================================
+[ 2026-07-23 22:31:12,524 ] train.py:208 root - INFO - Training : DecisionTreeRegressor
+[ 2026-07-23 22:31:12,524 ] train.py:209 root - INFO - ===================================
+[ 2026-07-23 22:31:15,687 ] train.py:222 root - INFO -   ParamGrid size : 9 combinations
+[ 2026-07-23 22:31:35,163 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:31:35,164 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:31:35,712 ] train.py:250 root - INFO -   Train R2   : 0.2873  |  Test R2   : 0.2205
+[ 2026-07-23 22:31:35,712 ] train.py:251 root - INFO -   Train RMSE : 0.0421  |  Test RMSE : 0.0446
+[ 2026-07-23 22:31:35,713 ] train.py:252 root - INFO -   Train MAE  : 0.0335  |  Test MAE  : 0.0356
+[ 2026-07-23 22:31:53,066 ] train.py:305 root - INFO -   Fit Status : UNDERFIT
+[ 2026-07-23 22:32:32,141 ] train.py:207 root - INFO - ===================================
+[ 2026-07-23 22:32:32,141 ] train.py:208 root - INFO - Training : RandomForestRegressor
+[ 2026-07-23 22:32:32,141 ] train.py:209 root - INFO - ===================================
+[ 2026-07-23 22:32:32,697 ] train.py:222 root - INFO -   ParamGrid size : 8 combinations
+[ 2026-07-23 22:38:43,983 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:38:43,984 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:38:55,974 ] train.py:250 root - INFO -   Train R2   : 0.6339  |  Test R2   : 0.5289
+[ 2026-07-23 22:38:55,975 ] train.py:251 root - INFO -   Train RMSE : 0.0302  |  Test RMSE : 0.0347
+[ 2026-07-23 22:38:55,975 ] train.py:252 root - INFO -   Train MAE  : 0.0242  |  Test MAE  : 0.0276
+[ 2026-07-23 22:39:10,580 ] train.py:305 root - INFO -   Fit Status : OVERFIT  (gap=0.1050)
+[ 2026-07-23 22:41:00,904 ] train.py:207 root - INFO - ===================================
+[ 2026-07-23 22:41:00,905 ] train.py:208 root - INFO - Training : GradientBoostingRegressor
+[ 2026-07-23 22:41:00,905 ] train.py:209 root - INFO - ===================================
+[ 2026-07-23 22:41:01,485 ] train.py:222 root - INFO -   ParamGrid size : 4 combinations
+[ 2026-07-23 22:44:00,324 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:44:00,324 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:45:13,352 ] train.py:250 root - INFO -   Train R2   : 0.7614  |  Test R2   : 0.7101
+[ 2026-07-23 22:45:13,352 ] train.py:251 root - INFO -   Train RMSE : 0.0244  |  Test RMSE : 0.0272
+[ 2026-07-23 22:45:13,353 ] train.py:252 root - INFO -   Train MAE  : 0.0195  |  Test MAE  : 0.0217
+[ 2026-07-23 22:45:22,916 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-07-23 22:46:00,364 ] train.py:320 root - INFO - ===================================
+[ 2026-07-23 22:46:00,365 ] train.py:321 root - INFO -   BEST MODEL : LinearRegression
+[ 2026-07-23 22:46:00,365 ] train.py:322 root - INFO -   BEST RMSE  : 0.0211
+[ 2026-07-23 22:46:00,365 ] train.py:323 root - INFO - ===================================
+[ 2026-07-23 22:47:51,270 ] train.py:338 root - INFO - Best model logged to MLflow under 'best_model'.
+[ 2026-07-23 22:47:51,273 ] train.py:345 root - INFO - Best run_id saved : logs/best_run_id.txt
+[ 2026-07-23 22:47:51,275 ] train.py:365 root - INFO - No scores.json found — creating new file.
+[ 2026-07-23 22:47:51,277 ] train.py:372 root - INFO - ===================================
+[ 2026-07-23 22:47:51,278 ] train.py:373 root - INFO - Scores saved to    : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\scores.json
+[ 2026-07-23 22:47:51,278 ] train.py:374 root - INFO - Total runs in file : 1
+[ 2026-07-23 22:47:51,279 ] train.py:375 root - INFO - ===================================
+[ 2026-07-23 22:47:51,279 ] train.py:376 root - INFO - Training Completed Successfully
+[ 2026-07-23 22:47:51,280 ] train.py:377 root - INFO - Run 'mlflow ui' -> http://127.0.0.1:5000
+[ 2026-07-23 22:47:51,280 ] train.py:378 root - INFO - ===================================
+[ 2026-07-23 22:47:51,298 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 22:59:57,136 ] best_model.py:50 root - INFO - Starting best model selection process...
+[ 2026-07-23 22:59:57,138 ] best_model.py:70 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 22:59:57,138 ] best_model.py:71 root - INFO - Training Experiment  : [Flood Prediction Training](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/4)
+[ 2026-07-23 22:59:57,138 ] best_model.py:72 root - INFO - Preprocessing Experiment: [Flood Prediction Preprocessing](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/5)
+[ 2026-07-23 22:59:58,162 ] best_model.py:79 root - INFO - =======================================================
+[ 2026-07-23 22:59:58,163 ] best_model.py:80 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-23 22:59:58,163 ] best_model.py:81 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-23 22:59:58,163 ] best_model.py:82 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 22:59:59,131 ] best_model.py:89 root - INFO - =======================================================
+[ 2026-07-23 22:59:59,132 ] best_model.py:90 root - INFO - Preprocessor    : Preprocessor
+[ 2026-07-23 22:59:59,132 ] best_model.py:91 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 23:00:10,230 ] best_model.py:104 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-23 23:00:35,832 ] best_model.py:180 root - ERROR - Unexpected error: An error occurred while calling z:org.apache.spark.api.python.PythonRDD.runJob.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 0.0 failed 1 times, most recent failure: Lost task 0.0 in stage 0.0 (TID 0) (DESKTOP-1LO34VD executor driver): org.apache.spark.SparkException: Python worker failed to connect back.
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.SocketTimeoutException: Accept timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+	... 17 more
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3060)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:989)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2398)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2419)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2438)
+	at org.apache.spark.api.python.PythonRDD$.runJob(PythonRDD.scala:181)
+	at org.apache.spark.api.python.PythonRDD.runJob(PythonRDD.scala)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.apache.spark.SparkException: Python worker failed to connect back.
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	... 1 more
+Caused by: java.net.SocketTimeoutException: Accept timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+	... 17 more
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 106, in best_model
+    champion_model      = mlflow.spark.load_model(champion_model_uri)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 711, in load_model
+    return _load_model(model_uri=model_uri, dfs_tmpdir_base=dfs_tmpdir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 660, in _load_model
+    return PipelineModel.load(model_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\ml\util.py", line 369, in load
+    return cls.read().load(path)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\ml\pipeline.py", line 282, in load
+    metadata = DefaultParamsReader.loadMetadata(path, self.sc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\ml\util.py", line 579, in loadMetadata
+    metadataStr = sc.textFile(metadataPath, 1).first()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\rdd.py", line 2888, in first
+    rs = self.take(1)
+         ^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\rdd.py", line 2855, in take
+    res = self.context.runJob(self, takeUpToNumLeft, p)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\context.py", line 2510, in runJob
+    sock_info = self._jvm.PythonRDD.runJob(self._jsc.sc(), mappedRDD._jrdd, partitions)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\py4j\java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\errors\exceptions\captured.py", line 179, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\py4j\protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: An error occurred while calling z:org.apache.spark.api.python.PythonRDD.runJob.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 0.0 failed 1 times, most recent failure: Lost task 0.0 in stage 0.0 (TID 0) (DESKTOP-1LO34VD executor driver): org.apache.spark.SparkException: Python worker failed to connect back.
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.net.SocketTimeoutException: Accept timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+	... 17 more
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2856)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2792)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2791)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2791)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1247)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1247)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3060)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2994)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2983)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:989)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2398)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2419)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2438)
+	at org.apache.spark.api.python.PythonRDD$.runJob(PythonRDD.scala:181)
+	at org.apache.spark.api.python.PythonRDD.runJob(PythonRDD.scala)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.apache.spark.SparkException: Python worker failed to connect back.
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:203)
+	at org.apache.spark.api.python.PythonWorkerFactory.create(PythonWorkerFactory.scala:109)
+	at org.apache.spark.SparkEnv.createPythonWorker(SparkEnv.scala:124)
+	at org.apache.spark.api.python.BasePythonRunner.compute(PythonRunner.scala:174)
+	at org.apache.spark.api.python.PythonRDD.compute(PythonRDD.scala:67)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+	at org.apache.spark.scheduler.Task.run(Task.scala:141)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	... 1 more
+Caused by: java.net.SocketTimeoutException: Accept timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedAccept(NioSocketImpl.java:713)
+	at java.base/sun.nio.ch.NioSocketImpl.accept(NioSocketImpl.java:757)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:675)
+	at java.base/java.net.ServerSocket.platformImplAccept(ServerSocket.java:641)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:617)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:574)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:532)
+	at org.apache.spark.api.python.PythonWorkerFactory.createSimpleWorker(PythonWorkerFactory.scala:190)
+	... 17 more
+
+[ 2026-07-23 23:00:35,908 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,908 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,908 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,908 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,908 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,909 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,909 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,909 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,909 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,909 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,910 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,910 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,910 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,910 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,911 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:00:35,931 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:05:59,172 ] best_model.py:73 root - INFO - Starting best model selection process...
+[ 2026-07-23 23:05:59,173 ] best_model.py:93 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:05:59,173 ] best_model.py:94 root - INFO - Training Experiment  : [Flood Prediction Training](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/4)
+[ 2026-07-23 23:05:59,174 ] best_model.py:95 root - INFO - Preprocessing Experiment: [Flood Prediction Preprocessing](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/5)
+[ 2026-07-23 23:06:00,078 ] best_model.py:102 root - INFO - =======================================================
+[ 2026-07-23 23:06:00,078 ] best_model.py:103 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-23 23:06:00,078 ] best_model.py:104 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-23 23:06:00,079 ] best_model.py:105 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:06:00,705 ] best_model.py:67 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 23:06:01,015 ] best_model.py:112 root - INFO - =======================================================
+[ 2026-07-23 23:06:01,016 ] best_model.py:113 root - INFO - Preprocessor    : Preprocessor
+[ 2026-07-23 23:06:01,016 ] best_model.py:114 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 23:06:06,691 ] best_model.py:130 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-23 23:06:27,968 ] best_model.py:134 root - INFO - Loading Preprocessor (spark flavor)...
+[ 2026-07-23 23:07:30,517 ] best_model.py:206 root - ERROR - Unexpected error: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+Traceback (most recent call last):
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 58, in _get_flavor_configuration_from_uri
+    ml_model_file = _download_artifact_from_uri(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\artifact_utils.py", line 94, in _download_artifact_from_uri
+    return get_artifact_repository(artifact_uri=root_uri).download_artifacts(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\artifact\artifact_repo.py", line 263, in download_artifacts
+    raise MlflowException(
+mlflow.exceptions.MlflowException: The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 136, in best_model
+    preprocessor     = mlflow.spark.load_model(preprocessor_uri)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 706, in load_model
+    flavor_conf = _get_flavor_configuration_from_uri(model_uri, FLAVOR_NAME)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 62, in _get_flavor_configuration_from_uri
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+[ 2026-07-23 23:07:30,584 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,585 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,585 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,585 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,587 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,588 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,586 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,586 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,585 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,587 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,587 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,588 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,588 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,589 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,586 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,589 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,589 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:07:30,619 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:13:06,124 ] best_model.py:12 root - INFO - Starting best model selection process...
+[ 2026-07-23 23:13:06,126 ] best_model.py:28 root - INFO - ===================================
+[ 2026-07-23 23:13:06,126 ] best_model.py:29 root - INFO - BEST RUN ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:13:06,126 ] best_model.py:30 root - INFO - ===================================
+[ 2026-07-23 23:13:07,521 ] best_model.py:72 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-23 23:13:07,521 ] best_model.py:79 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-23 23:21:03,046 ] best_model.py:12 root - INFO - Starting best model selection process...
+[ 2026-07-23 23:21:03,046 ] best_model.py:28 root - INFO - ===================================
+[ 2026-07-23 23:21:03,046 ] best_model.py:29 root - INFO - BEST RUN ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:21:03,046 ] best_model.py:30 root - INFO - ===================================
+[ 2026-07-23 23:21:04,342 ] best_model.py:72 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-23 23:21:04,342 ] best_model.py:79 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-23 23:21:39,907 ] best_model.py:73 root - INFO - Starting best model selection process...
+[ 2026-07-23 23:21:39,908 ] best_model.py:93 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:21:39,908 ] best_model.py:94 root - INFO - Training Experiment  : [Flood Prediction Training](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/4)
+[ 2026-07-23 23:21:39,908 ] best_model.py:95 root - INFO - Preprocessing Experiment: [Flood Prediction Preprocessing](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/5)
+[ 2026-07-23 23:21:40,903 ] best_model.py:102 root - INFO - =======================================================
+[ 2026-07-23 23:21:40,903 ] best_model.py:103 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-23 23:21:40,904 ] best_model.py:104 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-23 23:21:40,904 ] best_model.py:105 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:21:41,600 ] best_model.py:67 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 23:21:41,983 ] best_model.py:112 root - INFO - =======================================================
+[ 2026-07-23 23:21:41,983 ] best_model.py:113 root - INFO - Preprocessor    : Preprocessor
+[ 2026-07-23 23:21:41,983 ] best_model.py:114 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 23:21:47,360 ] best_model.py:130 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-23 23:21:51,189 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:22:07,396 ] best_model.py:134 root - INFO - Loading Preprocessor (spark flavor)...
+[ 2026-07-23 23:23:10,046 ] best_model.py:206 root - ERROR - Unexpected error: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+Traceback (most recent call last):
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 58, in _get_flavor_configuration_from_uri
+    ml_model_file = _download_artifact_from_uri(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\artifact_utils.py", line 94, in _download_artifact_from_uri
+    return get_artifact_repository(artifact_uri=root_uri).download_artifacts(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\artifact\artifact_repo.py", line 263, in download_artifacts
+    raise MlflowException(
+mlflow.exceptions.MlflowException: The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 136, in best_model
+    preprocessor     = mlflow.spark.load_model(preprocessor_uri)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 706, in load_model
+    flavor_conf = _get_flavor_configuration_from_uri(model_uri, FLAVOR_NAME)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 62, in _get_flavor_configuration_from_uri
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,080 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:23:10,137 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:27:30,495 ] best_model.py:82 root - INFO - Starting best model selection process...
+[ 2026-07-23 23:27:30,536 ] best_model.py:102 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:27:30,569 ] best_model.py:103 root - INFO - Training Experiment  : [Flood Prediction Training](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/4)
+[ 2026-07-23 23:27:30,574 ] best_model.py:104 root - INFO - Preprocessing Experiment: [Flood Prediction Preprocessing](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/5)
+[ 2026-07-23 23:27:31,519 ] best_model.py:111 root - INFO - =======================================================
+[ 2026-07-23 23:27:31,551 ] best_model.py:112 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-23 23:27:31,552 ] best_model.py:113 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-23 23:27:31,552 ] best_model.py:114 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-23 23:27:32,169 ] best_model.py:76 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 23:27:32,467 ] best_model.py:121 root - INFO - =======================================================
+[ 2026-07-23 23:27:32,467 ] best_model.py:122 root - INFO - Preprocessor    : Preprocessor
+[ 2026-07-23 23:27:32,467 ] best_model.py:123 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-23 23:27:37,640 ] best_model.py:139 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-23 23:27:41,134 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:28:00,719 ] best_model.py:143 root - INFO - Loading Preprocessor (spark flavor)...
+[ 2026-07-23 23:29:03,436 ] best_model.py:215 root - ERROR - Unexpected error: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+Traceback (most recent call last):
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 58, in _get_flavor_configuration_from_uri
+    ml_model_file = _download_artifact_from_uri(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\artifact_utils.py", line 94, in _download_artifact_from_uri
+    return get_artifact_repository(artifact_uri=root_uri).download_artifacts(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\artifact\artifact_repo.py", line 263, in download_artifacts
+    raise MlflowException(
+mlflow.exceptions.MlflowException: The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 145, in best_model
+    preprocessor     = mlflow.spark.load_model(preprocessor_uri)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 706, in load_model
+    flavor_conf = _get_flavor_configuration_from_uri(model_uri, FLAVOR_NAME)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 62, in _get_flavor_configuration_from_uri
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,497 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-23 23:29:03,548 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:23:59,993 ] best_model.py:82 root - INFO - Starting best model selection process...
+[ 2026-07-24 06:23:59,993 ] best_model.py:102 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:23:59,993 ] best_model.py:103 root - INFO - Training Experiment  : [Flood Prediction Training](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/4)
+[ 2026-07-24 06:23:59,993 ] best_model.py:104 root - INFO - Preprocessing Experiment: [Flood Prediction Preprocessing](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/5)
+[ 2026-07-24 06:24:00,938 ] best_model.py:111 root - INFO - =======================================================
+[ 2026-07-24 06:24:00,938 ] best_model.py:112 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-24 06:24:00,938 ] best_model.py:113 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-24 06:24:00,938 ] best_model.py:114 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:24:01,579 ] best_model.py:76 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:24:01,916 ] best_model.py:121 root - INFO - =======================================================
+[ 2026-07-24 06:24:01,916 ] best_model.py:122 root - INFO - Preprocessor    : Preprocessor
+[ 2026-07-24 06:24:01,916 ] best_model.py:123 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:24:10,338 ] best_model.py:139 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-24 06:24:14,091 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:24:34,290 ] best_model.py:143 root - INFO - Loading Preprocessor (spark flavor)...
+[ 2026-07-24 06:25:37,000 ] best_model.py:215 root - ERROR - Unexpected error: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+Traceback (most recent call last):
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 58, in _get_flavor_configuration_from_uri
+    ml_model_file = _download_artifact_from_uri(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\artifact_utils.py", line 94, in _download_artifact_from_uri
+    return get_artifact_repository(artifact_uri=root_uri).download_artifacts(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\artifact\artifact_repo.py", line 263, in download_artifacts
+    raise MlflowException(
+mlflow.exceptions.MlflowException: The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 145, in best_model
+    preprocessor     = mlflow.spark.load_model(preprocessor_uri)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 706, in load_model
+    flavor_conf = _get_flavor_configuration_from_uri(model_uri, FLAVOR_NAME)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 62, in _get_flavor_configuration_from_uri
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+[ 2026-07-24 06:25:37,067 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,067 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,068 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,069 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,068 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,069 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,068 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,068 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,068 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,068 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,069 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,069 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:25:37,105 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:26:52,191 ] best_model.py:82 root - INFO - Starting best model selection process...
+[ 2026-07-24 06:26:52,191 ] best_model.py:102 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:26:52,191 ] best_model.py:103 root - INFO - Training Experiment  : [Flood Prediction Training](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/4)
+[ 2026-07-24 06:26:52,191 ] best_model.py:104 root - INFO - Preprocessing Experiment: [Flood Prediction Preprocessing](https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/#/experiments/5)
+[ 2026-07-24 06:26:52,995 ] best_model.py:111 root - INFO - =======================================================
+[ 2026-07-24 06:26:52,995 ] best_model.py:112 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-24 06:26:52,995 ] best_model.py:113 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-24 06:26:52,995 ] best_model.py:114 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:26:53,596 ] best_model.py:76 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:26:53,897 ] best_model.py:121 root - INFO - =======================================================
+[ 2026-07-24 06:26:53,897 ] best_model.py:122 root - INFO - Preprocessor    : Preprocessor
+[ 2026-07-24 06:26:53,897 ] best_model.py:123 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:26:58,917 ] best_model.py:139 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-24 06:27:02,304 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:27:20,112 ] best_model.py:143 root - INFO - Loading Preprocessor (spark flavor)...
+[ 2026-07-24 06:28:22,828 ] best_model.py:215 root - ERROR - Unexpected error: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+Traceback (most recent call last):
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 58, in _get_flavor_configuration_from_uri
+    ml_model_file = _download_artifact_from_uri(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\artifact_utils.py", line 94, in _download_artifact_from_uri
+    return get_artifact_repository(artifact_uri=root_uri).download_artifacts(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\artifact\artifact_repo.py", line 263, in download_artifacts
+    raise MlflowException(
+mlflow.exceptions.MlflowException: The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 145, in best_model
+    preprocessor     = mlflow.spark.load_model(preprocessor_uri)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 706, in load_model
+    flavor_conf = _get_flavor_configuration_from_uri(model_uri, FLAVOR_NAME)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\model_utils.py", line 62, in _get_flavor_configuration_from_uri
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Failed to download an "MLmodel" model file from "mlflow-artifacts:/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model": The following failures occurred while downloading one or more artifacts from https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model: {'MLmodel': 'MlflowException("API request to https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel failed with exception HTTPSConnectionPool(host=\'dagshub.com\', port=443): Max retries exceeded with url: /Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow/api/2.0/mlflow-artifacts/artifacts/3b37dc91b0de496588d5feada735e34a/d5bc327fa0c14c2cbf85933e336a3855/artifacts/model/MLmodel (Caused by ResponseError(\'too many 500 error responses\'))")'}
+[ 2026-07-24 06:28:22,879 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,879 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,879 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,879 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,882 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,880 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,880 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,880 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,882 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,880 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,882 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,882 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,882 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:28:22,938 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:18,874 ] best_model.py:99 root - INFO - Starting best model selection process...
+[ 2026-07-24 06:47:18,874 ] best_model.py:115 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:47:19,714 ] best_model.py:122 root - INFO - =======================================================
+[ 2026-07-24 06:47:19,714 ] best_model.py:123 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-24 06:47:19,714 ] best_model.py:124 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-24 06:47:19,714 ] best_model.py:125 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:47:20,298 ] best_model.py:57 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:47:20,613 ] best_model.py:133 root - INFO - =======================================================
+[ 2026-07-24 06:47:20,613 ] best_model.py:134 root - INFO - Preprocessor         : Preprocessor
+[ 2026-07-24 06:47:20,613 ] best_model.py:135 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:47:28,507 ] best_model.py:149 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-24 06:47:34,205 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:55,054 ] best_model.py:152 root - INFO - [OK] Champion Model loaded.
+[ 2026-07-24 06:47:58,327 ] best_model.py:165 root - INFO - [OK] Saved : models/best_model_v1 (Version 1)
+[ 2026-07-24 06:47:58,331 ] best_model.py:166 root - INFO - [OK] Latest: models/best_model_latest
+[ 2026-07-24 06:47:58,331 ] best_model.py:169 root - INFO - =======================================================
+[ 2026-07-24 06:47:58,332 ] best_model.py:170 root - INFO - Registering Champion model as 'Champion'...
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:47:58,506 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:48:00,761 ] best_model.py:209 root - ERROR - Unexpected error: INVALID_PARAMETER_VALUE: Response: {'error_code': 'INVALID_PARAMETER_VALUE'}
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 172, in best_model
+    with mlflow.start_run(run_name="Champion_Registration") as reg_run:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\fluent.py", line 330, in start_run
+    active_run_obj = client.create_run(experiment_id=exp_id_for_run, tags=resolved_tags)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\client.py", line 265, in create_run
+    return self._tracking_client.create_run(experiment_id, start_time, tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_tracking_service\client.py", line 107, in create_run
+    return self.store.create_run(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\tracking\rest_store.py", line 170, in create_run
+    response_proto = self._call_endpoint(CreateRun, req_body)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\tracking\rest_store.py", line 56, in _call_endpoint
+    return call_endpoint(self.get_host_creds(), endpoint, method, json_body, response_proto)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 256, in call_endpoint
+    response = verify_rest_response(response, endpoint)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 185, in verify_rest_response
+    raise RestException(json.loads(response.text))
+mlflow.exceptions.RestException: INVALID_PARAMETER_VALUE: Response: {'error_code': 'INVALID_PARAMETER_VALUE'}
+[ 2026-07-24 06:48:01,483 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:48:01,483 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:48:01,483 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:48:01,484 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:48:01,484 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:48:01,484 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:48:01,509 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:08,795 ] best_model.py:99 root - INFO - Starting best model selection process...
+[ 2026-07-24 06:56:08,795 ] best_model.py:115 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:56:09,668 ] best_model.py:122 root - INFO - =======================================================
+[ 2026-07-24 06:56:09,668 ] best_model.py:123 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-24 06:56:09,668 ] best_model.py:124 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-24 06:56:09,668 ] best_model.py:125 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 06:56:10,256 ] best_model.py:57 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:56:10,562 ] best_model.py:133 root - INFO - =======================================================
+[ 2026-07-24 06:56:10,563 ] best_model.py:134 root - INFO - Preprocessor         : Preprocessor
+[ 2026-07-24 06:56:10,563 ] best_model.py:135 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 06:56:19,309 ] best_model.py:149 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-24 06:56:24,310 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:48,347 ] best_model.py:152 root - INFO - [OK] Champion Model loaded.
+[ 2026-07-24 06:56:51,289 ] best_model.py:165 root - INFO - [OK] Saved : models/best_model_v2 (Version 2)
+[ 2026-07-24 06:56:51,321 ] best_model.py:166 root - INFO - [OK] Latest: models/best_model_latest
+[ 2026-07-24 06:56:51,321 ] best_model.py:169 root - INFO - =======================================================
+[ 2026-07-24 06:56:51,336 ] best_model.py:170 root - INFO - Registering Champion model as 'Flood_best_model'...
+[ 2026-07-24 06:56:51,421 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:51,421 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:51,429 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:51,421 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:51,429 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:51,429 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:52,430 ] best_model.py:209 root - ERROR - Unexpected error: INVALID_PARAMETER_VALUE: Response: {'error_code': 'INVALID_PARAMETER_VALUE'}
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 172, in best_model
+    with mlflow.start_run(run_name="Champion_Registration") as reg_run:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\fluent.py", line 330, in start_run
+    active_run_obj = client.create_run(experiment_id=exp_id_for_run, tags=resolved_tags)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\client.py", line 265, in create_run
+    return self._tracking_client.create_run(experiment_id, start_time, tags)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_tracking_service\client.py", line 107, in create_run
+    return self.store.create_run(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\tracking\rest_store.py", line 170, in create_run
+    response_proto = self._call_endpoint(CreateRun, req_body)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\tracking\rest_store.py", line 56, in _call_endpoint
+    return call_endpoint(self.get_host_creds(), endpoint, method, json_body, response_proto)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 256, in call_endpoint
+    response = verify_rest_response(response, endpoint)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 185, in verify_rest_response
+    raise RestException(json.loads(response.text))
+mlflow.exceptions.RestException: INVALID_PARAMETER_VALUE: Response: {'error_code': 'INVALID_PARAMETER_VALUE'}
+[ 2026-07-24 06:56:52,967 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:52,967 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:52,967 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:52,967 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:52,967 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 06:56:52,989 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:00:42,543 ] best_model.py:99 root - INFO - Starting best model selection process...
+[ 2026-07-24 07:00:42,543 ] best_model.py:115 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 07:00:43,574 ] best_model.py:122 root - INFO - =======================================================
+[ 2026-07-24 07:00:43,574 ] best_model.py:123 root - INFO - Best Model Name : LinearRegression
+[ 2026-07-24 07:00:43,574 ] best_model.py:124 root - INFO - Best RMSE       : 0.021067
+[ 2026-07-24 07:00:43,574 ] best_model.py:125 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 07:00:44,215 ] best_model.py:57 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 07:00:44,543 ] best_model.py:133 root - INFO - =======================================================
+[ 2026-07-24 07:00:44,543 ] best_model.py:134 root - INFO - Preprocessor         : Preprocessor
+[ 2026-07-24 07:00:44,543 ] best_model.py:135 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-07-24 07:00:51,621 ] best_model.py:149 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-07-24 07:00:55,372 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:18,232 ] best_model.py:152 root - INFO - [OK] Champion Model loaded.
+[ 2026-07-24 07:01:23,046 ] best_model.py:165 root - INFO - [OK] Saved : models/best_model_v3 (Version 3)
+[ 2026-07-24 07:01:23,050 ] best_model.py:166 root - INFO - [OK] Latest: models/best_model_latest
+[ 2026-07-24 07:01:23,051 ] best_model.py:169 root - INFO - =======================================================
+[ 2026-07-24 07:01:23,051 ] best_model.py:170 root - INFO - Registering Champion model as 'Flood_best_model'...
+[ 2026-07-24 07:01:23,364 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:23,364 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:23,364 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:23,364 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:23,364 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:55,343 ] best_model.py:211 root - ERROR - Unexpected error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+Traceback (most recent call last):
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 236, in log_model
+    spark_model.save(posixpath.join(model_dir, _SPARK_MODEL_PATH_SUB))
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\ml\util.py", line 262, in save
+    self.write().save(path)
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\ml\util.py", line 213, in save
+    self._jwrite.save(path)
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\py4j\java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\errors\exceptions\captured.py", line 179, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\py4j\protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: An error occurred while calling o384.save.
+: org.apache.hadoop.fs.UnsupportedFileSystemException: No FileSystem for scheme "mlflow-artifacts"
+	at org.apache.hadoop.fs.FileSystem.getFileSystemClass(FileSystem.java:3443)
+	at org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:3466)
+	at org.apache.hadoop.fs.FileSystem.access$300(FileSystem.java:174)
+	at org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:3574)
+	at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:3521)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:540)
+	at org.apache.hadoop.fs.Path.getFileSystem(Path.java:365)
+	at org.apache.spark.ml.util.FileSystemOverwrite.handleOverwrite(ReadWrite.scala:673)
+	at org.apache.spark.ml.util.MLWriter.save(ReadWrite.scala:167)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.super$save(Pipeline.scala:344)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.$anonfun$save$4(Pipeline.scala:344)
+	at org.apache.spark.ml.MLEvents.withSaveInstanceEvent(events.scala:174)
+	at org.apache.spark.ml.MLEvents.withSaveInstanceEvent$(events.scala:169)
+	at org.apache.spark.ml.util.Instrumentation.withSaveInstanceEvent(Instrumentation.scala:42)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.$anonfun$save$3(Pipeline.scala:344)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.$anonfun$save$3$adapted(Pipeline.scala:344)
+	at org.apache.spark.ml.util.Instrumentation$.$anonfun$instrumented$1(Instrumentation.scala:191)
+	at scala.util.Try$.apply(Try.scala:213)
+	at org.apache.spark.ml.util.Instrumentation$.instrumented(Instrumentation.scala:191)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.save(Pipeline.scala:344)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 175, in best_model
+    mlflow.spark.log_model(
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 238, in log_model
+    return Model.log(
+           ^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\models\model.py", line 304, in log
+    mlflow.register_model(
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 67, in register_model
+    raise e
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 58, in register_model
+    create_model_response = client.create_registered_model(name)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\client.py", line 1666, in create_registered_model
+    return self._get_registry_client().create_registered_model(name, tags, description)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_model_registry\client.py", line 59, in create_registered_model
+    return self.store.create_registered_model(name, tags, description)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\model_registry\rest_store.py", line 83, in create_registered_model
+    response_proto = self._call_endpoint(CreateRegisteredModel, req_body)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\model_registry\rest_store.py", line 64, in _call_endpoint
+    return call_endpoint(self.get_host_creds(), endpoint, method, json_body, response_proto)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 256, in call_endpoint
+    response = verify_rest_response(response, endpoint)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 185, in verify_rest_response
+    raise RestException(json.loads(response.text))
+mlflow.exceptions.RestException: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:01:55,531 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:55,532 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:55,532 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:55,532 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:55,532 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:01:55,553 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-07-24 07:05:02,504 ] best_model.py:35 root - INFO - Starting best model selection process...
+[ 2026-07-24 07:05:02,505 ] best_model.py:51 root - INFO - =======================================================
+[ 2026-07-24 07:05:02,505 ] best_model.py:52 root - INFO - BEST RUN ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 07:05:02,505 ] best_model.py:53 root - INFO - =======================================================
+[ 2026-07-24 07:05:03,509 ] best_model.py:105 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:05:03,509 ] best_model.py:113 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:05:14,512 ] best_model.py:35 root - INFO - Starting best model selection process...
+[ 2026-07-24 07:05:14,512 ] best_model.py:51 root - INFO - =======================================================
+[ 2026-07-24 07:05:14,512 ] best_model.py:52 root - INFO - BEST RUN ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 07:05:14,512 ] best_model.py:53 root - INFO - =======================================================
+[ 2026-07-24 07:05:15,167 ] best_model.py:105 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:05:15,167 ] best_model.py:113 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:06:35,813 ] best_model.py:35 root - INFO - Starting best model selection process...
+[ 2026-07-24 07:06:35,814 ] best_model.py:51 root - INFO - =======================================================
+[ 2026-07-24 07:06:35,815 ] best_model.py:52 root - INFO - BEST RUN ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 07:06:35,815 ] best_model.py:53 root - INFO - =======================================================
+[ 2026-07-24 07:06:36,888 ] best_model.py:105 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:06:36,888 ] best_model.py:113 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:07:04,000 ] best_model.py:35 root - INFO - Starting best model selection process...
+[ 2026-07-24 07:07:04,000 ] best_model.py:51 root - INFO - =======================================================
+[ 2026-07-24 07:07:04,000 ] best_model.py:52 root - INFO - BEST RUN ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-07-24 07:07:04,016 ] best_model.py:53 root - INFO - =======================================================
+[ 2026-07-24 07:07:04,640 ] best_model.py:105 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-07-24 07:07:04,640 ] best_model.py:113 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 12:09:52,546 ] best_model.py:99 root - INFO - Starting best model selection process...
+[ 2026-08-04 12:09:52,549 ] best_model.py:115 root - INFO - Champion Run ID (from file): c811f82f952943958e2c8ff918ab66f7
+[ 2026-08-04 12:09:53,786 ] best_model.py:122 root - INFO - =======================================================
+[ 2026-08-04 12:09:53,786 ] best_model.py:123 root - INFO - Best Model Name : LinearRegression
+[ 2026-08-04 12:09:53,802 ] best_model.py:124 root - INFO - Best RMSE       : 0.021067
+[ 2026-08-04 12:09:53,802 ] best_model.py:125 root - INFO - Champion Run ID : c811f82f952943958e2c8ff918ab66f7
+[ 2026-08-04 12:09:54,374 ] best_model.py:57 root - INFO - [OK] Best Preprocessing Run ID: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-08-04 12:09:54,694 ] best_model.py:133 root - INFO - =======================================================
+[ 2026-08-04 12:09:54,694 ] best_model.py:134 root - INFO - Preprocessor         : Preprocessor
+[ 2026-08-04 12:09:54,694 ] best_model.py:135 root - INFO - Preprocessing Run ID : d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-08-04 12:10:22,432 ] best_model.py:149 root - INFO - Loading Champion Model (spark flavor)...
+[ 2026-08-04 12:10:26,475 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:10:44,440 ] best_model.py:152 root - INFO - [OK] Champion Model loaded.
+[ 2026-08-04 12:10:46,495 ] best_model.py:165 root - INFO - [OK] Saved : models/best_model_v4 (Version 4)
+[ 2026-08-04 12:10:46,510 ] best_model.py:166 root - INFO - [OK] Latest: models/best_model_latest
+[ 2026-08-04 12:10:46,510 ] best_model.py:169 root - INFO - =======================================================
+[ 2026-08-04 12:10:46,510 ] best_model.py:170 root - INFO - Registering Champion model as 'Flood_best_model'...
+[ 2026-08-04 12:10:46,850 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:10:46,850 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:10:46,850 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:10:46,850 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:10:46,850 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:10:46,850 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,142 ] best_model.py:211 root - ERROR - Unexpected error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+Traceback (most recent call last):
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 236, in log_model
+    spark_model.save(posixpath.join(model_dir, _SPARK_MODEL_PATH_SUB))
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\ml\util.py", line 262, in save
+    self.write().save(path)
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\ml\util.py", line 213, in save
+    self._jwrite.save(path)
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\py4j\java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\pyspark\errors\exceptions\captured.py", line 179, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\py4j\protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: An error occurred while calling o384.save.
+: org.apache.hadoop.fs.UnsupportedFileSystemException: No FileSystem for scheme "mlflow-artifacts"
+	at org.apache.hadoop.fs.FileSystem.getFileSystemClass(FileSystem.java:3443)
+	at org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:3466)
+	at org.apache.hadoop.fs.FileSystem.access$300(FileSystem.java:174)
+	at org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:3574)
+	at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:3521)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:540)
+	at org.apache.hadoop.fs.Path.getFileSystem(Path.java:365)
+	at org.apache.spark.ml.util.FileSystemOverwrite.handleOverwrite(ReadWrite.scala:673)
+	at org.apache.spark.ml.util.MLWriter.save(ReadWrite.scala:167)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.super$save(Pipeline.scala:344)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.$anonfun$save$4(Pipeline.scala:344)
+	at org.apache.spark.ml.MLEvents.withSaveInstanceEvent(events.scala:174)
+	at org.apache.spark.ml.MLEvents.withSaveInstanceEvent$(events.scala:169)
+	at org.apache.spark.ml.util.Instrumentation.withSaveInstanceEvent(Instrumentation.scala:42)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.$anonfun$save$3(Pipeline.scala:344)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.$anonfun$save$3$adapted(Pipeline.scala:344)
+	at org.apache.spark.ml.util.Instrumentation$.$anonfun$instrumented$1(Instrumentation.scala:191)
+	at scala.util.Try$.apply(Try.scala:213)
+	at org.apache.spark.ml.util.Instrumentation$.instrumented(Instrumentation.scala:191)
+	at org.apache.spark.ml.PipelineModel$PipelineModelWriter.save(Pipeline.scala:344)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\Classic\Desktop\Mlops-Flood-Prediction\src\best_model.py", line 175, in best_model
+    mlflow.spark.log_model(
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\spark.py", line 238, in log_model
+    return Model.log(
+           ^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\models\model.py", line 304, in log
+    mlflow.register_model(
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 67, in register_model
+    raise e
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 58, in register_model
+    create_model_response = client.create_registered_model(name)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\client.py", line 1666, in create_registered_model
+    return self._get_registry_client().create_registered_model(name, tags, description)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\tracking\_model_registry\client.py", line 59, in create_registered_model
+    return self.store.create_registered_model(name, tags, description)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\model_registry\rest_store.py", line 83, in create_registered_model
+    response_proto = self._call_endpoint(CreateRegisteredModel, req_body)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\store\model_registry\rest_store.py", line 64, in _call_endpoint
+    return call_endpoint(self.get_host_creds(), endpoint, method, json_body, response_proto)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 256, in call_endpoint
+    response = verify_rest_response(response, endpoint)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Classic\Desktop\Mlops-Flood-Prediction\.venv\Lib\site-packages\mlflow\utils\rest_utils.py", line 185, in verify_rest_response
+    raise RestException(json.loads(response.text))
+mlflow.exceptions.RestException: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 12:11:25,300 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,300 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,300 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,302 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,302 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,302 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,303 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,303 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:11:25,339 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 12:13:51,667 ] logger.py:19 MLOpsWorkflow - INFO - Logger initialized in logs/running_logs.log
+[ 2026-08-04 12:14:00,421 ] logger.py:19 MLOpsWorkflow - INFO - Logger initialized in logs/running_logs.log
+[ 2026-08-04 12:57:10,595 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-04 12:57:10,647 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-08-04 12:57:11,512 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-08-04 12:57:12,485 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-04 12:57:12,502 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-08-04 12:57:12,504 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-08-04 12:57:12,504 ] train.py:31 root - INFO - DagsHub initialized successfully.
+[ 2026-08-04 12:57:12,505 ] train.py:89 root - INFO - Starting model training process...
+[ 2026-08-04 12:57:28,375 ] train.py:123 root - INFO - ===================================
+[ 2026-08-04 12:57:28,375 ] train.py:124 root - INFO - Loaded Preprocessed Dataset
+[ 2026-08-04 12:57:32,601 ] train.py:125 root - INFO -   Train rows : 39948
+[ 2026-08-04 12:57:32,850 ] train.py:126 root - INFO -   Test  rows : 10052
+[ 2026-08-04 12:57:32,852 ] train.py:127 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-08-04 12:57:32,853 ] train.py:128 root - INFO -   Target     : FloodProbability
+[ 2026-08-04 12:57:32,854 ] train.py:129 root - INFO - ===================================
+[ 2026-08-04 12:57:35,275 ] train.py:140 root - INFO - MLflow tracking Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-08-04 12:57:36,370 ] train.py:146 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-08-04 12:57:37,101 ] train.py:77 root - INFO - Linked to latest preprocessing run: d5bc327fa0c14c2cbf85933e336a3855
+[ 2026-08-04 12:57:37,243 ] train.py:207 root - INFO - ===================================
+[ 2026-08-04 12:57:37,243 ] train.py:208 root - INFO - Training : LinearRegression
+[ 2026-08-04 12:57:37,243 ] train.py:209 root - INFO - ===================================
+[ 2026-08-04 12:57:38,282 ] train.py:222 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-08-04 13:00:24,084 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:00:24,084 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:00:47,125 ] train.py:250 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-08-04 13:00:47,125 ] train.py:251 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-08-04 13:00:47,125 ] train.py:252 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-08-04 13:01:00,039 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-08-04 13:01:36,103 ] train.py:317 root - INFO -   *** New best model: LinearRegression  (RMSE=0.0211) ***
+[ 2026-08-04 13:01:40,125 ] train.py:207 root - INFO - ===================================
+[ 2026-08-04 13:01:40,125 ] train.py:208 root - INFO - Training : DecisionTreeRegressor
+[ 2026-08-04 13:01:40,125 ] train.py:209 root - INFO - ===================================
+[ 2026-08-04 13:01:40,745 ] train.py:222 root - INFO -   ParamGrid size : 9 combinations
+[ 2026-08-04 13:02:07,160 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:02:07,160 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:02:07,897 ] train.py:250 root - INFO -   Train R2   : 0.2873  |  Test R2   : 0.2205
+[ 2026-08-04 13:02:07,898 ] train.py:251 root - INFO -   Train RMSE : 0.0421  |  Test RMSE : 0.0446
+[ 2026-08-04 13:02:07,898 ] train.py:252 root - INFO -   Train MAE  : 0.0335  |  Test MAE  : 0.0356
+[ 2026-08-04 13:02:16,674 ] train.py:305 root - INFO -   Fit Status : UNDERFIT
+[ 2026-08-04 13:03:49,226 ] train.py:207 root - INFO - ===================================
+[ 2026-08-04 13:03:49,227 ] train.py:208 root - INFO - Training : RandomForestRegressor
+[ 2026-08-04 13:03:49,227 ] train.py:209 root - INFO - ===================================
+[ 2026-08-04 13:03:49,781 ] train.py:222 root - INFO -   ParamGrid size : 8 combinations
+[ 2026-08-04 13:10:35,392 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:10:35,392 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:10:44,798 ] train.py:250 root - INFO -   Train R2   : 0.6343  |  Test R2   : 0.5289
+[ 2026-08-04 13:10:44,813 ] train.py:251 root - INFO -   Train RMSE : 0.0302  |  Test RMSE : 0.0347
+[ 2026-08-04 13:10:44,814 ] train.py:252 root - INFO -   Train MAE  : 0.0242  |  Test MAE  : 0.0276
+[ 2026-08-04 13:10:52,806 ] train.py:305 root - INFO -   Fit Status : OVERFIT  (gap=0.1054)
+[ 2026-08-04 13:11:39,500 ] train.py:207 root - INFO - ===================================
+[ 2026-08-04 13:11:39,500 ] train.py:208 root - INFO - Training : GradientBoostingRegressor
+[ 2026-08-04 13:11:39,500 ] train.py:209 root - INFO - ===================================
+[ 2026-08-04 13:11:40,016 ] train.py:222 root - INFO -   ParamGrid size : 4 combinations
+[ 2026-08-04 13:15:15,250 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:15:15,251 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:16:21,202 ] train.py:250 root - INFO -   Train R2   : 0.7614  |  Test R2   : 0.7101
+[ 2026-08-04 13:16:21,202 ] train.py:251 root - INFO -   Train RMSE : 0.0244  |  Test RMSE : 0.0272
+[ 2026-08-04 13:16:21,202 ] train.py:252 root - INFO -   Train MAE  : 0.0195  |  Test MAE  : 0.0217
+[ 2026-08-04 13:16:34,573 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-08-04 13:18:08,521 ] train.py:320 root - INFO - ===================================
+[ 2026-08-04 13:18:08,522 ] train.py:321 root - INFO -   BEST MODEL : LinearRegression
+[ 2026-08-04 13:18:08,522 ] train.py:322 root - INFO -   BEST RMSE  : 0.0211
+[ 2026-08-04 13:18:08,523 ] train.py:323 root - INFO - ===================================
+[ 2026-08-04 13:19:40,141 ] train.py:338 root - INFO - Best model logged to MLflow under 'best_model'.
+[ 2026-08-04 13:19:40,160 ] train.py:345 root - INFO - Best run_id saved : logs/best_run_id.txt
+[ 2026-08-04 13:19:40,164 ] train.py:362 root - INFO - Existing scores.json found — appending new run.
+[ 2026-08-04 13:19:40,169 ] train.py:372 root - INFO - ===================================
+[ 2026-08-04 13:19:40,169 ] train.py:373 root - INFO - Scores saved to    : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\scores.json
+[ 2026-08-04 13:19:40,170 ] train.py:374 root - INFO - Total runs in file : 2
+[ 2026-08-04 13:19:40,170 ] train.py:375 root - INFO - ===================================
+[ 2026-08-04 13:19:40,170 ] train.py:376 root - INFO - Training Completed Successfully
+[ 2026-08-04 13:19:40,171 ] train.py:377 root - INFO - Run 'mlflow ui' -> http://127.0.0.1:5000
+[ 2026-08-04 13:19:40,171 ] train.py:378 root - INFO - ===================================
+[ 2026-08-04 13:19:40,190 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:24:01,083 ] best_model.py:32 root - INFO - Starting best model selection process...
+[ 2026-08-04 13:24:01,108 ] best_model.py:51 root - INFO - ===================================
+[ 2026-08-04 13:24:01,108 ] best_model.py:52 root - INFO - BEST RUN ID : f0705f2ee2e941dcb04b1fea99d3f05d
+[ 2026-08-04 13:24:01,108 ] best_model.py:53 root - INFO - ===================================
+[ 2026-08-04 13:24:02,101 ] best_model.py:60 root - INFO - ===================================
+[ 2026-08-04 13:24:02,102 ] best_model.py:61 root - INFO - Best Model Name : LinearRegression
+[ 2026-08-04 13:24:02,102 ] best_model.py:62 root - INFO - Best RMSE       : 0.021067
+[ 2026-08-04 13:24:02,102 ] best_model.py:63 root - INFO - ===================================
+[ 2026-08-04 13:24:02,388 ] best_model.py:98 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 13:24:02,388 ] best_model.py:106 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 13:26:40,401 ] best_model.py:32 root - INFO - Starting best model selection process...
+[ 2026-08-04 13:26:40,402 ] best_model.py:51 root - INFO - ===================================
+[ 2026-08-04 13:26:40,402 ] best_model.py:52 root - INFO - BEST RUN ID : f0705f2ee2e941dcb04b1fea99d3f05d
+[ 2026-08-04 13:26:40,403 ] best_model.py:53 root - INFO - ===================================
+[ 2026-08-04 13:26:41,597 ] best_model.py:60 root - INFO - ===================================
+[ 2026-08-04 13:26:41,599 ] best_model.py:61 root - INFO - Best Model Name : LinearRegression
+[ 2026-08-04 13:26:41,599 ] best_model.py:62 root - INFO - Best RMSE       : 0.021067
+[ 2026-08-04 13:26:41,600 ] best_model.py:63 root - INFO - ===================================
+[ 2026-08-04 13:26:41,917 ] best_model.py:98 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 13:26:41,918 ] best_model.py:106 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 13:28:44,463 ] best_model.py:32 root - INFO - Starting best model selection process...
+[ 2026-08-04 13:28:44,464 ] best_model.py:51 root - INFO - ===================================
+[ 2026-08-04 13:28:44,465 ] best_model.py:52 root - INFO - BEST RUN ID : f0705f2ee2e941dcb04b1fea99d3f05d
+[ 2026-08-04 13:28:44,465 ] best_model.py:53 root - INFO - ===================================
+[ 2026-08-04 13:28:45,570 ] best_model.py:60 root - INFO - ===================================
+[ 2026-08-04 13:28:45,571 ] best_model.py:61 root - INFO - Best Model Name : LinearRegression
+[ 2026-08-04 13:28:45,571 ] best_model.py:62 root - INFO - Best RMSE       : 0.021067
+[ 2026-08-04 13:28:45,572 ] best_model.py:63 root - INFO - ===================================
+[ 2026-08-04 13:28:45,870 ] best_model.py:98 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 13:28:45,871 ] best_model.py:106 root - ERROR - Error: INTERNAL_ERROR: Response: {'error': 'unsupported endpoint, please contact support@dagshub.com'}
+[ 2026-08-04 13:42:45,405 ] best_model.py:34 root - INFO - Starting best model selection process...
+[ 2026-08-04 13:42:45,405 ] best_model.py:52 root - INFO - ===================================
+[ 2026-08-04 13:42:45,405 ] best_model.py:53 root - INFO - BEST RUN ID : f0705f2ee2e941dcb04b1fea99d3f05d
+[ 2026-08-04 13:42:45,405 ] best_model.py:54 root - INFO - ===================================
+[ 2026-08-04 13:42:46,326 ] best_model.py:61 root - INFO - ===================================
+[ 2026-08-04 13:42:46,326 ] best_model.py:62 root - INFO - Best Model Name : LinearRegression
+[ 2026-08-04 13:42:46,326 ] best_model.py:63 root - INFO - Best RMSE       : 0.021067
+[ 2026-08-04 13:42:46,341 ] best_model.py:64 root - INFO - ===================================
+[ 2026-08-04 13:43:05,158 ] best_model.py:76 root - INFO - Spark session started.
+[ 2026-08-04 13:43:05,158 ] best_model.py:79 root - INFO - Loading champion model from MLflow...
+[ 2026-08-04 13:43:08,650 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:25,891 ] best_model.py:82 root - INFO - [OK] Champion model loaded: PipelineModel
+[ 2026-08-04 13:43:27,626 ] best_model.py:93 root - INFO - [OK] Saved versioned : models/best_model_v5
+[ 2026-08-04 13:43:28,478 ] best_model.py:96 root - INFO - [OK] Saved latest    : models/best_model_latest
+[ 2026-08-04 13:43:28,515 ] best_model.py:98 root - INFO - ===================================
+[ 2026-08-04 13:43:28,516 ] best_model.py:99 root - INFO - Best model selection completed!
+[ 2026-08-04 13:43:28,516 ] best_model.py:100 root - INFO - ===================================
+[ 2026-08-04 13:43:28,518 ] best_model.py:113 root - INFO - Log file saved: logs/best_model.log
+[ 2026-08-04 13:43:28,597 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,597 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,598 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,598 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,598 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,598 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,598 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,598 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,598 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,599 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,599 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-04 13:43:28,676 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:14:51,139 ] preprocessing.py:17 root - INFO - params.yaml loaded successfully.
+[ 2026-08-08 10:14:51,206 ] preprocessing.py:39 root - WARNING - DagsHub init failed, continuing without remote tracking: [Errno 11002] getaddrinfo failed
+[ 2026-08-08 10:14:51,206 ] preprocessing.py:47 root - INFO - MLflow tracking -> Local  : sqlite:///mlflow.db
+[ 2026-08-08 10:14:57,902 ] preprocessing.py:50 root - INFO - MLflow experiment set : Flood Prediction Preprocessing
+[ 2026-08-08 10:14:57,902 ] preprocessing.py:55 root - INFO - Preprocessing pipeline started.
+[ 2026-08-08 10:15:22,143 ] preprocessing.py:65 root - INFO - SparkSession initialised successfully.
+[ 2026-08-08 10:15:32,667 ] preprocessing.py:89 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-08-08 10:15:32,819 ] preprocessing.py:99 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-08-08 10:15:32,868 ] preprocessing.py:108 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-08-08 10:15:35,086 ] preprocessing.py:119 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-08-08 10:15:37,157 ] preprocessing.py:140 root - INFO - ML pipeline fitted on training data.
+[ 2026-08-08 10:15:37,354 ] preprocessing.py:149 root - INFO - Train and test datasets transformed successfully.
+[ 2026-08-08 10:15:37,857 ] preprocessing.py:168 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-08-08 10:15:40,359 ] preprocessing.py:177 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-08-08 10:15:41,290 ] preprocessing.py:180 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-08-08 10:15:42,357 ] preprocessing.py:189 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-08-08 10:16:03,922 ] preprocessing.py:197 root - INFO - Preprocessing pipeline logged to MLflow under 'preprocessing_pipeline'.
+[ 2026-08-08 10:16:04,230 ] preprocessing.py:210 root - INFO - SparkSession stopped.
+[ 2026-08-08 10:16:04,257 ] preprocessing.py:212 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-08-08 10:16:04,630 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:20:07,141 ] preprocessing.py:17 root - INFO - params.yaml loaded successfully.
+[ 2026-08-08 10:20:08,344 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-08 10:20:08,360 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-08-08 10:20:09,471 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-08-08 10:20:10,460 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-08 10:20:10,460 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-08-08 10:20:10,460 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-08-08 10:20:10,460 ] preprocessing.py:37 root - INFO - DagsHub initialized successfully.
+[ 2026-08-08 10:20:10,460 ] preprocessing.py:44 root - INFO - MLflow tracking -> Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-08-08 10:20:11,545 ] preprocessing.py:50 root - INFO - MLflow experiment set : Flood Prediction Preprocessing
+[ 2026-08-08 10:20:11,545 ] preprocessing.py:55 root - INFO - Preprocessing pipeline started.
+[ 2026-08-08 10:20:18,241 ] preprocessing.py:65 root - INFO - SparkSession initialised successfully.
+[ 2026-08-08 10:20:30,899 ] preprocessing.py:89 root - INFO - Data loaded — Rows: 50000 | Cols: 21
+[ 2026-08-08 10:20:31,570 ] preprocessing.py:99 root - INFO - Columns after drop: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-08-08 10:20:31,634 ] preprocessing.py:108 root - INFO - Selected 18 columns: ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss', 'FloodProbability']
+[ 2026-08-08 10:20:33,307 ] preprocessing.py:119 root - INFO - Train rows: 39948 | Test rows: 10052
+[ 2026-08-08 10:20:35,721 ] preprocessing.py:140 root - INFO - ML pipeline fitted on training data.
+[ 2026-08-08 10:20:36,010 ] preprocessing.py:149 root - INFO - Train and test datasets transformed successfully.
+[ 2026-08-08 10:20:36,480 ] preprocessing.py:168 root - INFO - Scaled features expanded into individual named columns.
+[ 2026-08-08 10:20:38,891 ] preprocessing.py:177 root - INFO - Train Parquet saved -> data/transform/TRAIN_CSV
+[ 2026-08-08 10:20:39,664 ] preprocessing.py:180 root - INFO - Test Parquet saved  -> data/transform/TEST_CSV
+[ 2026-08-08 10:20:40,852 ] preprocessing.py:189 root - INFO - Pipeline model saved -> models/pipeline
+[ 2026-08-08 10:21:55,780 ] preprocessing.py:197 root - INFO - Preprocessing pipeline logged to MLflow under 'preprocessing_pipeline'.
+[ 2026-08-08 10:21:56,766 ] preprocessing.py:210 root - INFO - SparkSession stopped.
+[ 2026-08-08 10:21:57,361 ] preprocessing.py:212 root - INFO - Preprocessing pipeline completed successfully.
+[ 2026-08-08 10:21:57,499 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:21:57,501 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:22:09,211 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-08 10:22:09,236 ] helpers.py:107 dagshub - INFO - Accessing as Muhammad-Musharraf
+[ 2026-08-08 10:22:10,276 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Muhammad-Musharraf/Mlops-Flood-Prediction "HTTP/1.1 200 OK"
+[ 2026-08-08 10:22:11,308 ] _client.py:1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-08 10:22:11,311 ] helpers.py:107 dagshub - INFO - Initialized MLflow to track repo "Muhammad-Musharraf/Mlops-Flood-Prediction"
+[ 2026-08-08 10:22:11,311 ] helpers.py:107 dagshub - INFO - Repository Muhammad-Musharraf/Mlops-Flood-Prediction initialized!
+[ 2026-08-08 10:22:11,312 ] train.py:31 root - INFO - DagsHub initialized successfully.
+[ 2026-08-08 10:22:11,312 ] train.py:89 root - INFO - Starting model training process...
+[ 2026-08-08 10:22:25,113 ] train.py:123 root - INFO - ===================================
+[ 2026-08-08 10:22:25,114 ] train.py:124 root - INFO - Loaded Preprocessed Dataset
+[ 2026-08-08 10:22:27,586 ] train.py:125 root - INFO -   Train rows : 39948
+[ 2026-08-08 10:22:27,937 ] train.py:126 root - INFO -   Test  rows : 10052
+[ 2026-08-08 10:22:27,943 ] train.py:127 root - INFO -   Features   : ['MonsoonIntensity', 'TopographyDrainage', 'RiverManagement', 'Deforestation', 'Urbanization', 'ClimateChange', 'DamsQuality', 'Siltation', 'AgriculturalPractices', 'Encroachments', 'IneffectiveDisasterPreparedness', 'DrainageSystems', 'CoastalVulnerability', 'Landslides', 'Watersheds', 'DeterioratingInfrastructure', 'WetlandLoss']
+[ 2026-08-08 10:22:27,944 ] train.py:128 root - INFO -   Target     : FloodProbability
+[ 2026-08-08 10:22:27,944 ] train.py:129 root - INFO - ===================================
+[ 2026-08-08 10:22:30,011 ] train.py:140 root - INFO - MLflow tracking Remote : https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow
+[ 2026-08-08 10:22:31,215 ] train.py:146 root - INFO - MLflow experiment set    : Flood Prediction Training
+[ 2026-08-08 10:22:31,826 ] train.py:77 root - INFO - Linked to latest preprocessing run: e75cf6b1c3c54508b2c6bd2f45b09123
+[ 2026-08-08 10:22:31,955 ] train.py:207 root - INFO - ===================================
+[ 2026-08-08 10:22:31,955 ] train.py:208 root - INFO - Training : LinearRegression
+[ 2026-08-08 10:22:31,956 ] train.py:209 root - INFO - ===================================
+[ 2026-08-08 10:22:32,895 ] train.py:222 root - INFO -   ParamGrid size : 6 combinations
+[ 2026-08-08 10:25:37,223 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:25:37,224 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:26:00,950 ] train.py:250 root - INFO -   Train R2   : 0.8259  |  Test R2   : 0.8261
+[ 2026-08-08 10:26:00,950 ] train.py:251 root - INFO -   Train RMSE : 0.0208  |  Test RMSE : 0.0211
+[ 2026-08-08 10:26:00,950 ] train.py:252 root - INFO -   Train MAE  : 0.0166  |  Test MAE  : 0.0169
+[ 2026-08-08 10:26:08,618 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-08-08 10:26:42,072 ] train.py:317 root - INFO -   *** New best model: LinearRegression  (RMSE=0.0211) ***
+[ 2026-08-08 10:26:42,723 ] train.py:207 root - INFO - ===================================
+[ 2026-08-08 10:26:42,723 ] train.py:208 root - INFO - Training : DecisionTreeRegressor
+[ 2026-08-08 10:26:42,723 ] train.py:209 root - INFO - ===================================
+[ 2026-08-08 10:26:43,292 ] train.py:222 root - INFO -   ParamGrid size : 9 combinations
+[ 2026-08-08 10:27:10,444 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:27:10,446 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:27:11,064 ] train.py:250 root - INFO -   Train R2   : 0.2873  |  Test R2   : 0.2205
+[ 2026-08-08 10:27:11,065 ] train.py:251 root - INFO -   Train RMSE : 0.0421  |  Test RMSE : 0.0446
+[ 2026-08-08 10:27:11,065 ] train.py:252 root - INFO -   Train MAE  : 0.0335  |  Test MAE  : 0.0356
+[ 2026-08-08 10:27:18,062 ] train.py:305 root - INFO -   Fit Status : UNDERFIT
+[ 2026-08-08 10:27:54,083 ] train.py:207 root - INFO - ===================================
+[ 2026-08-08 10:27:54,085 ] train.py:208 root - INFO - Training : RandomForestRegressor
+[ 2026-08-08 10:27:54,086 ] train.py:209 root - INFO - ===================================
+[ 2026-08-08 10:27:58,259 ] train.py:222 root - INFO -   ParamGrid size : 8 combinations
+[ 2026-08-08 10:34:46,763 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:34:46,763 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:34:56,403 ] train.py:250 root - INFO -   Train R2   : 0.6347  |  Test R2   : 0.5316
+[ 2026-08-08 10:34:56,403 ] train.py:251 root - INFO -   Train RMSE : 0.0302  |  Test RMSE : 0.0346
+[ 2026-08-08 10:34:56,403 ] train.py:252 root - INFO -   Train MAE  : 0.0241  |  Test MAE  : 0.0275
+[ 2026-08-08 10:35:04,460 ] train.py:305 root - INFO -   Fit Status : OVERFIT  (gap=0.1031)
+[ 2026-08-08 10:35:43,177 ] train.py:207 root - INFO - ===================================
+[ 2026-08-08 10:35:43,177 ] train.py:208 root - INFO - Training : GradientBoostingRegressor
+[ 2026-08-08 10:35:43,177 ] train.py:209 root - INFO - ===================================
+[ 2026-08-08 10:35:45,677 ] train.py:222 root - INFO -   ParamGrid size : 4 combinations
+[ 2026-08-08 10:38:47,191 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:38:47,191 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:39:53,982 ] train.py:250 root - INFO -   Train R2   : 0.7614  |  Test R2   : 0.7101
+[ 2026-08-08 10:39:53,982 ] train.py:251 root - INFO -   Train RMSE : 0.0244  |  Test RMSE : 0.0272
+[ 2026-08-08 10:39:53,982 ] train.py:252 root - INFO -   Train MAE  : 0.0195  |  Test MAE  : 0.0217
+[ 2026-08-08 10:40:06,943 ] train.py:305 root - INFO -   Fit Status : GOOD
+[ 2026-08-08 10:40:51,588 ] train.py:320 root - INFO - ===================================
+[ 2026-08-08 10:40:51,588 ] train.py:321 root - INFO -   BEST MODEL : LinearRegression
+[ 2026-08-08 10:40:51,588 ] train.py:322 root - INFO -   BEST RMSE  : 0.0211
+[ 2026-08-08 10:40:51,588 ] train.py:323 root - INFO - ===================================
+[ 2026-08-08 10:41:42,966 ] train.py:338 root - INFO - Best model logged to MLflow under 'best_model'.
+[ 2026-08-08 10:41:42,982 ] train.py:345 root - INFO - Best run_id saved : logs/best_run_id.txt
+[ 2026-08-08 10:41:42,982 ] train.py:365 root - INFO - No scores.json found — creating new file.
+[ 2026-08-08 10:41:42,982 ] train.py:372 root - INFO - ===================================
+[ 2026-08-08 10:41:42,982 ] train.py:373 root - INFO - Scores saved to    : C:\Users\Classic\Desktop\Mlops-Flood-Prediction\artifacts\scores.json
+[ 2026-08-08 10:41:42,982 ] train.py:374 root - INFO - Total runs in file : 1
+[ 2026-08-08 10:41:42,982 ] train.py:375 root - INFO - ===================================
+[ 2026-08-08 10:41:42,982 ] train.py:376 root - INFO - Training Completed Successfully
+[ 2026-08-08 10:41:42,982 ] train.py:377 root - INFO - Run 'mlflow ui' -> http://127.0.0.1:5000
+[ 2026-08-08 10:41:42,982 ] train.py:378 root - INFO - ===================================
+[ 2026-08-08 10:41:43,137 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:07,613 ] best_model.py:34 root - INFO - Starting best model selection process...
+[ 2026-08-08 10:51:07,618 ] best_model.py:52 root - INFO - ===================================
+[ 2026-08-08 10:51:07,621 ] best_model.py:53 root - INFO - BEST RUN ID : d83d1a4990b74613aef9737a2d2a6d2e
+[ 2026-08-08 10:51:07,623 ] best_model.py:54 root - INFO - ===================================
+[ 2026-08-08 10:51:08,617 ] best_model.py:61 root - INFO - ===================================
+[ 2026-08-08 10:51:08,618 ] best_model.py:62 root - INFO - Best Model Name : LinearRegression
+[ 2026-08-08 10:51:08,618 ] best_model.py:63 root - INFO - Best RMSE       : 0.021067
+[ 2026-08-08 10:51:08,619 ] best_model.py:64 root - INFO - ===================================
+[ 2026-08-08 10:51:14,859 ] best_model.py:76 root - INFO - Spark session started.
+[ 2026-08-08 10:51:14,859 ] best_model.py:79 root - INFO - Loading champion model from MLflow...
+[ 2026-08-08 10:51:21,447 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:21,447 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:21,447 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:21,448 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:21,448 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:21,448 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:21,448 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:21,449 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection
+[ 2026-08-08 10:51:31,937 ] best_model.py:82 root - INFO - [OK] Champion model loaded: PipelineModel
+[ 2026-08-08 10:51:33,733 ] best_model.py:93 root - INFO - [OK] Saved versioned : models/best_model_v6
+[ 2026-08-08 10:51:34,264 ] best_model.py:96 root - INFO - [OK] Saved latest    : models/best_model_latest
+[ 2026-08-08 10:51:34,271 ] best_model.py:98 root - INFO - ===================================
+[ 2026-08-08 10:51:34,271 ] best_model.py:99 root - INFO - Best model selection completed!
+[ 2026-08-08 10:51:34,271 ] best_model.py:100 root - INFO - ===================================
+[ 2026-08-08 10:51:34,271 ] best_model.py:113 root - INFO - Log file saved: logs/best_model.log
+[ 2026-08-08 10:51:34,302 ] clientserver.py:543 py4j.clientserver - INFO - Closing down clientserver connection

@@ -306,6 +306,7 @@ def train():
                              + (f"  (gap={diff:.4f})" if fit_status == "overfit" else ""))
 
                 # ── Log model artifact ────────────────────────────────────────
+
                 mlflow.spark.log_model(best, artifact_path="model")
 
                 # ── Track best model (lowest test RMSE) ───────────────────────
@@ -322,7 +323,7 @@ def train():
         logging.info("===================================")
 
         # ── 9. Champion run ───────────────────────────────────────────────────
-        with mlflow.start_run(run_name="Best_Model_" + best_model_name):
+        with mlflow.start_run(run_name="Best_Model_" + best_model_name) as champion_run:  # ← as champion_run add karo
             mlflow.log_param("best_model_name", best_model_name)
             mlflow.log_metric("best_RMSE",      best_rmse)
             if preprocessing_run_id:
@@ -331,13 +332,23 @@ def train():
             mlflow.set_tag("model_type", best_model_name)
             mlflow.set_tag("framework",  "pyspark")
             mlflow.spark.log_model(best_model, artifact_path="best_model")
+            
+            best_run_id = champion_run.info.run_id  # ← Run ID capture karo
 
         logging.info("Best model logged to MLflow under 'best_model'.")
 
-        # ── 10. scores.json — append history of every run ─────────────────────
+        # ── 10. Best Run ID save karo ─────────────────────────────────────────
+        run_id_path = "logs/best_run_id.txt"
+        os.makedirs("logs", exist_ok=True)
+        with open(run_id_path, "w") as f:
+            f.write(best_run_id)
+        logging.info("Best run_id saved : %s", run_id_path)
+
+        # ── 11. scores.json — append history of every run ─────────────────────
         run_record = {
             "run_timestamp"        : datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "best_model"           : best_model_name,
+            "best_run_id"          : best_run_id,               # ← Added
             "best_rmse"            : round(best_rmse, 4),
             "preprocessing_run_id" : preprocessing_run_id,
             "models"               : results,

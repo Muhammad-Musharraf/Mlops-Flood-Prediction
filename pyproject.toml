@@ -7,12 +7,21 @@ requires-python = ">=3.11"
 dependencies = [
     "dagshub>=0.7.0",
     "dotenv>=0.9.9",
-    "fastapi>=0.139.0",
+    "fastapi[standard]>=0.139.0",
     "kagglehub>=1.0.1",
     "mlflow>=1.27.0",
     "pandas>=3.0.3",
+    "plotly>=6.9.0",
     "protobuf<4.0.0",
     "pyspark==3.5.1",
+    "requests>=2.34.2",
+    "scikit-learn>=1.9.0",
     "sentry-sdk>=2.65.0",
     "setuptools<70.0.0",
+    "streamlit>=1.60.0",
+]
+
+[tool.uv.workspace]
+members = [
+    "FastApi",
 ]

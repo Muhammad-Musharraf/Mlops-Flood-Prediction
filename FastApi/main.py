@@ -1,226 +1,416 @@
-"""
-main.py
-────────
-Flood Prediction API — serves the champion model + preprocessing pipeline
-from the MLflow Model Registry (via DagsHub tracking).
+# =============================================================================
+# app.py  —  Flood Prediction FastAPI Service
+# =============================================================================
 
-Changes from the original version:
-  - Model/pipeline loading moved into a `lifespan` handler with a
-    stage -> latest-version fallback chain, instead of hardcoded version
-    numbers ("/2", "/1") at import time. Promoting a new model no longer
-    requires editing this file.
-  - /predict now takes a JSON body (Pydantic model) instead of 17 query
-    params on a POST — standard REST shape, automatic validation, and it
-    matches what Swagger/clients expect from a POST endpoint.
-  - Added /health and /model/reload for operability.
-  - Deduplicated imports; allow_origins is now a proper list.
-"""
-
-from __future__ import annotations
-
-import os
-import sys
-import tempfile
-from contextlib import asynccontextmanager
-from typing import List, Optional
-
-import mlflow
-import mlflow.spark
-import sentry_sdk
+import dagshub
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, status
-from fastapi.middleware.cors import CORSMiddleware
-from mlflow.tracking import MlflowClient
-from pydantic import BaseModel, Field
-from pyspark.sql import SparkSession
-
-# ── Environment setup (must happen before Spark/MLflow are touched) ────────
-os.environ["PYSPARK_PYTHON"] = sys.executable
-os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
-os.environ["MLFLOW_TMP_DIR"] = os.path.join(tempfile.gettempdir(), "mlflow")
-
 load_dotenv()
-
-mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
-
-sentry_sdk.init(
-    dsn=os.getenv("SENTRY_DSN"),
-    send_default_pii=True,
-)
-
-MODEL_NAME = "Champion"
-PIPELINE_NAME = "Flood Prediction Preprocessing"
-MODEL_STAGE = os.getenv("MODEL_STAGE", "Production")
-
-FEATURE_COLUMNS = [
-    "MonsoonIntensity", "TopographyDrainage", "RiverManagement", "Deforestation",
-    "Urbanization", "ClimateChange", "DamsQuality", "Siltation",
-    "AgriculturalPractices", "Encroachments", "IneffectiveDisasterPreparedness",
-    "DrainageSystems", "CoastalVulnerability", "Landslides", "Watersheds",
-    "DeterioratingInfrastructure", "WetlandLoss",
-]
-
-# ── Shared Spark session ────────────────────────────────────────────────
-spark = (
-    SparkSession.builder
-    .appName("FastApi-Spark")
-    .config("spark.driver.host", "127.0.0.1")
-    .config("spark.driver.bindAddress", "127.0.0.1")
-    .config("spark.sql.warehouse.dir", "file:///C:/temp/spark-warehouse")
-    .config("spark.hadoop.fs.file.impl", "org.apache.hadoop.fs.RawLocalFileSystem")
-    .config("spark.hadoop.fs.AbstractFileSystem.file.impl", "org.apache.hadoop.fs.local.RawLocalFs")
-    .getOrCreate()
-)
-
-# ── Global model state ──────────────────────────────────────────────────
-model = None
-pipeline_model = None
-model_source: Optional[str] = None
-pipeline_source: Optional[str] = None
+import math
+import sys
+import os
+import json
+import os
+import mlflow
+import numpy as np
 
 
-def _resolve_registered_uri(name: str, stage: str) -> List[str]:
-    """Stage -> latest-version fallback chain for a registered model name."""
-    candidates = [f"models:/{name}/{stage}"]
+if sys.platform == "win32":
     try:
-        client = MlflowClient()
-        versions = client.search_model_versions(f"name='{name}'")
-        if versions:
-            latest = max(versions, key=lambda v: int(v.version))
-            candidates.append(f"models:/{name}/{latest.version}")
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
     except Exception:
         pass
-    return candidates
 
 
-def load_champion_and_pipeline():
-    """Loads both artifacts with a stage -> latest fallback. Never raises —
-    logs and leaves globals as None so the API can start in a degraded state
-    instead of crashing outright if the registry is briefly unreachable."""
-    global model, pipeline_model, model_source, pipeline_source
 
-    for uri in _resolve_registered_uri(MODEL_NAME, MODEL_STAGE):
+# Set MLflow tracking URI directly from env variable
+mlflow.set_tracking_uri(os.environ.get(
+    "MLFLOW_TRACKING_URI",
+    "https://dagshub.com/Muhammad-Musharraf/Mlops-Flood-Prediction.mlflow"
+))
+
+os.environ["PYSPARK_PYTHON"]        = sys.executable
+os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
+
+# ── Standard Library ──────────────────────────────────────────────────────────
+import logging
+from contextlib import asynccontextmanager
+
+# ── Third Party ───────────────────────────────────────────────────────────────
+import yaml
+
+# ── Redis ─────────────────────────────────────────────────────────────────────
+import redis
+
+# ── Rate Limiting ─────────────────────────────────────────────────────────────
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+
+# ── FastAPI ───────────────────────────────────────────────────────────────────
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
+
+# ── PySpark ───────────────────────────────────────────────────────────────────
+from pyspark.sql import SparkSession
+from pyspark.ml import PipelineModel
+from pyspark.ml.feature import VectorAssembler
+
+# =============================================================================
+# LOGGING
+# =============================================================================
+
+logging.basicConfig(
+    level    = logging.INFO,
+    format   = "[ %(asctime)s ] %(filename)s:%(lineno)d - %(levelname)s - %(message)s",
+    encoding = "utf-8",
+)
+logger = logging.getLogger(__name__)
+
+# =============================================================================
+# PATHS
+# =============================================================================
+
+# FastApi/app.py  →  two dirname() calls  →  project root
+PROJECT_ROOT      = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LATEST_MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "best_model_latest")
+PARAMS_PATH       = os.path.join(PROJECT_ROOT, "params.yaml")
+
+# =============================================================================
+# READ params.yaml — single source of truth for features
+# =============================================================================
+
+with open(PARAMS_PATH, "r") as f:
+    _params = yaml.safe_load(f)
+
+FEATURE_COLS  = _params["data"]["feature_columns"]   # 17 features
+TARGET_COL    = _params["data"]["target_column"]      # FloodProbability
+SAMPLE_INPUT  = _params["sample_input"]               # from params.yaml
+
+logger.info("Loaded %d features from params.yaml", len(FEATURE_COLS))
+logger.info("Features : %s", FEATURE_COLS)
+
+
+
+
+# =============================================================================
+# GLOBAL SINGLETONS
+# =============================================================================
+
+spark_session     = None
+flood_model       = None
+feature_assembler = None
+redis_client      = None
+native_model      = None   # ← extracted model weights for fast inference
+
+limiter = Limiter(
+    key_func     = get_remote_address,
+    storage_uri  = os.environ.get("REDIS_URL", "redis://localhost:6379/0"),
+)
+
+# =============================================================================
+# SPARK SESSION
+# =============================================================================
+
+def get_spark() -> SparkSession:
+    global spark_session
+    if spark_session is None:
+        logger.info("Creating Spark session...")
+        spark_session = (
+            SparkSession.builder
+            .appName("FloodPrediction_API")
+            .config("spark.driver.host",            "127.0.0.1")
+            .config("spark.driver.bindAddress",     "127.0.0.1")
+            .config("spark.python.worker.reuse",    "false")
+            .config("spark.driver.memory",          "2g")
+            .config("spark.sql.shuffle.partitions", "4")
+            .getOrCreate()
+        )
+        spark_session.sparkContext.setLogLevel("WARN")
+        logger.info("[OK] Spark session ready.")
+    return spark_session
+
+# =============================================================================
+# REDIS CLIENT
+# =============================================================================
+
+def get_redis() -> redis.Redis:
+    global redis_client
+    if redis_client is None:
+        redis_client = redis.Redis(
+            host    = os.environ.get("REDIS_HOST", "localhost"),
+            port    = int(os.environ.get("REDIS_PORT", "6379")),
+            db      = int(os.environ.get("REDIS_DB", "0")),
+            decode_responses         = True,
+            socket_connect_timeout   = 2,
+        )
         try:
-            model = mlflow.spark.load_model(model_uri=uri)
-            model_source = uri
-            break
-        except Exception as exc:  # noqa: BLE001
-            sentry_sdk.capture_message(f"Failed loading model from {uri}: {exc}")
+            redis_client.ping()
+            logger.info("[OK] Redis connection ready.")
+        except Exception as e:
+            logger.warning("Redis unavailable — caching disabled: %s", e)
+            redis_client = None
+    return redis_client
 
-    for uri in _resolve_registered_uri(PIPELINE_NAME, MODEL_STAGE):
-        try:
-            pipeline_model = mlflow.spark.load_model(model_uri=uri)
-            pipeline_source = uri
-            break
-        except Exception as exc:  # noqa: BLE001
-            sentry_sdk.capture_message(f"Failed loading pipeline from {uri}: {exc}")
+# =============================================================================
+# MODEL LOADER
+# =============================================================================
 
+def load_model():
+    global flood_model
+    if flood_model is not None:
+        return flood_model
+
+    if not os.path.exists(LATEST_MODEL_PATH):
+        raise FileNotFoundError(
+            f"Model not found: {LATEST_MODEL_PATH}\n"
+            "→ Run best_model.py first."
+        )
+
+    if not os.path.exists(os.path.join(LATEST_MODEL_PATH, "metadata")) or \
+       not os.path.exists(os.path.join(LATEST_MODEL_PATH, "stages")):
+        raise FileNotFoundError(
+            f"Model folder incomplete (missing metadata/ or stages/).\n"
+            "→ Re-run best_model.py."
+        )
+
+    logger.info("Loading model from: %s", LATEST_MODEL_PATH)
+    get_spark()
+    flood_model = PipelineModel.load(LATEST_MODEL_PATH)
+    logger.info("[OK] Model loaded: %s", type(flood_model).__name__)
+    return flood_model
+
+# =============================================================================
+# FEATURE ASSEMBLER  —  built once at startup, reused per request
+# =============================================================================
+
+def init_assembler():
+    global feature_assembler
+    if feature_assembler is None:
+        logger.info("Building VectorAssembler...")
+        feature_assembler = VectorAssembler(inputCols=FEATURE_COLS, outputCol="features")
+        logger.info("[OK] VectorAssembler ready for %d features.", len(FEATURE_COLS))
+    return feature_assembler
+
+# =============================================================================
+# NATIVE MODEL EXTRACTOR
+# Pulls weights/stage out of the PipelineModel once at startup so we can
+# run inference in pure Python/NumPy — no Spark job per request.
+#
+# Supported:
+#   LinearRegression  →  numpy dot-product   (~10 ms)
+#   GBT / RF          →  single-row Spark     (~800 ms, still faster than
+#                        full pipeline path)
+# =============================================================================
+
+def init_native_model():
+    """Extract the predictive stage from the pipeline for fast inference."""
+    global native_model
+    pipeline = load_model()
+
+    for stage in pipeline.stages:
+        # ── Linear Regression ───────────────────────────────────────────────
+        if hasattr(stage, "coefficients") and hasattr(stage, "intercept"):
+            coeffs    = stage.coefficients.toArray()   # numpy array
+            intercept = float(stage.intercept)
+            native_model = ("linear", coeffs, intercept)
+            logger.info(
+                "[OK] Native model: LinearRegression  |  coefficients: %d", len(coeffs)
+            )
+            return
+
+        # ── Tree Ensemble (GBT / RandomForest) ──────────────────────────────
+        if hasattr(stage, "featureImportances"):
+            native_model = ("tree", stage)
+            logger.info(
+                "[OK] Native model: %s  |  will use single-row Spark path",
+                type(stage).__name__
+            )
+            return
+
+    raise ValueError(
+        "No supported model stage found in pipeline "
+        "(expected LinearRegression, GBTRegressor, or RandomForestRegressor)."
+    )
+
+# =============================================================================
+# FAST PREDICT HELPER
+# Called by the /predict route — no Spark overhead for linear models.
+# =============================================================================
+
+def fast_predict(row_values: list[float]) -> float:
+    """Run inference using the pre-extracted native model."""
+    kind = native_model[0]
+
+    if kind == "linear":
+        _, coeffs, intercept = native_model
+        x     = np.array(row_values, dtype=np.float64)
+        logit = float(np.dot(coeffs, x) + intercept)
+        return 1.0 / (1.0 + math.exp(-logit))          # sigmoid
+
+    elif kind == "tree":
+        # Single-row Spark path — still avoids the full pipeline overhead
+        _, stage = native_model
+        spark    = get_spark()
+        row_dict = dict(zip(FEATURE_COLS, row_values))
+        df       = spark.createDataFrame([row_dict])
+        df       = feature_assembler.transform(df)
+        result   = stage.transform(df).collect()[0]["prediction"]
+        return 1.0 / (1.0 + math.exp(-result))
+
+    raise RuntimeError(f"Unknown native model kind: {kind!r}")
+
+# =============================================================================
+# LIFESPAN
+# =============================================================================
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    load_champion_and_pipeline()
+    logger.info("FastAPI starting up...")
+    try:
+        load_model()
+        init_assembler()
+        init_native_model()   # ← extract weights once; fast_predict uses them
+        get_redis()
+        logger.info("[OK] Ready — %d features, model loaded.", len(FEATURE_COLS))
+    except Exception as e:
+        logger.error("Startup failed: %s", e)
+        raise
     yield
-    spark.stop()
+    logger.info("Shutting down Spark...")
+    try:
+        s = SparkSession.getActiveSession()
+        if s:
+            s.stop()
+    except Exception as e:
+        logger.warning("Spark stop error: %s", e)
 
+# =============================================================================
+# APP
+# =============================================================================
 
 app = FastAPI(
-    title="Welcome to Flood Prediction API",
-    version="2.0.0",
-    description="Flood Prediction using Spark MLlib + MLflow",
-    lifespan=lifespan,
+    title       = "Flood Prediction API",
+    description = "PySpark · MLflow · DagsHub  |  17-feature flood probability predictor",
+    version     = "1.0.0",
+    lifespan    = lifespan,
 )
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app.state.limiter = limiter
+app.add_middleware(SlowAPIMiddleware)
 
 
-# ── Schemas ──────────────────────────────────────────────────────────────
-class FloodFeatures(BaseModel):
-    MonsoonIntensity: float = Field(..., example=1)
-    TopographyDrainage: float = Field(..., example=3)
-    RiverManagement: float = Field(..., example=4)
-    Deforestation: float = Field(..., example=5)
-    Urbanization: float = Field(..., example=3)
-    ClimateChange: float = Field(..., example=2)
-    DamsQuality: float = Field(..., example=8)
-    Siltation: float = Field(..., example=9)
-    AgriculturalPractices: float = Field(..., example=3)
-    Encroachments: float = Field(..., example=2)
-    IneffectiveDisasterPreparedness: float = Field(..., example=9)
-    DrainageSystems: float = Field(..., example=8)
-    CoastalVulnerability: float = Field(..., example=6)
-    Landslides: float = Field(..., example=2)
-    Watersheds: float = Field(..., example=1)
-    DeterioratingInfrastructure: float = Field(..., example=1)
-    WetlandLoss: float = Field(..., example=4)
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request, exc):
+    return JSONResponse(
+        status_code = 429,
+        content     = {"detail": "Rate limit exceeded: 10 requests per minute. Try again later."},
+    )
 
+# =============================================================================
+# SCHEMAS  —  17 exact features from params.yaml
+# =============================================================================
 
-# ── Endpoints ────────────────────────────────────────────────────────────
-@app.get("/")
-def home():
-    return {"message": "Flood Prediction API Running"}
+class FloodInput(BaseModel):
+    # 3 columns were dropped during preprocessing (params.yaml → drop_columns)
+    # PoliticalFactors, InadequatePlanning, PopulationScore  ← do NOT send these
+    MonsoonIntensity:                float = Field(..., example=SAMPLE_INPUT["MonsoonIntensity"])
+    TopographyDrainage:              float = Field(..., example=SAMPLE_INPUT["TopographyDrainage"])
+    RiverManagement:                 float = Field(..., example=SAMPLE_INPUT["RiverManagement"])
+    Deforestation:                   float = Field(..., example=SAMPLE_INPUT["Deforestation"])
+    Urbanization:                    float = Field(..., example=SAMPLE_INPUT["Urbanization"])
+    ClimateChange:                   float = Field(..., example=SAMPLE_INPUT["ClimateChange"])
+    DamsQuality:                     float = Field(..., example=SAMPLE_INPUT["DamsQuality"])
+    Siltation:                       float = Field(..., example=SAMPLE_INPUT["Siltation"])
+    AgriculturalPractices:           float = Field(..., example=SAMPLE_INPUT["AgriculturalPractices"])
+    Encroachments:                   float = Field(..., example=SAMPLE_INPUT["Encroachments"])
+    IneffectiveDisasterPreparedness: float = Field(..., example=SAMPLE_INPUT["IneffectiveDisasterPreparedness"])
+    DrainageSystems:                 float = Field(..., example=SAMPLE_INPUT["DrainageSystems"])
+    CoastalVulnerability:            float = Field(..., example=SAMPLE_INPUT["CoastalVulnerability"])
+    Landslides:                      float = Field(..., example=SAMPLE_INPUT["Landslides"])
+    Watersheds:                      float = Field(..., example=SAMPLE_INPUT["Watersheds"])
+    DeterioratingInfrastructure:     float = Field(..., example=SAMPLE_INPUT["DeterioratingInfrastructure"])
+    WetlandLoss:                     float = Field(..., example=SAMPLE_INPUT["WetlandLoss"])
 
-
-@app.get("/health")
-def health():
-    return {
-        "status": "ok" if (model and pipeline_model) else "degraded",
-        "model_loaded": model is not None,
-        "model_source": model_source,
-        "pipeline_loaded": pipeline_model is not None,
-        "pipeline_source": pipeline_source,
+    model_config = {
+        "json_schema_extra": {
+            "example": SAMPLE_INPUT   # pre-fills Swagger UI with sample values
+        }
     }
 
 
-@app.post("/model/reload")
-def reload_model():
-    load_champion_and_pipeline()
-    if not (model and pipeline_model):
-        raise HTTPException(
-            status.HTTP_503_SERVICE_UNAVAILABLE,
-            "Reload attempted but model and/or pipeline still not loaded — check logs/Sentry.",
-        )
-    return {"status": "ok", "model_source": model_source, "pipeline_source": pipeline_source}
+class FloodOutput(BaseModel):
+    prediction    : float
+    features_used : int
+    status        : str = "success"
+
+# =============================================================================
+# ROUTES
+# =============================================================================
+
+@app.get("/", tags=["Health"])
+def root():
+    return {"status": "running", "service": "Flood Prediction API"}
 
 
-@app.get("/tester")
-def tester():
-    return {"message": "tester endpoint is working fine"}
+@app.get("/health", tags=["Health"])
+def health():
+    return {
+        "status"        : "healthy" if flood_model is not None else "model not loaded",
+        "model_loaded"  : flood_model is not None,
+        "model_type"    : native_model[0] if native_model else "unknown",
+        "model_path"    : LATEST_MODEL_PATH,
+        "features_count": len(FEATURE_COLS),
+    }
 
 
-@app.get("/sentry-debug")
-async def trigger_error():
-    division_by_zero = 1 / 0
+@app.get("/features", tags=["Info"])
+def get_features():
+    """Exact feature names and order the model expects."""
+    return {
+        "feature_count" : len(FEATURE_COLS),
+        "feature_cols"  : FEATURE_COLS,
+        "target_col"    : TARGET_COL,
+        "dropped_cols"  : _params["data"]["drop_columns"],
+        "sample_input"  : SAMPLE_INPUT,
+    }
 
 
-@app.post("/predict")
-def predict(payload: FloodFeatures):
-    if model is None or pipeline_model is None:
-        raise HTTPException(
-            status.HTTP_503_SERVICE_UNAVAILABLE,
-            "Model or preprocessing pipeline not loaded. Try POST /model/reload.",
-        )
-
+@app.post("/predict", response_model=FloodOutput, tags=["Prediction"])
+@limiter.limit("10/minute")
+def predict(request: Request, data: FloodInput):
     try:
-        row = [tuple(getattr(payload, col) for col in FEATURE_COLUMNS)]
-        input_df = spark.createDataFrame(row, FEATURE_COLUMNS)
+        dcache = get_redis()
 
-        transformed_df = pipeline_model.transform(input_df)
-        prediction_df = model.transform(transformed_df)
-        prediction = prediction_df.select("prediction").collect()[0][0]
+        # Feature values in the exact order FEATURE_COLS expects
+        row_values = [float(getattr(data, col)) for col in FEATURE_COLS]
 
-        return {
-            "flood_probability": round(float(prediction), 4),
-            "model_name": MODEL_NAME,
-            "model_source": model_source,
-            "status": "success",
-        }
+        # Cache key: ordered feature vector (fixed order, no sorting bug)
+        cache_key = "predict:" + json.dumps(row_values)
+
+        if dcache is not None:
+            cached = dcache.get(cache_key)
+            if cached:
+                logger.info("Cache hit — returning instantly.")
+                return FloodOutput(prediction=float(cached), features_used=len(FEATURE_COLS))
+
+        # ── Fast inference — no Spark job for linear models ──────────────────
+        result = fast_predict(row_values)
+
+        if dcache is not None:
+            dcache.set(cache_key, str(result), ex=60)
+
+        logger.info(
+            "Prediction: %.6f  |  model: %s  |  features: %d",
+            result, native_model[0], len(FEATURE_COLS)
+        )
+        return FloodOutput(prediction=float(result), features_used=len(FEATURE_COLS))
 
     except Exception as e:
-        sentry_sdk.capture_exception(e)
-        return {"status": "failed", "error": str(e)}
+        logger.error("Prediction error: %s", e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+# =============================================================================
+# RUN:  uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+# =============================================================================

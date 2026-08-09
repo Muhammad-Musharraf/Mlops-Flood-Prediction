@@ -18,12 +18,18 @@ stages:
     metrics:
       - artifacts/scores.json:
           cache: false
+
   Best_model:
     cmd: python src/best_model.py
     deps:
       - src/best_model.py
+      - logs/best_run_id.txt        
     outs:
-      - artifacts/best_model
-      - artifacts/best_model_info.json
+      - models/best_model_latest    
+    metrics:
+      - logs/best_model.log:
+          cache: false   
+ 
+    
 
   
