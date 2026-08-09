@@ -40,6 +40,7 @@ env/
 !.env.example          # allow a sample template to be committed
 
 # Jupyter
+# Jupyter
 Notebook_files/
 .ipynb_checkpoints/
 
