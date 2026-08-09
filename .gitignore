@@ -39,9 +39,10 @@ env/
 .env.*
 !.env.example          # allow a sample template to be committed
 
-# ── Jupyter ───────────────────────────────────────────────────────────────────
+# Jupyter
 Notebook_files/
-Flood_Prediction.ipynb_checkpoints/
+.ipynb_checkpoints/
+
 
 # ── DVC — ignore only generated/cache dirs; commit everything else ───────────
 # .dvcignore is intentionally NOT here — it must be committed to Git
