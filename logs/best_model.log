@@ -1,8 +1,0 @@
-Best model selection completed at 2026-08-08 10:51:34.271125
-Model      : Flood_best_model
-Algorithm  : LinearRegression
-Run ID     : d83d1a4990b74613aef9737a2d2a6d2e
-Best RMSE  : 0.021067
-Version    : v6
-Versioned  : models/best_model_v6
-Latest     : models/best_model_latest
